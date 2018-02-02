@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "b7904d07d1e1765a0a199aa11d6301a3",
+    "content-hash": "effed52170a6aa4429086292bb3f4927",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -405,6 +405,56 @@
                 }
             ],
             "time": "2015-04-20T18:58:01+00:00"
+        },
+        {
+            "name": "karlomikus/theme",
+            "version": "v1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/karlomikus/theme.git",
+                "reference": "32539a7a8c9b4905827ba48c943508d88505c71b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/karlomikus/theme/zipball/32539a7a8c9b4905827ba48c943508d88505c71b",
+                "reference": "32539a7a8c9b4905827ba48c943508d88505c71b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "mockery/mockery": "dev-master",
+                "orchestra/testbench": "3.0.*",
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Karlomikus\\Theme\\": "src/Theme"
+                },
+                "files": [
+                    "src/Theme/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Karlo Mikuš",
+                    "email": "contact@karlomikus.com"
+                }
+            ],
+            "description": "Add theming support to your Laravel 5.* projects",
+            "homepage": "https://github.com/karlomikus/theme",
+            "keywords": [
+                "laravel",
+                "theme",
+                "views"
+            ],
+            "time": "2016-10-03T16:31:07+00:00"
         },
         {
             "name": "laravel/framework",

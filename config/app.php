@@ -177,6 +177,13 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /**
+         * Third Party Vendors
+         */
+        
+        // Theme
+        Karlomikus\Theme\ThemeServiceProvider::class,
+
     ],
 
     /*
@@ -225,7 +232,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        'Theme' => Karlomikus\Theme\Facade\Theme::class,
     ],
 
 ];
