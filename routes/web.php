@@ -29,20 +29,20 @@ Route::group([
 	
 // });
 
-// /*
-// |----------------------------------------------
-// | Backend - (Private)
-// |----------------------------------------------
-// */
-// Route::group([
-// 	'namespace' => 'Backend',
-// 	'prefix' => 'backend',
-// 	'middleware' => 'auth',
-// ], function(){
+/*
+|----------------------------------------------
+| Backend - (Private)
+|----------------------------------------------
+*/
+Route::group([
+	'namespace' => 'Backend',
+	'prefix' => 'app',
+	// 'middleware' => 'auth',
+], function(){
 	
-// 	Route::get('/',							'BackendController@index')->name('backend');
+	Route::get('/',							'BackendController@index')->name('backend');
 	
-// });
+});
 
 // /*
 // |----------------------------------------------

@@ -17,6 +17,6 @@ class BaseController extends Controller
 	{
 		$this->theme = $theme;
 		$this->theme->set($this->namespace);
-		// view()->addLocation(resource_path('views/themes/' . $this->namespace .'/'));
+		view()->addLocation(resource_path('views/themes/' . $this->namespace .'/'));
 	}
 }
