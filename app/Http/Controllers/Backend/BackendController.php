@@ -8,4 +8,9 @@ class BackendController extends BaseController
 	{
 		return view('home/index');
 	}
+
+	public function custom($view)
+	{
+		return view('bootstrap/' . $view);
+	}
 }
