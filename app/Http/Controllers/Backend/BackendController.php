@@ -9,8 +9,13 @@ class BackendController extends BaseController
 		return view('home/index');
 	}
 
-	public function custom($view)
+	public function ui($slug)
 	{
-		return view('bootstrap/' . $view);
+		return view('ui/' . $slug);
+	}
+
+	public function tables($slug)
+	{
+		return view('tables/' . $slug);
 	}
 }

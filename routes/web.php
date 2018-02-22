@@ -41,7 +41,8 @@ Route::group([
 ], function(){
 	
 	Route::get('/',							'BackendController@index')->name('backend');
-	Route::get('/{view}',					'BackendController@custom');
+	Route::get('/user-interface/{slug}',	'BackendController@ui')->name('user-interface');
+	Route::get('/tables/{slug}',			'BackendController@tables')->name('tables');
 	
 });
 

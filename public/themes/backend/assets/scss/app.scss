@@ -21,12 +21,14 @@ $type-400:						400;
 $type-500:						500;
 
 $text-light:					#A5AAB6;
-$text-base:						#848A99;
+// $text-base:						#848A99;
+$text-base: #676B7C;
 $text-bold:						#464c55;
 
 $gray-100:						#f8f9fd !default;
 $gray-600:						$text-light !default;
 $gray-800:						#343C49 !default;
+$gray-900:						#1F2637 !default;
 
 $primary:						#4474E4;
 // $secondary:						#CACDE0;
@@ -37,7 +39,7 @@ $warning:						#FFCB4A;
 $danger:						#F55753;
 $purple:						#6D5BAF;
 $light:							$gray-100;
-$dark:							#1F2637;
+$dark:							$gray-900;
 $pink:							#FE6E98;
 $custom:						#1fb6ff;
 $default:						#FFFFFF;
@@ -132,6 +134,7 @@ $dropdown-item-padding-x:		1.5rem !default;
 // Tables
 $table-border-color:			$border !default;
 $table-accent-bg:				$bg !default;
+$table-hover-bg:				$avatar-bg !default;
 
 // Forms
 $form-group-margin-bottom:		($spacer * 1.5) !default;

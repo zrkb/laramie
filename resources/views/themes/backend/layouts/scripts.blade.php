@@ -71,7 +71,7 @@
 			'pdfHtml5',
 		];
 
-		$('.table').DataTable({
+		$('.datatable').DataTable({
 			language: language,
 			dom: 'Bfrtip'
 			// buttons: buttons

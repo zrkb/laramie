@@ -11,15 +11,20 @@
 
 		<div class="collapse navbar-collapse" id="navbar-menu-dropdown">
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item active">
-					<a class="nav-link" href="javascript:;">Home</a>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ route('backend') }}">Home</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ route('user-interface', ['slug' => 'typography']) }}">Typography</a>
 				</li>
 				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="javascript:;" id="lm-layout" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						Layout
+					<a class="nav-link dropdown-toggle" href="javascript:;" id="lm-tables" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Tables
 					</a>
-					<div class="dropdown-menu" aria-labelledby="lm-layout">
-						<a class="dropdown-item" href="javascript:;">Media Object</a>
+					<div class="dropdown-menu" aria-labelledby="lm-tables">
+						<a class="dropdown-item" href="{{ route('tables', ['slug' => 'basic']) }}">Basic Tables</a>
+						<a class="dropdown-item" href="{{ route('tables', ['slug' => 'datatables']) }}">Datatables</a>
+						<a class="dropdown-item" href="{{ route('tables', ['slug' => 'responsive']) }}">Responsive Tables</a>
 					</div>
 				</li>
 				<li class="nav-item dropdown">
@@ -27,7 +32,7 @@
 						Content
 					</a>
 					<div class="dropdown-menu" aria-labelledby="lm-content">
-						<a class="dropdown-item" href="javascript:;">Typography</a>
+						<a class="dropdown-item" href="{{ route('user-interface', ['slug' => 'typography']) }}">Typography</a>
 						<a class="dropdown-item" href="javascript:;">Code</a>
 						<a class="dropdown-item" href="javascript:;">Images</a>
 						<a class="dropdown-item" href="javascript:;">Tables</a>

@@ -352,4 +352,8 @@ div.table-responsive > div.dataTables_wrapper > div.row {
   line-height: 60px;
   /* Vertically center the text there */ }
 
+/* line 454, ../scss/custom.scss */
+.lead {
+  padding: 0.5rem 0; }
+
 /*# sourceMappingURL=custom.css.map */
