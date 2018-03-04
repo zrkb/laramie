@@ -14,8 +14,15 @@
 				<li class="nav-item">
 					<a class="nav-link" href="{{ route('backend') }}">Home</a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="{{ route('user-interface', ['slug' => 'typography']) }}">Typography</a>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="javascript:;" id="lm-ui" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						User Interface
+					</a>
+					<div class="dropdown-menu" aria-labelledby="lm-ui">
+						<a class="dropdown-item" href="{{ route('user-interface', ['slug' => 'typography']) }}">Typography</a>
+						<a class="dropdown-item" href="javascript:;">Colors</a>
+						<a class="dropdown-item" href="javascript:;">Close Icon</a>
+					</div>
 				</li>
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="javascript:;" id="lm-tables" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -72,12 +79,11 @@
 					</div>
 				</li>
 				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="javascript:;" id="lm-utilities" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						Utilities
+					<a class="nav-link dropdown-toggle" href="javascript:;" id="lm-extras" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Extras
 					</a>
-					<div class="dropdown-menu" aria-labelledby="lm-utilities">
-						<a class="dropdown-item" href="javascript:;">Colors</a>
-						<a class="dropdown-item" href="javascript:;">Close Icon</a>
+					<div class="dropdown-menu" aria-labelledby="lm-extras">
+						<a class="dropdown-item" href="{{ route('extras', ['slug' => 'upload']) }}">Upload File</a>
 					</div>
 				</li>
 			</ul>

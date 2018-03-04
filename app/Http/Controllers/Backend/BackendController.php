@@ -18,4 +18,9 @@ class BackendController extends BaseController
 	{
 		return view('tables/' . $slug);
 	}
+
+	public function extras($slug)
+	{
+		return view('extras/' . $slug);
+	}
 }

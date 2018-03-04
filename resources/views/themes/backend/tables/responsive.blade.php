@@ -14,8 +14,6 @@
 
 	<div class="row mb-5">
 		<div class="col">
-			<h5 class="card-title">Card Title</h5>
-
 			<div class="card">
 				<div class="card-body">
 					<p>Across every breakpoint, use <code>.table-responsive</code> for horizontally scrolling tables.</p>

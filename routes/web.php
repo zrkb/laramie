@@ -43,20 +43,21 @@ Route::group([
 	Route::get('/',							'BackendController@index')->name('backend');
 	Route::get('/user-interface/{slug}',	'BackendController@ui')->name('user-interface');
 	Route::get('/tables/{slug}',			'BackendController@tables')->name('tables');
+	Route::get('/extras/{slug}',			'BackendController@extras')->name('extras');
 	
 });
 
-// /*
-// |----------------------------------------------
-// | API - (Public)
-// |----------------------------------------------
-// */
-// Route::group([
-// 	'namespace' => 'API',
-// 	'prefix' => 'api',
-// 	'middleware' => 'auth',
-// ], function(){
+/*
+|----------------------------------------------
+| API - (Public)
+|----------------------------------------------
+*/
+Route::group([
+	'namespace' => 'API',
+	'prefix' => 'api',
+	// 'middleware' => 'auth',
+], function(){
 	
-// 	Route::get('/',							'APIController@index')->name('api');
+	Route::post('/upload',					'ApiController@upload')->name('upload');
 	
-// });
+});
