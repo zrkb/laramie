@@ -24,14 +24,16 @@
 				<li class="nav-item dropdown">
 					<a class="nav-link nav-link-avatar dropdown-toggle" href="javascript:;" id="bd-versions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						<div class="user-avatar">
-							<span class="no-image-user" title="Felix Ayala">FA</span>
+							<span class="no-image-user" title="{{ auth()->user()->fullname }}">
+								{{ auth()->user()->initials }}
+							</span>
 							<!-- <img src="assets/img/avatars/quaver.svg" title="Felix Ayala"> -->
 						</div>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="bd-versions">
 						<a class="dropdown-item" href="javascript:;">
-							Felix Ayala
-							<span>felix1262@gmail.com</span>
+							{{ auth()->user()->fullname }}
+							<span>{{ auth()->user()->email }}</span>
 						</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item active" href="javascript:;">Settings</a>
