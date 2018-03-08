@@ -288,3 +288,14 @@ div.table-responsive > div.dataTables_wrapper > div.row {
 .hidden {
 	display: none;
 }
+
+@-webkit-keyframes autofill {
+    to {
+        background: transparent;
+    }
+}
+
+input:-webkit-autofill {
+	-webkit-animation-name: autofill;
+	-webkit-animation-fill-mode: both;
+}

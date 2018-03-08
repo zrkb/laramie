@@ -1,60 +1,80 @@
 @extends('layouts/master')
 
 @section('content')
-	<div class="mt-5 pt-4">
-		<section class="h-100">
-			<div class="container h-100">
-				<div class="row justify-content-md-center h-100">
-					<div class="card-wrapper">
-						<div class="card card-shadow">
-							<div class="card-body">
-								<h4 class="card-title pb-3 mb-4 border-bottom">Login</h4>
+	<div class="container pt-2">
+		<div class="row">
+			<div class="col-12">
+				<div class="card-wrapper">
+					@include('layouts/errors')
+				</div>
+			</div>
 
-								{{ Form::open(['method' => 'post', 'route' => 'login']) }}
-								 
-									<div class="form-group">
-										<label for="email">E-Mail Address</label>
+			<div class="col-12 pt-2">
+				<div class="card-wrapper">
+					<div class="card">
+						<div class="card-body">
+							<h4 class="card-title pb-3 mb-4 border-bottom">Login</h4>
 
-										<input id="email" type="email" class="form-control" name="email" value="" autofocus>
+							{{ Form::open(['method' => 'post', 'route' => 'login']) }}
+							 
+								<div class="form-group">
+									<label for="email">E-Mail Address</label>
+
+									<div class="input-group input-group-custom">
+										<input id="email" type="email" name="email" class="form-control pull-right" placeholder="Email address" autofocus>
+										<span class="input-group-custom">
+											<i class="fa fa-user"></i>
+										</span>
 									</div>
+								</div>
 
-									<div class="form-group">
-										<label for="password">Password</label>
+								<div class="form-group">
+									<label for="password">Password</label>
 
-										<a href="forgot.html" class="float-right">
-											Forgot Password?
-										</a>
+									<a href="forgot.html" class="float-right hidden">
+										Forgot Password?
+									</a>
 
-										<input id="password" type="password" class="form-control" name="password" data-eye>
+
+									<div class="input-group input-group-custom">
+										<input id="password" type="password" name="password" class="form-control pull-right" placeholder="Password" data-eye>
+										<span class="input-group-custom">
+											<i class="fa fa-lock"></i>
+										</span>
 									</div>
+								</div>
 
-									<div class="form-group">
-										<div class="checkbox">
-											<label>
-												<input type="checkbox" value="">
-												<span>Remember me</span>
-											</label>
-										</div>
+								<div class="form-group hidden">
+									<div class="checkbox">
+										<label>
+											<input type="checkbox" value="">
+											<span>Remember me</span>
+										</label>
 									</div>
+								</div>
 
-									<div class="form-group">
-										<button type="submit" class="btn btn-primary btn-block">
-											Login
-										</button>
-									</div>
+								<div class="form-group pt-3">
+									<button type="submit" class="btn btn-primary btn-block">
+										Login
+									</button>
+								</div>
 
-									<div class="text-center">
-										Don't have an account? <a href="register.html">Create One</a>
-									</div>
-								{{ Form::close() }}
-							</div>
+								<div class="text-center hidden">
+									Don't have an account? <a href="register.html">Create One</a>
+								</div>
+
+							{{ Form::close() }}
 						</div>
-						<div class="copy text-center text-muted p-4">
-							Copyright &copy; Laramie <?php echo date('Y'); ?>
-						</div>
+					</div>
+					
+					<div class="copy text-center text-muted p-4">
+						Copyright &copy; Laramie <?php echo date('Y'); ?>
 					</div>
 				</div>
 			</div>
-		</section>
+			{{-- END col --}}
+		</div>
+		{{-- END row --}}
 	</div>
+	{{-- END container --}}
 @endsection

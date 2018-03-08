@@ -196,4 +196,12 @@ div.table-responsive > div.dataTables_wrapper > div.row {
 .hidden {
   display: none; }
 
+@-webkit-keyframes autofill {
+  to {
+    background: transparent; } }
+/* line 298, ../scss/custom.scss */
+input:-webkit-autofill {
+  -webkit-animation-name: autofill;
+  -webkit-animation-fill-mode: both; }
+
 /*# sourceMappingURL=custom.css.map */
