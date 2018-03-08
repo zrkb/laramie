@@ -1,5 +1,7 @@
 <?php
 
+Auth::routes();
+
 /*
 |----------------------------------------------
 | Frontend - (Public)
@@ -10,8 +12,7 @@ Route::group([
 ], function(){
 	
 	Route::get('/',							'FrontendController@index')->name('frontend');
-	
-	Auth::routes();
+
 });
 
 // /*

@@ -2,7 +2,7 @@
 
 > Laravel meets Tobacco
 
-[![Plaform](https://img.shields.io/badge/platform-Laravel%205.4-f4645f.svg)](https://laravel.com)
+[![Plaform](https://img.shields.io/badge/platform-Laravel%205.4-f4645f.svg)](https://laravel.com)  
 [![Language](https://img.shields.io/badge/language-PHP 7.1-4F5B93.svg)](https://secure.php.net/)
 
 ## Vendors
