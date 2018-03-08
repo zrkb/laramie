@@ -192,4 +192,8 @@ div.table-responsive > div.dataTables_wrapper > div.row {
   div.table-responsive > div.dataTables_wrapper > div.row > div[class^="col-"]:last-child {
     padding-right: 0; }
 
+/* line 288, ../scss/custom.scss */
+.hidden {
+  display: none; }
+
 /*# sourceMappingURL=custom.css.map */

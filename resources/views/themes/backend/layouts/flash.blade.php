@@ -1,17 +1,12 @@
 @foreach (['danger', 'warning', 'success', 'info'] as $type)
 	@if (session()->has($type))
-		<div class="row m-t-30">
-			<div class="col-sm-12">
-				<div id="panel-alert" class="panel panel-border fade in panel-{{ $type }}">
-					<div class="panel-heading p-b-10">
-						<h3 class="panel-title">
-							{{ session($type) }}
-							<button type="button" class="close m-t-5" data-target="#panel-alert" data-dismiss="alert">
-								<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-                        	</button>
-						</h3>
-					</div>
-				</div>
+		<div class="alert alert-{{ $type }} p-3 m-0 text-white" role="alert">
+			<div class="container">
+				<button type="button" class="close text-white pl-3 pr-3" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+
+				<p class="p-0 m-0"><strong>{{ session($type) }}</strong></p>
 			</div>
 		</div>
 	@endif

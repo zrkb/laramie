@@ -16,12 +16,12 @@
 
 <body>
 
+	@include('layouts/flash')
+
     @auth
 		@include('layouts/nav')
 		@include('layouts/menu')
     @endauth
-
-	@include('layouts/flash')
 
 	<div class="container mt-5">
 		@yield('content')
@@ -29,8 +29,9 @@
 
 	@auth
 		@include('layouts/footer')
-		@include('layouts/scripts')
 	@endauth
+
+	@include('layouts/scripts')
 
 </body>
 </html>

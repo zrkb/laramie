@@ -37,7 +37,10 @@
 						<a class="dropdown-item active" href="javascript:;">Settings</a>
 						<a class="dropdown-item" href="javascript:;">Notifications</a>
 						<a class="dropdown-item" href="javascript:;">PRO Trial!</a>
-						<a class="dropdown-item text-danger" href="javascript:;">Logout</a>
+
+						<a class="dropdown-item text-danger" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+						{{ Form::open(['route' => 'logout', 'id' => 'logout-form', 'class' => 'hidden']) }}
+						{{ Form::close() }}
 					</div>
 				</li>
 			</ul>
