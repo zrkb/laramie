@@ -12,6 +12,7 @@
         "karlomikus/theme": "^1.0",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
+        "laravelcollective/html": "^5.5",
         "nesbot/carbon": "^1.23"
     },
     "require-dev": {
