@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Backend\BaseController;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Karlomikus\Theme\Contracts\ThemeInterface;
@@ -43,5 +44,13 @@ class LoginController extends BaseController
 	public function showLoginForm()
 	{
 		return view('auth/login');
+	}
+	
+	public function logout(Request $request)
+	{
+		$this->guard()->logout();
+		$request->session()->invalidate();
+
+		return redirect()->route('login');
 	}
 }
