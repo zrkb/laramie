@@ -29,11 +29,13 @@
             "database/factories"
         ],
         "psr-4": {
+            "Laramie\\Admin\\": "packages/Laramie/Admin/src",
             "App\\": "app/"
         }
     },
     "autoload-dev": {
         "psr-4": {
+            "Laramie\\Admin\\": "packages/Laramie/Admin/src",
             "Tests\\": "tests/"
         }
     },

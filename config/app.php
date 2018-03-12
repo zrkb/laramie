@@ -177,12 +177,15 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        Laramie\Admin\AdminServiceProvider::class,
+
         /**
          * Third Party Vendors
          */
         
         // Theme
         Karlomikus\Theme\ThemeServiceProvider::class,
+        JeroenG\Packager\PackagerServiceProvider::class,
 
     ],
 
