@@ -50,5 +50,7 @@
     },
     "config": {
         "sort-packages": true
-    }
+    },
+    "version": "0.1.0",
+    "minimum-stability": "dev"
 }
