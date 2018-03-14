@@ -9,19 +9,6 @@
 
 > Laramie is a SaaS Dashboard Kit based on Laravel 5.5+ PHP Framework with Nexus HTML Template (BS4)
 
-## Structure
-
-If any of the following are applicable to your project, then the directory structure should follow industry best practices by being named the following.
-
-```
-bin/        
-config/
-src/
-tests/
-vendor/
-```
-
-
 ## Install
 
 Via Composer
@@ -32,9 +19,9 @@ $ composer require imfx/laramie
 
 ## Usage
 
-``` php
-$skeleton = new Laramie\Admin();
-echo $skeleton->echoPhrase('Hello, League!');
+``` bash
+$ php artisan vendor:publish
+$ php artisan admin:install
 ```
 
 ## Change log
