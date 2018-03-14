@@ -1,8 +1,8 @@
 {
-    "name": "Laramie/Admin",
+    "name": "imfx/laramie",
     "type": "library",
-    "description": ":package_description",
-    "keywords": [ "Laramie", "admin", "laravel" ],
+    "description": "Laravel 5.5 SaaS Dashboard Kit based on Bootstrap 4 with Nexus HTML Template",
+    "keywords": [ "Laramie", "admin", "laravel", "dashboard", "saas" ],
     "homepage": "https://github.com/imfx/laramie",
     "license": "MIT",
     "authors": [
@@ -14,7 +14,7 @@
         }
     ],
     "require": {
-        "php": "~5.6|~7.0",
+        "php": "~7.0",
         "illuminate/support": "~5.1",
         "karlomikus/theme": "^1.0",
         "spatie/laravel-permission": "^2.9"
