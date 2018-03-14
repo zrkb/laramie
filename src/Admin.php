@@ -2,45 +2,47 @@
 
 namespace Laramie\Admin;
 
+use Illuminate\Support\Facades\Route;
+
 class Admin
 {
-    /**
-     * Create a new Skeleton Instance
-     */
-    public function __construct()
-    {
-        // constructor body
-    }
+	/**
+	 * Create a new Skeleton Instance
+	 */
+	public function __construct()
+	{
+		// constructor body
+	}
 
-    /**
-     * Friendly welcome
-     *
-     * @param string $phrase Phrase to return
-     *
-     * @return string Returns the phrase passed in
-     */
-    public function authRoutes()
-    {
-        $attributes = [
-            'prefix'     => config('admin.route.prefix'),
-            'namespace'  => 'Laramie\Admin\Http\Controllers\Auth',
-            'middleware' => config('admin.route.middleware'),
-        ];
+	/**
+	 * Friendly welcome
+	 *
+	 * @param string $phrase Phrase to return
+	 *
+	 * @return string Returns the phrase passed in
+	 */
+	public function authRoutes()
+	{
+		$attributes = [
+			'prefix'     => config('admin.route.prefix'),
+			'namespace'  => '\Laramie\Admin\Http\Controllers\Auth',
+			'middleware' => 'web',
+		];
 
-        Route::group($attributes, function ($router) {
+		Route::group($attributes, function () {
+			Route::get('login', 'LoginController@showLoginForm')->name('login');
+			Route::post('login', 'LoginController@login');
+			Route::post('logout', 'LoginController@logout')->name('logout');
 
-            // Route::resource('auth/users', 'UserController');
-            // Route::resource('auth/roles', 'RoleController');
-            // Route::resource('auth/permissions', 'PermissionController');
-            // Route::resource('auth/menu', 'MenuController', ['except' => ['create']]);
-            // Route::resource('auth/logs', 'LogController', ['only' => ['index', 'destroy']]);
+			// // Registration Routes...
+			// $this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+			// $this->post('register', 'Auth\RegisterController@register');
 
-            Route::get('auth/login', 'LoginController@login');
-            Route::post('auth/login', 'LoginController@login');
-            Route::get('auth/logout', 'LoginController@logout');
-            // Route::get('auth/setting', 'AuthController@getSetting');
-            // Route::put('auth/setting', 'AuthController@putSetting');
-            
-        });
-    }
+			// // Password Reset Routes...
+			// $this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+			// $this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+			// $this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+			// $this->post('password/reset', 'Auth\ResetPasswordController@reset');
+		});
+	}
 }

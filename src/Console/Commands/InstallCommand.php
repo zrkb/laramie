@@ -72,7 +72,7 @@ class InstallCommand extends Command
 	public function runMigrations()
 	{
 		$this->warn('==> Running migrations ...');
-		$this->call('migrate');
+		$this->call('migrate', ['--seed' => true]);
 	}
 
 	public function initializeBackendDir()

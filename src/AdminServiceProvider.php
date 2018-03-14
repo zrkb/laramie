@@ -22,9 +22,6 @@ class AdminServiceProvider extends ServiceProvider
 	{
 		if (file_exists($routes = base_path() . '/routes/backend.php')) {
 			$this->loadRoutesFrom($routes);
-            echo 'loadRoutes!';
-        } else {
-            echo 'foobar';
 		}
 
 		if ($this->app->runningInConsole()) {
@@ -36,6 +33,8 @@ class AdminServiceProvider extends ServiceProvider
 		}
 
 		$this->commands($this->commands);
+
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'admin');
 	}
 
 	/**

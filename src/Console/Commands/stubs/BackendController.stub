@@ -8,21 +8,21 @@ class BackendController extends BaseController
 {
 	public function index()
 	{
-		return view('home/index');
+		return view('admin::home/index');
 	}
 
 	public function ui($slug)
 	{
-		return view('ui/' . $slug);
+		return view('admin::ui/' . $slug);
 	}
 
 	public function tables($slug)
 	{
-		return view('tables/' . $slug);
+		return view('admin::tables/' . $slug);
 	}
 
 	public function extras($slug)
 	{
-		return view('extras/' . $slug);
+		return view('admin::extras/' . $slug);
 	}
 }

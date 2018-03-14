@@ -5,7 +5,6 @@ namespace Laramie\Admin\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use Laramie\Admin\Http\Controllers\Backend\BaseController;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Karlomikus\Theme\Contracts\ThemeInterface;
 
 class LoginController extends BaseController
 {
@@ -27,23 +26,21 @@ class LoginController extends BaseController
 	 *
 	 * @var string
 	 */
-	protected $redirectTo = '/app';
+	protected $redirectTo = '/admin';
 
 	/**
 	 * Create a new controller instance.
 	 *
 	 * @return void
 	 */
-	public function __construct(ThemeInterface $theme)
+	public function __construct()
 	{
-		parent::__construct($theme);
-
 		$this->middleware('guest')->except('logout');
 	}
 	
 	public function showLoginForm()
 	{
-		return view('auth/login');
+		return view('admin::auth/login');
 	}
 	
 	public function logout(Request $request)

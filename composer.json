@@ -16,7 +16,6 @@
     "require": {
         "php": "~7.0",
         "illuminate/support": "~5.1",
-        "karlomikus/theme": "^1.0",
         "spatie/laravel-permission": "^2.9"
     },
     "require-dev": {
@@ -26,7 +25,10 @@
     "autoload": {
         "psr-4": {
             "Laramie\\Admin\\": "src"
-        }
+        },
+        "files": [
+            "src/Helpers/admin_helper.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
