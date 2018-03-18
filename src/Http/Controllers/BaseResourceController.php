@@ -4,13 +4,21 @@ namespace Laramie\Admin\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 use App\Http\Controllers\Controller;
+use Laramie\Admin\Http\Controllers\Interfaces\Displayable;
 
 abstract class BaseResourceController extends Controller
 {
-	protected $model;
+	use Displayable;
+
 	protected $slug;
 	protected $repo;
+
+	public function __construct()
+	{
+		$this->items = new Collection();
+	}
 
 	/**
 	 * Display a listing of the resource.
@@ -19,7 +27,7 @@ abstract class BaseResourceController extends Controller
 	 */
 	public function index()
 	{
-		return view('admin::crud/index');
+		return view('admin::crud/index', ['items' => $this->getItems()]);
 	}
 
 	/**

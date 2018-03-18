@@ -2,9 +2,9 @@
 
 namespace DummyNamespace;
 
-use Laramie\Admin\Http\Controllers\Backend\BaseController;
+use App\Http\Controllers\Controller;
 
-class BackendController extends BaseController
+class BackendController extends Controller
 {
 	public function index()
 	{

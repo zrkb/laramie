@@ -3,15 +3,26 @@
 namespace Laramie\Admin;
 
 use Illuminate\Support\Facades\Route;
+use Laramie\Admin\Dashboard\Display;
 
 class Admin
 {
 	/**
+	 * @var \Laramie\Admin\Dashboard\Display
+	 */
+	protected $display;
+	
+	/**
 	 * Create a new Skeleton Instance
 	 */
-	public function __construct()
+	public function __construct(Display $display)
 	{
-		// constructor body
+		$this->display = $display;
+	}
+
+	public function display()
+	{
+		return $this->display;
 	}
 
 	/**
