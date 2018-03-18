@@ -1,8 +1,10 @@
 <?php
 
-namespace Laramie\Admin\Http\Controllers\Backend;
+namespace Laramie\Admin\Http\Controllers;
 
-class BackendController extends BaseController
+use App\Http\Controllers\Controller;
+
+class BackendController extends Controller
 {
 	public function index()
 	{

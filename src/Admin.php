@@ -25,7 +25,7 @@ class Admin
 	{
 		$attributes = [
 			'prefix'     => config('admin.route.prefix'),
-			'namespace'  => '\Laramie\Admin\Http\Controllers\Auth',
+			'namespace'  => '\Laramie\Admin\Http\Controllers',
 			'middleware' => 'web',
 		];
 
@@ -33,6 +33,11 @@ class Admin
 			Route::get('login', 'LoginController@showLoginForm')->name('login');
 			Route::post('login', 'LoginController@login');
 			Route::post('logout', 'LoginController@logout')->name('logout');
+
+			Route::group(['middleware' => 'auth'], function() {
+				// Resources
+				Route::resource('/users', 'UsersController');
+			});
 
 			// // Registration Routes...
 			// $this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
@@ -44,5 +49,10 @@ class Admin
 			// $this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 			// $this->post('password/reset', 'Auth\ResetPasswordController@reset');
 		});
+	}
+
+	public static function foo()
+	{
+		return 'foo';
 	}
 }

@@ -1,12 +1,12 @@
 <?php
 
-namespace Laramie\Admin\Http\Controllers\Auth;
+namespace Laramie\Admin\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Laramie\Admin\Http\Controllers\Backend\BaseController;
+use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
-class LoginController extends BaseController
+class LoginController extends Controller
 {
 	/*
 	|--------------------------------------------------------------------------

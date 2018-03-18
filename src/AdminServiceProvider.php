@@ -44,6 +44,10 @@ class AdminServiceProvider extends ServiceProvider
 	 */
 	public function register()
 	{
+		if (file_exists($helper = __DIR__ . '/Helpers/admin_helper.php')) {
+			require $helper;
+		}
+		
 		// $this->mergeConfigFrom(__DIR__ . '/../config/admin.php', 'laramie-config');
 	}
 }

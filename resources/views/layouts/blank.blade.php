@@ -5,7 +5,7 @@
 	<div class="row mb-5">
 		<div class="col">
 			<h4 class="page-title">
-				Blank Page
+				{{ $title ?? 'Blank Page' }}
 			</h4>
 		</div>
 		{{-- END col --}}
@@ -14,11 +14,13 @@
 
 	<div class="row mb-5">
 		<div class="col">
-			<h5 class="card-title">Card Title</h5>
+			@if (isset($cardTitle))
+				<h5 class="card-title">{{ $cardTitle }}</h5>
+			@endif
 
 			<div class="card">
 				<div class="card-body">
-					Lorem ipsum dolor
+					{{ $slot }}
 				</div>
 				{{-- END card-body --}}
 			</div>
