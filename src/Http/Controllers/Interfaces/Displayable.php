@@ -5,20 +5,26 @@ namespace Laramie\Admin\Http\Controllers\Interfaces;
 trait Displayable
 {
 	protected $model;
+    protected $title = 'Blank Page';
+    protected $label = 'Item';
 
-    /**
-     * @return mixed
-     */
     public function getItems()
     {
-        return $this->model::all();
+        return $this->getModel()::all();
     }
 
-    /**
-     * @return mixed
-     */
     public function getModel()
     {
         return $this->model;
+    }
+
+    public function getTitle() : String
+    {
+        return $this->title;
+    }
+
+    public function getLabel() : String
+    {
+        return $this->label;
     }
 }

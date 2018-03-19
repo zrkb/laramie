@@ -12,9 +12,6 @@ abstract class BaseResourceController extends Controller
 {
 	use Displayable;
 
-	protected $slug;
-	protected $repo;
-
 	public function __construct()
 	{
 		$this->items = new Collection();
@@ -27,7 +24,11 @@ abstract class BaseResourceController extends Controller
 	 */
 	public function index()
 	{
-		return view('admin::crud/index', ['items' => $this->getItems()]);
+		return view('admin::crud/index', [
+			'items' => $this->getItems(),
+			'title' => $this->getTitle(),
+			'label' => $this->getLabel(),
+		]);
 	}
 
 	/**

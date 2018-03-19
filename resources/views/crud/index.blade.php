@@ -1,10 +1,9 @@
-@component('admin::layouts/blank', ['title' => 'Usuarios'])
+@component('admin::layouts/blank', ['title' => $title])
 
 	@slot('superactions')
 		<div class="float-right">
-			<button type="button" class="btn btn-primary">
-				<span class="mr-1"><i class="fa fa-check"></i></span>
-				Settings
+			<button type="button" class="btn btn-success">
+				Añadir {{ $label }}
 			</button>
 		</div>
 	@endslot
