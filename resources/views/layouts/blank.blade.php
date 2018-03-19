@@ -4,6 +4,8 @@
 
 	<div class="row mb-5">
 		<div class="col">
+			{{ $superactions }}
+			
 			<h4 class="page-title">
 				{{ $title ?? 'Blank Page' }}
 			</h4>

@@ -6,7 +6,6 @@ use Illuminate\Support\Collection;
 
 trait Listable
 {
-
     public function getFields() : Collection
     {
         return is_null($this->fields)
