@@ -39,7 +39,12 @@ abstract class BaseResourceController extends Controller
 	 */
 	public function show($id)
 	{
-		return view('admin::crud/show');
+		$item = $this->getModel()::findOrFail($id);
+
+		return view('admin::crud/show', [
+			'item' => $item,
+			'label' => $this->getLabel(),
+		]);
 	}
 
 	/**
