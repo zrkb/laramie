@@ -44,6 +44,7 @@ abstract class BaseResourceController extends Controller
 		return view('admin::crud/show', [
 			'item' => $item,
 			'label' => $this->getLabel(),
+			'back' => true,
 		]);
 	}
 

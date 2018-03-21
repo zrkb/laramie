@@ -30,4 +30,19 @@ class Html
 	{
         return (new Blank('p'))->html($contents);
 	}
+
+	public function tooltip($options = null)
+	{
+		$attrs = [
+			'data-toggle' => 'tooltip',
+			'title' => $options['title'],
+			'data-placement' => $options['placemente'] ?? 'top',
+		];
+
+		array_walk($attrs, function(&$item, $key) {
+			$item = "{$key}=\"{$item}\"";
+		});
+
+		return implode(' ', $attrs);
+	}
 }

@@ -2,9 +2,10 @@
 
 	@slot('superactions')
 		<div class="float-right">
-			<button type="button" class="btn btn-success">
-				Añadir {{ $label }}
-			</button>
+			<a href="" class="btn btn-success">
+				<i data-feather="plus" class="mr-2 ft"></i>
+				Añadir 
+			</a>
 		</div>
 	@endslot
 

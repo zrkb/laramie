@@ -7,6 +7,7 @@
 			{{ $superactions ?? '' }}
 			
 			<h4 class="page-title">
+				{{ $icon ?? '' }}
 				{{ $title ?? 'Blank Page' }}
 			</h4>
 		</div>
@@ -14,22 +15,6 @@
 	</div>
 	{{-- END row --}}
 
-	<div class="row mb-5">
-		<div class="col">
-			@if (isset($cardTitle))
-				<h5 class="card-title">{{ $cardTitle }}</h5>
-			@endif
-
-			<div class="card">
-				<div class="card-body">
-					{{ $slot }}
-				</div>
-				{{-- END card-body --}}
-			</div>
-			{{-- END card --}}
-		</div>
-		{{-- END col --}}
-	</div>
-	{{-- END row --}}
+	{{ $slot }}
 
 @endsection

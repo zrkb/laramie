@@ -1,9 +1,11 @@
 <nav class="navbar navbar-expand-md bg-white mb-5">
 	<div class="container">
-		{{-- <a class="btn btn-link pl-0" href="">
-			<i data-feather="chevron-left" class="mr-2 ft"></i>
-			Volver
-		</a> --}}
+		@if (isset($back))
+			<a class="btn btn-link pl-0" href="{{ url()->previous() }}">
+				<i data-feather="chevron-left" class="mr-2 ft"></i>
+				Volver
+			</a>
+		@endif
 
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu-dropdown" aria-controls="navbar-menu-dropdown" aria-expanded="false" aria-label="Toggle navigation">
 			<i data-feather="menu"></i>
