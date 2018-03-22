@@ -28,9 +28,11 @@ if (! function_exists('resource')) {
     /**
      * @return \Laramie\Admin\Html\Html
      */
-    function resource() : String
+    function resource($action = null) : String
     {
-        return Arr::first(explode('.', request()->route()->getName()));
+        $action = $action ? ('.' . $action) : '';
+
+        return Arr::first(explode('.', request()->route()->getName())) . $action;
     }
 }
 

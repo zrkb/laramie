@@ -108,8 +108,10 @@
 					</h5>
 
 					<p>Una vez que realice esta acción, ya no se podrá deshacer.</p>
-
-					<button class="btn btn-danger delete-modal-action">Eliminar</button>
+					
+					@component('admin::components/destroy', ['item' => $item])
+						<button class="btn btn-danger delete-record" data-record="{{ $item->getKey() }}" data-record-title="{{ $title ?? $label ?? $record ?? '' }}">Eliminar</button>
+					@endcomponent
 				</div>
 				{{-- END card-body --}}
 			</div>
@@ -118,45 +120,5 @@
 		{{-- END col --}}
 	</div>
 	{{-- END row --}}
-
-	@push('scripts')
-		<script type="text/javascript">
-			jQuery(document).ready(function($){
-
-				$('.delete-modal-action').on('click', function() {
-
-					var record = $(this).data('record');
-
-					var dialog = bootbox.dialog({
-						'title': 'Atención!',
-						'message': 'Esta acción no se puede deshacer. Todos los elementos asociados a este registro serán eliminados.',
-						'callback': function(result) {
-							console.log(result);
-						},
-						'buttons': {
-							'cancelar': {
-								'label': 'Cancelar',
-								'className': 'btn-default btn-cancel-modal',
-								'callback': function() {
-								}
-							},
-							'confirmar': {
-								'label': 'Sí, eliminar registro',
-								'className': 'btn-danger btn-loading',
-								'callback': function() {
-									return false;
-								}
-							}
-						},
-						'animate': false
-					});
-
-					dialog.init(function(){
-						window.loadingButton();
-					});
-				});
-			});
-		</script>
-	@endpush
 
 @endcomponent

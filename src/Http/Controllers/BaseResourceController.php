@@ -101,5 +101,15 @@ abstract class BaseResourceController extends Controller
 	 */
 	public function destroy($id)
 	{
+		$item = $this->getModel()::findOrFail($id);
+		$id = $item->id;
+		
+		if ($item->delete()) {
+			session()->flash('success', 'Registro eliminado exitosamente.');	
+		} else {
+			session()->flash('danger', 'No se pudo eliminar el registro. Por favor comuníquese con el administrador.');
+		}
+
+		return redirect()->route(resource('index'));
 	}
 }

@@ -27,10 +27,7 @@
 					@endforeach
 
 					<td class="text-center">
-						@include('admin::components.actions', [
-							'resource' => request()->route()->uri(),
-							'record' => $item->getKey()
-						])
+						@include('admin::components.actions', ['item' => $item])
 					</td>
 				</tr>
 			@endforeach

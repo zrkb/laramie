@@ -13,6 +13,11 @@
 <script src="{{ asset('assets/admin/js/holder.min.js') }}"></script>
 <script src="{{ asset('assets/vendor/bootbox/bootbox.js') }}"></script>
 <script type="text/javascript">
+
+	// Icons
+	feather.replace({ width: 17, height: 17 });
+
+	// jQuery
 	jQuery(document).ready(function(){
 		$('.select2').select2();
 		$('[data-toggle="tooltip"]').tooltip();
@@ -76,11 +81,34 @@
 			dom: 'Bfrtip'
 			// buttons: buttons
 		});
-	});
 
-	feather.replace({
-		width: 17,
-		height: 17
+		$('.delete-record').on('click', function(event) {
+
+			event.preventDefault();
+
+            var record = $(this).data('record');
+            var record_title = $(this).data('record-title');
+
+			var dialog = bootbox.dialog({
+				'title': 'Atención!',
+				'message': 'Estás seguro de borrar este registro? Una vez eliminado, ya no podrás recuperar este dato.',
+				'buttons': {
+					'cancelar': {
+						'label': 'Cancelar',
+						'className': 'btn-default btn-cancel-modal',
+					},
+					'confirmar': {
+						'label': 'Sí, eliminar registro',
+						'className': 'btn-danger btn-loading',
+					}
+				},
+				'animate': false
+			});
+
+			dialog.init(function(){
+				window.loadingButton(record);
+			});
+		});
 	});
 
 	var isAdvancedUpload = function() {
@@ -254,11 +282,9 @@
 			}
 		});
 
-		window.loadingButton = function () {
+		window.loadingButton = function (record) {
 
 			jQuery('.btn-loading').on('click', function(event){
-
-				event.preventDefault();
 
 				$('.bootbox-close-button').remove();
 
@@ -292,6 +318,18 @@
 				} else {
 					cancelButton.prop('disabled', true);
 				}
+
+                var form = document.getElementById('delete-form-' + record);
+
+                if (form) {
+                    form.submit();
+                } else {
+                	bootbox.alert({
+                		'title': 'Cancelado',
+                		'message': 'El registro no se ha borrado. Por favor comuníquese con el administrador',
+						'animate': false
+                	});
+                }
 
 			});
 		};
