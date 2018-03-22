@@ -16,6 +16,7 @@
     "require": {
         "php": "~7.0",
         "illuminate/support": "~5.1",
+        "nesbot/carbon": "^1.23@dev",
         "spatie/laravel-permission": "^2.9"
     },
     "require-dev": {
