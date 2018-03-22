@@ -31,7 +31,7 @@ class Html
         return (new Blank('p'))->html($contents);
 	}
 
-	public function tooltip($options = null)
+	public function tooltip($options = null) : String
 	{
 		$attrs = [
 			'data-toggle' => 'tooltip',

@@ -5,3 +5,7 @@ composer.phar
 composer.lock
 *.project
 .idea/
+
+### Sass ###
+.sass-cache/
+*.css.map

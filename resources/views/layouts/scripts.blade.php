@@ -11,6 +11,7 @@
 
 <script src="{{ asset('assets/admin/js/all.js') }}" type="text/javascript"></script>
 <script src="{{ asset('assets/admin/js/holder.min.js') }}"></script>
+<script src="{{ asset('assets/vendor/bootbox/bootbox.js') }}"></script>
 <script type="text/javascript">
 	jQuery(document).ready(function(){
 		$('.select2').select2();
@@ -244,7 +245,59 @@
 			.on( 'blur', function(){ $input.removeClass( 'has-focus' ); });
 		});
 
+		$('.btn-loading, .btn-cancel-modal').each(function() {
+
+			var button = $(this);
+
+			if (button.is('a')) {
+				button.prop('role', 'button');
+			}
+		});
+
+		window.loadingButton = function () {
+
+			jQuery('.btn-loading').on('click', function(event){
+
+				event.preventDefault();
+
+				$('.bootbox-close-button').remove();
+
+				var button = $(this);
+
+				if (button.hasClass('btn-activity')) return;
+
+				button.addClass('btn-activity').prop('tabindex', '-1');
+				button.data('original-text', button.html());
+
+				var loadingText = button.data('loading-text') || null;
+
+				if (loadingText) {
+					button.html('<i class="fa fa-circle-notch fa-spin mr-1"></i> ' + loadingText);
+				} else {
+					button.html('<i class="fa fa-circle-notch fa-spin ml-4 mr-4"></i>');
+				}
+
+				if (button.is('a')) {
+					button.addClass('disabled').prop('aria-disabled', 'true');
+				} else {
+					button.prop('disabled', true);
+				}
+
+				var cancelButton = $('.btn-cancel-modal');
+
+				cancelButton.prop('tabindex', '-1');
+
+				if (cancelButton.is('a')) {
+					cancelButton.addClass('disabled').prop('aria-disabled', 'true');
+				} else {
+					cancelButton.prop('disabled', true);
+				}
+
+			});
+		};
+
 	})( jQuery, window, document );
+
 </script>
 
 @stack('scripts')

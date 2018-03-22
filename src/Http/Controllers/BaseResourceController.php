@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use App\Http\Controllers\Controller;
 use Laramie\Admin\Http\Controllers\Interfaces\Displayable;
+use Laramie\Admin\Http\Controllers\Interfaces\Viewable;
 
 abstract class BaseResourceController extends Controller
 {
-	use Displayable;
+	use Displayable, Viewable;
 
 	public function __construct()
 	{
@@ -24,7 +25,7 @@ abstract class BaseResourceController extends Controller
 	 */
 	public function index()
 	{
-		return view('admin::crud/index', [
+		return view($this->getIndexView(), [
 			'items' => $this->getItems(),
 			'title' => $this->getTitle(),
 			'label' => $this->getLabel(),
@@ -41,7 +42,7 @@ abstract class BaseResourceController extends Controller
 	{
 		$item = $this->getModel()::findOrFail($id);
 
-		return view('admin::crud/show', [
+		return view($this->getShowView(), [
 			'item' => $item,
 			'label' => $this->getLabel(),
 			'back' => true,

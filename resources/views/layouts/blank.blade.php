@@ -8,7 +8,7 @@
 			
 			<h4 class="page-title">
 				{{ $icon ?? '' }}
-				{{ $title ?? 'Blank Page' }}
+				{{ $pageTitle ?? 'Blank Page' }}
 			</h4>
 		</div>
 		{{-- END col --}}

@@ -1,29 +1,17 @@
 @component('admin::layouts/blank', [
-	'back' => true
+	'title' => $title,
+	'back' => $back,
+	'pageTitle' => $pageTitle,
+	'icon' => $icon,
 ])
 
-	@include('admin::users.stats')
-
-	@slot('icon')
-		<a class="page-icon">
-			<span title="{{ $item->fullName }}">{{ $item->initials }}</span>
-		</a>
-	@endslot
-
-	@slot('title')
-		<span class="text-primary">#{{ $item->getKey() }}</span>
-		<span class="text-muted">&rarr;</span>
-		{{ $item->fullName }}
-	@endslot
+	{{ $stats ?? '' }}
 
 	@slot('superactions')
 		<div class="float-right">
 			<button type="button" class="btn btn-success">
 				<i data-feather="edit-2" class="ft mr-2"></i>
 				Editar
-			</button>
-			<button type="button" class="btn btn-danger">
-				<i data-feather="trash-2" class="ft"></i>
 			</button>
 		</div>
 	@endslot
@@ -75,20 +63,30 @@
 					<div class="form mt-3">
 						<div class="form-group">
 							<label>Creado el</label>
-							<p class="form-control-static">Miércoles 4, Abril 1990 @ 21:00hs</p>
+							<p class="form-control-static">
+								{{ $item->created_at->formatLocalized('%B %d, %Y @ %H:%mhs') }}
+							</p>
 						</div>
 
 						<div class="form-group">
 							<label>Modificado el</label>
-							<p class="form-control-static">Lunes 20, Octubre 2014 @ 09:21hs</p>
-						</div>
-
-						<div class="form-group">
-							<label>Estado</label>
 							<p class="form-control-static">
-								<span class="badge badge-success">Activo</span>
+								{{ $item->updated_at->formatLocalized('%B %d, %Y @ %H:%mhs') }}
 							</p>
 						</div>
+
+						@if ($item->hasSoftDelete())
+							<div class="form-group">
+								<label>Estado</label>
+								<p class="form-control-static">
+									@if($item->isActive())
+										<span class="badge badge-success">Activo</span>
+									@else
+										<span class="badge badge-danger">Inactivo</span>
+									@endif
+								</p>
+							</div>
+						@endif
 					</div>
 					{{-- END form --}}
 				</div>
@@ -99,5 +97,66 @@
 		{{-- END col --}}
 	</div>
 	{{-- END row --}}
+
+	<div class="row mb-5 justify-content-center">
+		<div class="col-md-12">
+			<div class="card border-danger">
+				<div class="card-body">
+					<h5 class="card-title mb-4 pb-3 border-bottom">
+						<i data-feather="trash-2" class="ft mr-2 text-danger"></i>
+						Borrar Registro
+					</h5>
+
+					<p>Una vez que realice esta acción, ya no se podrá deshacer.</p>
+
+					<button class="btn btn-danger delete-modal-action">Eliminar</button>
+				</div>
+				{{-- END card-body --}}
+			</div>
+			{{-- END card --}}
+		</div>
+		{{-- END col --}}
+	</div>
+	{{-- END row --}}
+
+	@push('scripts')
+		<script type="text/javascript">
+			jQuery(document).ready(function($){
+
+				$('.delete-modal-action').on('click', function() {
+
+					var record = $(this).data('record');
+
+					var dialog = bootbox.dialog({
+						'title': 'Atención!',
+						'message': 'Esta acción no se puede deshacer. Todos los elementos asociados a este registro serán eliminados.',
+						'callback': function(result) {
+							console.log(result);
+						},
+						'buttons': {
+							'cancelar': {
+								'label': 'Cancelar',
+								'className': 'btn-default btn-cancel-modal',
+								'callback': function() {
+								}
+							},
+							'confirmar': {
+								'label': 'Sí, eliminar registro',
+								'className': 'btn-danger btn-loading',
+								'callback': function() {
+									return false;
+								}
+							}
+						},
+						'animate': false
+					});
+
+					dialog.init(function(){
+						window.loadingButton();
+					});
+				});
+			});
+		</script>
+	@endpush
 
 @endcomponent
