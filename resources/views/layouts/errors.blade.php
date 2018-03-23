@@ -1,11 +1,9 @@
-@if (isset($errors) && is_array($errors) && count($errors))
-	<div class="form-group">
-		<div class="alert alert-danger">
-			<ul class="m-0">
-				@foreach($errors->all() as $error)
-					<li>{{ $error }}</li>
-				@endforeach
-			</ul>
-		</div>
+@if ($errors->any())
+	<div class="alert alert-danger mb-5">
+		<ul class="m-0">
+			@foreach($errors->all() as $error)
+				<li>{{ $error }}</li>
+			@endforeach
+		</ul>
 	</div>
 @endif
