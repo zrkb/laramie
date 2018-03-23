@@ -28,13 +28,14 @@ class AdminServiceProvider extends ServiceProvider
 			$this->publishes([__DIR__ . '/../config' => config_path()], 'laramie-config');
 			$this->publishes([ __DIR__ . '/../database/migrations' => database_path('migrations') ], 'laramie-migrations');
 			$this->publishes([ __DIR__ . '/../public' => public_path()], 'laramie-assets');
+			$this->publishes([ __DIR__ . '/../resources/lang' => resource_path() . '/lang'], 'laramie-translations');
 
 			// $this->publishes([ __DIR__ . '/Http/Controllers' => app_path('Http/Controllers')], 'laramie-controllers');
 		}
 
 		$this->commands($this->commands);
 
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'admin');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'laramie-views');
 	}
 
 	/**
