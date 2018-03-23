@@ -6,25 +6,25 @@
 ])
 
 	<div class="row mb-5 justify-content-center">
-		<div class="{{ $col ?? 'col' }}">
-
+		<div class="col-sm-6">
 			<div class="card">
-				<div class="card-body">
-					@if (isset($cardTitle))
+				<form action="{{ route(resource('store'))}}" method="POST">
+					<div class="card-body">
 						<h5 class="card-title mb-4 pb-3 border-bottom">
-							{{ $cardTitle }}
+							<i data-feather="terminal" class="ft mr-2 text-primary"></i>
+							Completa los campos del formulario
 						</h5>
-					@endif
 
-					{{ $slot }}
-				</div>
-				{{-- END card-body --}}
-
-				@if (isset($cardFooter))
-					<div class="card-footer">
-						{{ $cardFooter }}
+						{{ csrf_field() }}
+						
+						@include('admin::crud/form')
 					</div>
-				@endif
+					{{-- END card-body --}}
+
+					<div class="card-footer">
+						@include('admin::components/submit')
+					</div>
+				</form>
 			</div>
 			{{-- END card --}}
 		</div>

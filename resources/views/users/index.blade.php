@@ -1,10 +1,11 @@
 @component('admin::layouts/blank', [
-	'title' => $title
+	'title' => $title,
+	'pageTitle' => $title,
 ])
 
 	@slot('superactions')
 		<div class="float-right">
-			<a href="" class="btn btn-success">
+			<a href="{{ route(resource('create')) }}" class="btn btn-success">
 				<i data-feather="plus" class="mr-2 ft"></i>
 				Añadir 
 			</a>

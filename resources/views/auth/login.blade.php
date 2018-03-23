@@ -37,7 +37,7 @@
 
 
 									<div class="input-group input-group-custom">
-										<input id="password" type="password" name="password" class="form-control pull-right" placeholder="Password" data-eye>
+										<input id="password" type="password" name="password" class="form-control pull-right" placeholder="Password">
 										<span class="input-group-custom">
 											<i class="fa fa-lock"></i>
 										</span>

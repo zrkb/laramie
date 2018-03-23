@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title>{{ isset($title) ? $title  . ' | ' : '' }} Laramie</title>
+	<title>{{ isset($title) ? $title  . ' | ' : '' }}{{ env('APP_NAME', 'Laramie') }}</title>
 
 	<meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">

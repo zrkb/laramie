@@ -2,10 +2,11 @@
 
 namespace Laramie\Admin\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Collection;
 use App\Http\Controllers\Controller;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
+use Illuminate\Http\FormRequest;
+use Illuminate\Support\Collection;
 use Laramie\Admin\Http\Controllers\Interfaces\Displayable;
 use Laramie\Admin\Http\Controllers\Interfaces\Viewable;
 
@@ -56,7 +57,12 @@ abstract class BaseResourceController extends Controller
 	 */
 	public function create()
 	{
-		return view('admin::crud/create');
+		return view('admin::crud/create', [
+			'title' => 'Añadir ' . $this->getLabel(),
+			'pageTitle' => 'Añadir ' . $this->getLabel(),
+			'label' => $this->getLabel(),
+			'back' => true,
+		]);
 	}
 
 	/**
@@ -65,9 +71,8 @@ abstract class BaseResourceController extends Controller
 	 * @param  \Illuminate\Http\Request  $request
 	 * @return \Illuminate\Http\Response
 	 */
-	public function store(Request $request)
+	public function store()
 	{
-		return view('admin::crud/create');
 	}
 
 	/**
@@ -88,7 +93,7 @@ abstract class BaseResourceController extends Controller
 	 * @param  \String $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function update(Request $request, $id)
+	public function update(FormRequest $request, $id)
 	{
 		return view('admin::crud/edit');
 	}
@@ -102,7 +107,6 @@ abstract class BaseResourceController extends Controller
 	public function destroy($id)
 	{
 		$item = $this->getModel()::findOrFail($id);
-		$id = $item->id;
 		
 		if ($item->delete()) {
 			session()->flash('success', 'Registro eliminado exitosamente.');	
