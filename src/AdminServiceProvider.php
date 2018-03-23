@@ -35,7 +35,7 @@ class AdminServiceProvider extends ServiceProvider
 
 		$this->commands($this->commands);
 
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'laramie-views');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'admin');
 	}
 
 	/**
