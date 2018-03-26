@@ -8,9 +8,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js" type="text/javascript"></script>
 <script src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.16/b-1.5.1/b-colvis-1.5.1/b-flash-1.5.1/b-html5-1.5.1/b-print-1.5.1/r-2.2.1/datatables.min.js" type="text/javascript"></script>
 
-<script src="{{ asset('admin/assets/js/holder.min.js') }}"></script>
-<script src="{{ asset('admin/assets/vendor/bootbox/bootbox.js') }}"></script>
-<script src="{{ asset('admin/assets/js/all.js') }}" type="text/javascript"></script>
-<script src="{{ asset('admin/assets/js/app.js') }}?{{ time() }}" type="text/javascript"></script>
+<script src="{{ asset('backend/assets/js/holder.min.js') }}"></script>
+<script src="{{ asset('backend/assets/vendor/bootbox/bootbox.js') }}"></script>
+<script src="{{ asset('backend/assets/js/all.js') }}" type="text/javascript"></script>
+<script src="{{ asset('backend/assets/js/app.js') }}?{{ time() }}" type="text/javascript"></script>
 
 @stack('scripts')

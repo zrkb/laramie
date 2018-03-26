@@ -35,7 +35,7 @@
 										<div class="user-avatar mr-2">
 											<span class="no-image-user" title="{{ $item->fullName }}">{{ $item->initials }}</span>
 										</div>
-										<a href="{{ route(resource() . '.show', ['id' => $item->id]) }}">{{ $item->fullName }}</a>
+										<a href="{{ route(resource() . '.show', ['id' => $item->getKey()]) }}">{{ $item->fullName }}</a>
 									</td>
 									<td>{{ $item->email }}</td>
 									<td>{{ $item->accountAge }}</td>

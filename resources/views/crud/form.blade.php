@@ -29,7 +29,7 @@
 	<!-- Checked checkbox -->
 	<div class="checkbox">
 		<label>
-			<input type="checkbox" value="1">
+			<input type="checkbox" value="1" name="is_developer">
 			<span>El usuario tendrá permisos de Developer.</span>
 		</label>
 	</div>

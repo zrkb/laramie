@@ -6,7 +6,7 @@
 ])
 
 	<div class="row mb-5 justify-content-center">
-		<div class="col-sm-6">
+		<div class="col-sm-12">
 			<div class="card">
 				<form action="{{ route(resource('store'))}}" method="POST">
 					<div class="card-body">

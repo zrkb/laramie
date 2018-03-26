@@ -26,6 +26,18 @@ class UsersController extends BaseResourceController
 
 	public function store()
 	{
-		dd(request());
+		$this->validate(request(), $this->rules());
+
+		dd('foo');
+	}
+
+	public function rules()
+	{
+		return [
+			'first_name' => 'required|max:255',
+			'last_name' => 'required|max:255',
+			'email' => 'required|unique:users|email|max:255',
+			'password' => 'required',
+		];
 	}
 }

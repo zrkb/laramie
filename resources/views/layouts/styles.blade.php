@@ -1,10 +1,10 @@
 <!-- Stylesheets -->
-<link rel="stylesheet" href="{{ asset('admin/assets/fonts/fonts.css?' . time()) }}">
-<link rel="stylesheet" href="{{ asset('admin/assets/fonts/fontawesome.min.css?' . time()) }}">
+<link rel="stylesheet" href="{{ asset('backend/assets/fonts/fonts.css?' . time()) }}">
+<link rel="stylesheet" href="{{ asset('backend/assets/fonts/fontawesome.min.css?' . time()) }}">
 
 <!-- App Style -->
-<link rel="stylesheet" href="{{ asset('admin/assets/css/app.css?' . time()) }}">
-<link rel="stylesheet" href="{{ asset('admin/assets/css/custom.css?' . time()) }}">
+<link rel="stylesheet" href="{{ asset('backend/assets/css/app.css?' . time()) }}">
+<link rel="stylesheet" href="{{ asset('backend/assets/css/custom.css?' . time()) }}">
 
 <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

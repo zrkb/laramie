@@ -1,8 +1,125 @@
+'use strict';
+
 // Icons
 feather.replace({ width: 17, height: 17 });
 
+window.loadingButton = function (record) {
+
+	jQuery('.btn-activity').on('click', function(event){
+		
+		var button = $(this);
+
+		if (button.hasClass('btn-working')) return;
+
+		button.addClass('btn-working').prop('tabindex', '-1');
+		button.data('original-text', button.html());
+
+		var loadingText = button.data('loading-text') || null;
+
+		if (loadingText) {
+			button.html('<i class="fa fa-circle-notch fa-spin mr-1"></i> ' + loadingText);
+		} else {
+			button.html('<i class="fa fa-circle-notch fa-spin ml-4 mr-4"></i>');
+		}
+
+		if (button.is('a')) {
+			button.addClass('disabled').prop('aria-disabled', 'true');
+		} else {
+			button.prop('disabled', true);
+		}
+
+		var type = button.attr('type');
+
+		if (typeof type !== typeof undefined && type !== false && type === 'submit') {
+			$(this).parents('form').submit();
+		}
+	});
+
+	jQuery('.btn-loading').on('click', function(event){
+
+		var cancelButton = $('.btn-cancel-modal');
+
+		cancelButton.prop('tabindex', '-1');
+
+		if (cancelButton.is('a')) {
+			cancelButton.addClass('disabled').prop('aria-disabled', 'true');
+		} else {
+			cancelButton.prop('disabled', true);
+		}
+
+		var form = document.getElementById('delete-form-' + record);
+
+		if (form) {
+			form.submit();
+		} else {
+			bootbox.alert({
+				'title': 'Cancelado',
+				'message': 'El registro no se ha borrado. Por favor comuníquese con el administrador',
+				'animate': false
+			});
+		}
+
+	});
+};
+
 // jQuery
-jQuery(document).ready(function(){
+jQuery(document).ready(function($){
+
+	$('[data-toggle=popover]:not([data-popover-content])').popover({
+		'trigger': 'focus'
+	});
+
+	$('[data-toggle=popover][data-popover-content]').popover({
+		'trigger': 'focus',
+		'html' : true,
+		content: function() {
+			window.foo = $(this);
+			var content = $(this).data("popover-content");
+			return $(content).children(".popover-body").html();
+		},
+	});
+	
+	var language = {
+		"sProcessing":     "Procesando...",
+		"sLengthMenu":     "Mostrar _MENU_ registros",
+		"sZeroRecords":    "No se encontraron resultados",
+		"sEmptyTable":     "Ningún dato disponible en esta tabla",
+		"sInfo":           "Mostrando _START_ - _END_ / _TOTAL_ registros",
+		"sInfoEmpty":      "",
+		"sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+		"sInfoPostFix":    "",
+		"sSearch":         "Buscar: ",
+		"sUrl":            "",
+		"sInfoThousands":  ",",
+		"sLoadingRecords": "Cargando ...",
+		"oPaginate": {
+			"sFirst":    "Primero",
+			"sLast":     "Último",
+			"sNext":     "Siguiente",
+			"sPrevious": "Anterior"
+		},
+		"oAria": {
+			"sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+			"sSortDescending": ": Activar para ordenar la columna de manera descendente"
+		},
+		buttons: {
+			copyTitle: 'Copiar al Portapapeles',
+			copySuccess: {
+				_: 'Se copiaron %d registros',
+				1: '1 registro copiado'
+			}
+		}
+	};
+
+	$('.datatable').DataTable({
+		language: language,
+		dom: 'Bfrtip'
+		// buttons: buttons
+	});
+
+	$('.select2').select2();
+	$('[data-toggle="tooltip"]').tooltip();
+	$('body').tooltip( {selector: '[data-toggle=tooltip]'} );
 
 	var options = {
 		width: 18,
@@ -50,71 +167,7 @@ jQuery(document).ready(function(){
 		});
 	});
 
-
-	$('.select2').select2();
-	$('[data-toggle="tooltip"]').tooltip();
-	
-	var language = {
-		"sProcessing":     "Procesando...",
-		"sLengthMenu":     "Mostrar _MENU_ registros",
-		"sZeroRecords":    "No se encontraron resultados",
-		"sEmptyTable":     "Ningún dato disponible en esta tabla",
-		"sInfo":           "Mostrando _START_ - _END_ / _TOTAL_ registros",
-		"sInfoEmpty":      "",
-		"sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-		"sInfoPostFix":    "",
-		"sSearch":         "Buscar: ",
-		"sUrl":            "",
-		"sInfoThousands":  ",",
-		"sLoadingRecords": "Cargando ...",
-		"oPaginate": {
-			"sFirst":    "Primero",
-			"sLast":     "Último",
-			"sNext":     "Siguiente",
-			"sPrevious": "Anterior"
-		},
-		"oAria": {
-			"sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-			"sSortDescending": ": Activar para ordenar la columna de manera descendente"
-		},
-		buttons: {
-			copyTitle: 'Copiar al Portapapeles',
-			copySuccess: {
-				_: 'Se copiaron %d registros',
-				1: '1 registro copiado'
-			}
-		}
-	};
-
-	var buttons = [
-		{
-			extend: 'copy',
-			title: 'Copiar'
-		},
-		{
-			extend: 'excelHtml5',
-			title: 'Excel',
-			exportOptions: {
-				columns: ':visible'
-			}
-		},
-		{
-			extend: 'csvHtml5',
-			title: 'CSV',
-			exportOptions: {
-				columns: ':visible'
-			}
-		},
-		'pdfHtml5',
-	];
-
-	$('.datatable').DataTable({
-		language: language,
-		dom: 'Bfrtip'
-		// buttons: buttons
-	});
-
-	$('.delete-record').on('click', function(event) {
+	$('body').on('click', '.delete-record', function(event) {
 
 		event.preventDefault();
 
@@ -139,18 +192,25 @@ jQuery(document).ready(function(){
 		});
 
 		dialog.init(function(){
-			window.loadingButton(record);
+			loadingButton(record);
 		});
 	});
+
+	$('.btn-loading, .btn-cancel-modal').each(function() {
+
+		var button = $(this);
+
+		if (button.is('a')) {
+			button.prop('role', 'button');
+		}
+	});
+
 });
 
 var isAdvancedUpload = function() {
 	var div = document.createElement('div');
 	return (('draggable' in div) || ('ondragstart' in div && 'ondrop' in div)) && 'FormData' in window && 'FileReader' in window;
 }();
-
-
-'use strict';
 
 ;( function( $, window, document, undefined ){
 	// feature detection for drag&drop upload
@@ -305,74 +365,5 @@ var isAdvancedUpload = function() {
 		.on( 'focus', function(){ $input.addClass( 'has-focus' ); })
 		.on( 'blur', function(){ $input.removeClass( 'has-focus' ); });
 	});
-
-	$('.btn-loading, .btn-cancel-modal').each(function() {
-
-		var button = $(this);
-
-		if (button.is('a')) {
-			button.prop('role', 'button');
-		}
-	});
-
-	window.loadingButton = function (record) {
-
-		jQuery('.btn-activity').on('click', function(event){
-			var button = $(this);
-
-			if (button.hasClass('btn-working')) return;
-
-			button.addClass('btn-working').prop('tabindex', '-1');
-			button.data('original-text', button.html());
-
-			var loadingText = button.data('loading-text') || null;
-
-			if (loadingText) {
-				button.html('<i class="fa fa-circle-notch fa-spin mr-1"></i> ' + loadingText);
-			} else {
-				button.html('<i class="fa fa-circle-notch fa-spin ml-4 mr-4"></i>');
-			}
-
-			if (button.is('a')) {
-				button.addClass('disabled').prop('aria-disabled', 'true');
-			} else {
-				button.prop('disabled', true);
-			}
-
-			var type = button.attr('type');
-
-			if (typeof type !== typeof undefined && type !== false && type === 'submit') {
-				$(this).parents('form').submit();
-			}
-		});
-
-		jQuery('.btn-loading').on('click', function(event){
-
-			var cancelButton = $('.btn-cancel-modal');
-
-			cancelButton.prop('tabindex', '-1');
-
-			if (cancelButton.is('a')) {
-				cancelButton.addClass('disabled').prop('aria-disabled', 'true');
-			} else {
-				cancelButton.prop('disabled', true);
-			}
-
-			var form = document.getElementById('delete-form-' + record);
-
-			if (form) {
-				form.submit();
-			} else {
-				bootbox.alert({
-					'title': 'Cancelado',
-					'message': 'El registro no se ha borrado. Por favor comuníquese con el administrador',
-					'animate': false
-				});
-			}
-
-		});
-	};
-
-	window.loadingButton();
 
 })( jQuery, window, document );

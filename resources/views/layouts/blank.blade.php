@@ -2,8 +2,10 @@
 
 @section('content')
 
+	@include('admin::layouts/errors', ['col' => $col ?? 'col-12'])
+
 	<div class="row mb-5">
-		<div class="col">
+		<div class="col-md-12">
 			{{ $superactions ?? '' }}
 			
 			<h4 class="page-title">
