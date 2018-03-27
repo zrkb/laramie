@@ -61,9 +61,4 @@ class Admin
 			// $this->post('password/reset', 'Auth\ResetPasswordController@reset');
 		});
 	}
-
-	public static function foo()
-	{
-		return 'foo';
-	}
 }

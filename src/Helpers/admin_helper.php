@@ -1,8 +1,9 @@
 <?php
 
-use Laramie\Admin\Html\Html;
-use Laramie\Admin\Admin;
 use Illuminate\Support\Arr;
+use Laramie\Admin\Admin;
+use Laramie\Admin\Html\Html;
+use Laramie\Admin\Html\Elements\Form;
 
 if (! function_exists('admin')) {
     /**
@@ -11,16 +12,6 @@ if (! function_exists('admin')) {
     function admin()
     {
         return app(Admin::class);
-    }
-}
-
-if (! function_exists('html')) {
-    /**
-     * @return \Laramie\Admin\Html\Html
-     */
-    function html()
-    {
-        return app(Html::class);
     }
 }
 

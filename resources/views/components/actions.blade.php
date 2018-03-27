@@ -1,8 +1,8 @@
-<a class="pt-2 pb-2 pl-3 pr-3" tabindex="0" href="javascript:;" data-toggle="popover" data-popover-content=".popover-html" data-placement="right">
+<a class="pt-2 pb-2 pl-3 pr-3" tabindex="0" href="javascript:;" data-toggle="popover" data-popover-content="#popover-html-{{ $item->getKey() }}" data-placement="right">
 	<i data-feather="more-horizontal" class="ft"></i>
 </a>
 
-<div class="popover-html d-none">
+<div id="popover-html-{{ $item->getKey() }}" class="d-none">
 	<div class="popover-body">
 		<div class="p-2">
 			
@@ -28,6 +28,7 @@
 					<i data-feather="edit-2" class="ft"></i>
 				</a>
 			@endif
+
 			<br>
 			<br>
 

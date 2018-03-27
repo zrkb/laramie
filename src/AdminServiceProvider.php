@@ -48,7 +48,14 @@ class AdminServiceProvider extends ServiceProvider
 		if (file_exists($helper = __DIR__ . '/Helpers/admin_helper.php')) {
 			require $helper;
 		}
+
+		$this->registerThirdPartyVendors();
 		
 		// $this->mergeConfigFrom(__DIR__ . '/../config/admin.php', 'laramie-config');
+	}
+
+	public function registerThirdPartyVendors()
+	{
+		// $this->app->register(\Spatie\Html\HtmlServiceProvider::class);
 	}
 }

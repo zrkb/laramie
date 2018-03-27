@@ -73,7 +73,6 @@ jQuery(document).ready(function($){
 		'trigger': 'focus',
 		'html' : true,
 		content: function() {
-			window.foo = $(this);
 			var content = $(this).data("popover-content");
 			return $(content).children(".popover-body").html();
 		},
