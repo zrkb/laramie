@@ -15,7 +15,7 @@
 						<div class="card-body">
 							<h4 class="card-title pb-3 mb-4 border-bottom">Login</h4>
 
-							{{ Form::open(['method' => 'post', 'route' => 'login']) }}
+							{{ html()->form()->action(route('login'))->open() }}
 							 
 								<div class="form-group">
 									<label for="email">E-Mail Address</label>
@@ -63,7 +63,7 @@
 									Don't have an account? <a href="register.html">Create One</a>
 								</div>
 
-							{{ Form::close() }}
+							{{ html()->form()->close() }}
 						</div>
 					</div>
 					

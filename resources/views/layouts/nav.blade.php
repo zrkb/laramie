@@ -41,12 +41,14 @@
 						<a class="dropdown-item" href="javascript:;">PRO Trial!</a>
 
 						<a class="dropdown-item text-danger" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-						{{ Form::open(['route' => 'logout', 'id' => 'logout-form', 'class' => 'd-none']) }}
-						{{ Form::close() }}
+						{{ html()->form()->action(route('logout'))->attribute('id', 'logout-form')->class('d-none')->open() }}
+						{{ html()->form()->close() }}
 					</div>
 				</li>
 			</ul>
 		</div>
+		{{-- END collapse --}}
 	</div>
+	{{-- END container --}}
 </nav>
 {{-- END navbar --}}
