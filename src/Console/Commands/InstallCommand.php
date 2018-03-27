@@ -115,8 +115,10 @@ class InstallCommand extends Command
 	 */
 	public function createBackendController()
 	{
-		$backendController = $this->directory . '/' . config('admin.controller') . '.php';
-		$contents = $this->getStub(config('admin.controller'));
+		$filename = config('admin.controller');
+		
+		$backendController = $this->directory . '/' . $filename . '.php';
+		$contents = $this->getStub($filename);
 
 		$this->files->put(
 			$backendController,

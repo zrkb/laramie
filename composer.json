@@ -1,6 +1,6 @@
 {
     "name": "imfx/laramie",
-    "type": "library",
+    "type": "package",
     "description": "Laravel 5.5 SaaS Dashboard Kit based on Bootstrap 4 with Nexus HTML Template",
     "keywords": [ "Laramie", "admin", "laravel", "dashboard", "saas" ],
     "homepage": "https://github.com/imfx/laramie",
