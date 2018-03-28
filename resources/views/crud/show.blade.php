@@ -26,23 +26,14 @@
 					</h5>
 
 					<div class="form mt-3">
-						<div class="form-group">
-							<label>Nombre Completo</label>
-							<p class="form-control-static">Felix Ayala</p>
-						</div>
+						@foreach($item->getShowFields() as $field => $label)
+							<div class="form-group">
+								<label>{{ $label }}</label>
+								<p class="form-control-static">{{ $item->{$field} }}</p>
+							</div>
+						@endforeach
 
-						<div class="form-group">
-							<label>Email</label>
-							<p class="form-control-static">felix@agenciamoderna.com.py</p>
-						</div>
-
-						<div class="form-group">
-							<label>Roles</label>
-							<p class="form-control-static">
-								<span class="badge badge-secondary">Developer</span>
-								<span class="badge badge-secondary">Admin</span>
-							</p>
-						</div>
+						{{ $slot }}
 					</div>
 					{{-- END form --}}
 				</div>

@@ -10,13 +10,45 @@ use Illuminate\Support\Collection;
 use Laramie\Admin\Http\Controllers\Interfaces\Displayable;
 use Laramie\Admin\Http\Controllers\Interfaces\Viewable;
 
+use Laramie\Admin\Repositories\BaseRepository;
+use Illuminate\Container\Container as App;
+
 abstract class BaseResourceController extends Controller
 {
 	use Displayable, Viewable;
 
-	public function __construct()
+	/**
+	 * @var app
+	 */
+	protected $app;
+
+	/**
+	 * @var repository
+	 */
+	protected $repository;
+
+	/**
+	 * Specify Repository class name
+	 *
+	 * @return class
+	 */
+	abstract public function repository();
+
+	public function __construct(App $app)
 	{
-		$this->items = new Collection();
+		$this->app = $app;
+		$this->makeRepository();
+	}
+
+	public function makeRepository()
+	{
+		$repository = $this->app->make($this->repository());
+ 
+		if (!$repository instanceof BaseRepository) {
+			throw new Exception("Class {$this->repository()} must be an instance of Laramie\\Admin\\Repositories\\BaseRepository");
+		}
+ 
+		return $this->repository = $repository;
 	}
 
 	/**
@@ -27,7 +59,7 @@ abstract class BaseResourceController extends Controller
 	public function index()
 	{
 		return view($this->getIndexView(), [
-			'items' => $this->getItems(),
+			'items' => $this->repository->getAll(),
 			'title' => $this->getTitle(),
 			'label' => $this->getLabel(),
 		]);
@@ -41,7 +73,7 @@ abstract class BaseResourceController extends Controller
 	 */
 	public function show($id)
 	{
-		$item = $this->getModel()::findOrFail($id);
+		$item = $this->repository->findById($id);
 
 		return view($this->getShowView(), [
 			'item' => $item,
@@ -105,10 +137,8 @@ abstract class BaseResourceController extends Controller
 	 * @return \Illuminate\Http\Response
 	 */
 	public function destroy($id)
-	{
-		$item = $this->getModel()::findOrFail($id);
-		
-		if ($item->delete()) {
+	{	
+		if ($this->repository->delete($id)) {
 			session()->flash('success', 'Registro eliminado exitosamente.');	
 		} else {
 			session()->flash('danger', 'No se pudo eliminar el registro. Por favor comuníquese con el administrador.');

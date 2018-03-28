@@ -4,15 +4,20 @@ namespace Laramie\Admin\Http\Controllers;
 
 use App\Models\User;
 use Laramie\Admin\Http\Requests\UserRequest;
+use Laramie\Admin\Repositories\UserRepository;
 
 class UsersController extends BaseResourceController
 {
-	protected $model = User::class;
 	protected $title = 'Usuarios';
 	protected $label = 'Usuario';
 
 	protected $indexView = 'admin::users/index';
 	protected $showView = 'admin::users/show';
+
+	public function repository()
+	{
+		return UserRepository::class;
+	}
 
 	public function create()
 	{

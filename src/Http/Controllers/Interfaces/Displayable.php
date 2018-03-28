@@ -4,18 +4,12 @@ namespace Laramie\Admin\Http\Controllers\Interfaces;
 
 trait Displayable
 {
-	protected $model;
     protected $title = 'Blank Page';
     protected $label = 'Item';
 
     public function getItems()
     {
-        return $this->getModel()::all();
-    }
-
-    public function getModel()
-    {
-        return $this->model;
+        return $this->getRepo()->getAll();
     }
 
     public function getTitle() : String
