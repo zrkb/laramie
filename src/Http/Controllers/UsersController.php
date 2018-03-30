@@ -5,6 +5,8 @@ namespace Laramie\Admin\Http\Controllers;
 use App\Models\User;
 use Laramie\Admin\Http\Requests\UserRequest;
 use Laramie\Admin\Repositories\UserRepository;
+use Laramie\Admin\Facades\Admin;
+use Laramie\Admin\Layout\Content;
 
 class UsersController extends BaseResourceController
 {
@@ -21,11 +23,19 @@ class UsersController extends BaseResourceController
 
 	public function create()
 	{
+        return Admin::content(function (Content $content) {
+            $content->header('Añadir Usuarios');
+            $content->description('Muh Description');
+            $content->body('show create form');
+        });
+
+		dd(User::getCreateFields());
 		return view('admin::crud/create', [
 			'title' => 'Añadir ' . $this->getLabel(),
 			'pageTitle' => 'Añadir ' . $this->getLabel(),
 			'label' => $this->getLabel(),
 			'back' => true,
+			'formFields' => User::getCreateFields(),
 		]);
 	}
 

@@ -2,8 +2,10 @@
 
 namespace Laramie\Admin;
 
+use Closure;
 use Illuminate\Support\Facades\Route;
 use Laramie\Admin\Dashboard\Display;
+use Laramie\Admin\Layout\Content;
 
 class Admin
 {
@@ -19,6 +21,11 @@ class Admin
 	{
 		$this->display = $display;
 	}
+
+    public function content(Closure $callable = null)
+    {
+        return new Content($callable);
+    }
 
 	public function display()
 	{

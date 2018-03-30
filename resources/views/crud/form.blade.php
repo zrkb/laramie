@@ -1,3 +1,26 @@
+@foreach($formFields as $field => $prop)
+{{dd($prop)}}
+	@if(is_array($prop))
+		<?php $div = floor(12 / (count($prop) ?: 1)); ?>
+		<div class="row">
+			@foreach($prop as $f => $p)
+				<div class="col-md-{{ $div }}">
+					@include('admin::components/field', [
+						'field' => $f,
+						'prop' => $p,
+					])
+				</div>
+			@endforeach
+		</div>
+	@else
+		@include('admin::components/field', [
+			'field' => $field,
+			'prop' => $prop,
+		])
+	@endif
+@endforeach
+
+{{-- 
 <div class="row">
 	<div class="col-md-6">
 		<div class="form-group">
@@ -34,3 +57,4 @@
 		</label>
 	</div>
 </div>
+--}}

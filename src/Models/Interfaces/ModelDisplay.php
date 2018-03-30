@@ -6,6 +6,6 @@ interface ModelDisplay
 {
 	public function getIndexFields() : Array;
 	public function getShowFields() : Array;
-	public function getCreateFields() : Array;
+	public static function getCreateFields() : Array;
 	public function getEditFields() : Array;
 }
