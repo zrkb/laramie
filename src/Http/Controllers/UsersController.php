@@ -25,7 +25,7 @@ class UsersController extends BaseResourceController
 	{
         return Admin::content(function (Content $content) {
             $content->header('Añadir Usuarios');
-            $content->description('Muh Description');
+            $content->description('Añadir Usuarios');
             $content->body('show create form');
         });
 
