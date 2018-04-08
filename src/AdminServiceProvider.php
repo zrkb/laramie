@@ -4,6 +4,7 @@ namespace Laramie\Admin;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Foundation\AliasLoader;
+use Laramie\Admin\Http\Middleware\AppLocale;
 
 class AdminServiceProvider extends ServiceProvider
 {
@@ -21,11 +22,12 @@ class AdminServiceProvider extends ServiceProvider
 	 */
 	public function boot()
 	{
-
+		// Route Initiator
 		if (file_exists($routes = base_path() . '/routes/backend.php')) {
 			$this->loadRoutesFrom($routes);
 		}
 
+		// Resources
 		if ($this->app->runningInConsole()) {
 			$this->publishes([__DIR__ . '/../config' => config_path()], 'laramie-config');
 			$this->publishes([ __DIR__ . '/../database/migrations' => database_path('migrations') ], 'laramie-migrations');
@@ -35,9 +37,16 @@ class AdminServiceProvider extends ServiceProvider
 			// $this->publishes([ __DIR__ . '/Http/Controllers' => app_path('Http/Controllers')], 'laramie-controllers');
 		}
 
+		// Commands
 		$this->commands($this->commands);
 
+		// Views
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'admin');
+
+        // Middlewares
+        $this->app->singleton('Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode', function($app){
+            return  new AppLocale($app);
+        });
 	}
 
 	/**
