@@ -19,4 +19,9 @@ trait UserPresenter
     {
         return $this->created_at->diffForHumans();
     }
+
+    public function getLastModifiedAttribute()
+    {
+        return $this->updated_at->diffForHumans();
+    }
 }
