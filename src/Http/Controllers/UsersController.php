@@ -7,11 +7,12 @@ use Laramie\Admin\Http\Requests\UserRequest;
 use Laramie\Admin\Repositories\UserRepository;
 use Laramie\Admin\Facades\Admin;
 use Laramie\Admin\Layout\Content;
+use Laramie\Admin\Layout\Table;
 
 class UsersController extends BaseResourceController
 {
-	protected $title = 'Usuarios';
-	protected $label = 'Usuario';
+	protected $title = 'Lista de Usuarios';
+	protected $label = 'Lista de Usuarios';
 
 	protected $indexView = 'admin::users/index';
 	protected $showView = 'admin::users/show';
@@ -19,6 +20,18 @@ class UsersController extends BaseResourceController
 	public function repository()
 	{
 		return UserRepository::class;
+	}
+
+	public function list($items)
+	{
+		return Admin::table(function (Table $table) use ($items) {
+			$table->rows($items);
+
+			$table->column('id', 'ID');
+			$table->column('full_name', 'Nombre Completo');
+			$table->column('account_age', 'Creado el');
+			$table->column('last_modified', 'Modificado el');
+		});
 	}
 
 	public function create()

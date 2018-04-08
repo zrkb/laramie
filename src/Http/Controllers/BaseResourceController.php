@@ -7,11 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Http\FormRequest;
 use Illuminate\Support\Collection;
+use Illuminate\Container\Container as App;
+use Laramie\Admin\Facades\Admin;
+use Laramie\Admin\Layout\Content;
+use Laramie\Admin\Layout\Table;
 use Laramie\Admin\Http\Controllers\Interfaces\Displayable;
 use Laramie\Admin\Http\Controllers\Interfaces\Viewable;
-
 use Laramie\Admin\Repositories\BaseRepository;
-use Illuminate\Container\Container as App;
 
 abstract class BaseResourceController extends Controller
 {
@@ -58,12 +60,16 @@ abstract class BaseResourceController extends Controller
 	 */
 	public function index()
 	{
-		return view($this->getIndexView(), [
-			'items' => $this->repository->getAll(),
-			'title' => $this->getTitle(),
-			'label' => $this->getLabel(),
-		]);
+		return Admin::content(function (Content $content) {
+			$items = $this->repository->getAll();
+
+			$content->title($this->getTitle());
+			$content->header($this->getLabel());
+			$content->body($this->list($items)->render());
+		});
 	}
+
+	abstract public function list($items);
 
 	/**
 	 * Display the specified resource.

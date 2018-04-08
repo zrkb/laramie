@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Support\Facades\Route;
 use Laramie\Admin\Dashboard\Display;
 use Laramie\Admin\Layout\Content;
+use Laramie\Admin\Layout\Table;
 
 class Admin
 {
@@ -25,6 +26,11 @@ class Admin
     public function content(Closure $callable = null)
     {
         return new Content($callable);
+    }
+
+    public function table(Closure $callable = null)
+    {
+        return new Table($callable);
     }
 
 	public function display()

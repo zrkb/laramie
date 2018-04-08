@@ -11,18 +11,25 @@ use Illuminate\Support\HtmlString;
 class Content implements Htmlable, Renderable
 {
 	/**
+	 * Layout view.
+	 *
+	 * @var string
+	 */
+	protected $view = 'admin::layouts/card';
+
+	/**
+	 * Content title.
+	 *
+	 * @var string
+	 */
+	protected $title = '';
+
+	/**
 	 * Content header.
 	 *
 	 * @var string
 	 */
 	protected $header = '';
-
-	/**
-	 * Content description.
-	 *
-	 * @var string
-	 */
-	protected $description = '';
 
 	/**
 	 * @var Row[]
@@ -38,16 +45,16 @@ class Content implements Htmlable, Renderable
 		}
 	}
 
-	public function header($header = '')
+	public function title($title = '')
 	{
-		$this->header = $header;
+		$this->title = $title;
 
 		return $this;
 	}
 
-	public function description($description = '')
+	public function header($header = '')
 	{
-		$this->description = $description;
+		$this->header = $header;
 
 		return $this;
 	}
@@ -98,13 +105,13 @@ class Content implements Htmlable, Renderable
 
 	public function render()
 	{
-		$items = [
-			'title'      => $this->header,
-			'pageTitle' => $this->description,
-			'slot'     => $this->build(),
+		$vars = [
+			'title'		=> $this->title,
+			'header'	=> $this->header,
+			'slot'		=> $this->build(),
 		];
 
-		return view('admin::layouts/card', $items)->render();
+		return view($this->view, $vars)->render();
 	}
 
 	public function __toString()

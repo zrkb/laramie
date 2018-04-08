@@ -1,6 +1,6 @@
 @component('admin::layouts/blank', [
 	'title' => $title,
-	'pageTitle' => $pageTitle ?? '',
+	'header' => $header ?? '',
 	'superactions' => $superactions ?? '',
 	'back' => $back ?? false,
 ])
