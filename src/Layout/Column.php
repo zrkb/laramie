@@ -2,21 +2,63 @@
 
 namespace Laramie\Admin\Layout;
 
-use Spatie\Html\BaseElement;
+use Illuminate\Contracts\Support\Renderable;
 
-class Column extends BaseElement
+class Column implements Renderable
 {
-	protected $tag = 'div';
-	
 	/**
-	 * @var int
+	 * Column field
+	 *
+	 * @var String
 	 */
-	protected $width = 12;
+	public $field;
 
-	public function __construct($content, $width = 12)
+	/**
+	 * Column header
+	 *
+	 * @var String
+	 */
+	public $header;
+
+	/**
+	 * Field Initials
+	 *
+	 * @var String
+	 */
+	public $initials = 'NN';
+
+	/**
+	 * Make column linkable to the detail
+	 *
+	 * @var Bool
+	 */
+	protected $linkable = false;
+
+	public function __construct(String $field, String $header)
 	{
-		$this->width = $width;
+		$this->field = $field;
+		$this->header = $header;
+	}
 
-		// $this->addClass('col-md-' . $this->width);
+	/**
+	 * Mark this column as linkable.
+	 *
+	 * @return Column
+	 */
+	public function linkable()
+	{
+		$this->linkable = true;
+
+		return $this;
+	}
+
+	public function isLinkable() : Bool
+	{
+		return $this->linkable;
+	}
+
+	public function render()
+	{
+		return $this->field;
 	}
 }

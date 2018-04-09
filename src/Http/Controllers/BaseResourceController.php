@@ -29,13 +29,6 @@ abstract class BaseResourceController extends Controller
 	 */
 	protected $repository;
 
-	/**
-	 * Specify Repository class name
-	 *
-	 * @return class
-	 */
-	abstract public function repository();
-
 	public function __construct(App $app)
 	{
 		$this->app = $app;
@@ -60,16 +53,13 @@ abstract class BaseResourceController extends Controller
 	 */
 	public function index()
 	{
-		return Admin::content(function (Content $content) {
-			$items = $this->repository->getAll();
+		$items = $this->repository->getAll();
 
-			$content->title($this->getTitle());
-			$content->header($this->getLabel());
+		return Admin::content(function (Content $content) use ($items) {
+			$content->title('Lista de ' . $this->getLabel());
 			$content->body($this->list($items)->render());
 		});
 	}
-
-	abstract public function list($items);
 
 	/**
 	 * Display the specified resource.
@@ -80,12 +70,7 @@ abstract class BaseResourceController extends Controller
 	public function show($id)
 	{
 		$item = $this->repository->findById($id);
-
-		return view($this->getShowView(), [
-			'item' => $item,
-			'label' => $this->getLabel(),
-			'back' => true,
-		]);
+		return $this->detail($item);
 	}
 
 	/**
@@ -152,4 +137,17 @@ abstract class BaseResourceController extends Controller
 
 		return redirect()->route(resource('index'));
 	}
+
+	/**
+	 * Specify Repository class name
+	 *
+	 * @return class
+	 */
+	abstract public function repository();
+
+	abstract public function list($items);
+
+	abstract public function detail($item);
+
+	abstract public function form();
 }

@@ -1,11 +1,19 @@
 @component('admin::layouts/blank', [
 	'title' => $title,
-	'back' => $back,
-	'pageTitle' => $pageTitle,
-	'icon' => $icon,
+	'back' => true,
 ])
 
-	{{ $stats ?? '' }}
+	@slot('icon')
+		<a class="page-icon">
+			<span title="{{ $item->fullName }}">{{ $item->initials }}</span>
+		</a>
+	@endslot
+
+	@slot('header')
+		<span class="text-primary">#{{ $item->getKey() }}</span>
+		<span class="text-muted">&rarr;</span>
+		{{ $item->fullName }}
+	@endslot
 
 	@slot('superactions')
 		<div class="float-right">
@@ -26,10 +34,10 @@
 					</h5>
 
 					<div class="form mt-3">
-						@foreach($item->getShowFields() as $field => $label)
+						@foreach($fields as $field)
 							<div class="form-group">
-								<label>{{ $label }}</label>
-								<p class="form-control-static">{{ $item->{$field} }}</p>
+								<label>{{ $field->label }}</label>
+								<p class="form-control-static">{{ $item->{$field->name} }}</p>
 							</div>
 						@endforeach
 
@@ -53,14 +61,14 @@
 
 					<div class="form mt-3">
 						<div class="form-group">
-							<label>Creado el</label>
+							<label>Creado</label>
 							<p class="form-control-static">
 								{{ $item->created_at->formatLocalized('%B %d, %Y @ %H:%mhs') }}
 							</p>
 						</div>
 
 						<div class="form-group">
-							<label>Modificado el</label>
+							<label>Modificado</label>
 							<p class="form-control-static">
 								{{ $item->updated_at->formatLocalized('%B %d, %Y @ %H:%mhs') }}
 							</p>
@@ -111,5 +119,5 @@
 		{{-- END col --}}
 	</div>
 	{{-- END row --}}
-
+	
 @endcomponent

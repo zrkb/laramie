@@ -1,9 +1,16 @@
 @component('admin::layouts/blank', [
 	'title' => $title,
-	'header' => $header ?? '',
-	'superactions' => $superactions ?? '',
-	'back' => $back ?? false,
+	'header' => $title,
 ])
+
+	@slot('superactions')
+		<div class="float-right">
+			<a href="{{ route(resource('create')) }}" class="btn btn-success">
+				<i data-feather="plus" class="mr-2 ft"></i>
+				Añadir 
+			</a>
+		</div>
+	@endslot
 
 	<div class="row mb-5 justify-content-center">
 		<div class="{{ $col ?? 'col' }}">

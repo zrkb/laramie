@@ -2,7 +2,7 @@
 	<thead>
 		<tr>
 			@foreach($columns as $column)
-				<th>{{ $column }}</th>
+				<th>{{ $column->header }}</th>
 			@endforeach
 
 			<th class="text-center">Acciones</th>
@@ -11,8 +11,18 @@
 	<tbody>
 		@foreach($items as $item)
 			<tr>
-				@foreach($fields as $field)
-					<td>{{ $item->{$field} }}</td>
+				@foreach($columns as $column)
+					<td>
+						@if ($column->isLinkable())
+							@include('admin::widgets/linkable', [
+								'initials' => $item->initials,
+								'item' => $item,
+								'field' => $column->field,
+							])
+						@else
+							{{ $item->{$column->field} }}
+						@endif
+					</td>
 				@endforeach
 
 				<td class="text-center">

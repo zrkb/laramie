@@ -26,17 +26,11 @@ class Table implements Htmlable, Renderable
     /**
      * @var Illuminate\Support\Collection
      */
-    protected $fields;
-
-    /**
-     * @var Illuminate\Support\Collection
-     */
     protected $rows;
 
 	public function __construct(Closure $callback = null)
 	{
 		$this->columns = new Collection();
-		$this->fields = new Collection();
 		$this->rows = new Collection();
 
 		if ($callback instanceof Closure) {
@@ -58,10 +52,13 @@ class Table implements Htmlable, Renderable
     	return $this;
     }
 
-    public function column(String $field, String $column)
+    public function column(String $field, String $header)
     {
-    	$this->fields->push($field);
+        $column = new Column($field, $header);
+
     	$this->columns->push($column);
+
+        return $column;
     }
 
     /**
@@ -72,7 +69,6 @@ class Table implements Htmlable, Renderable
     public function render()
     {
         $vars = [
-            'fields'	=> $this->fields,
             'columns'	=> $this->columns,
             'items'		=> $this->rows,
         ];

@@ -8,11 +8,11 @@ use Laramie\Admin\Repositories\UserRepository;
 use Laramie\Admin\Facades\Admin;
 use Laramie\Admin\Layout\Content;
 use Laramie\Admin\Layout\Table;
+use Laramie\Admin\Layout\Detail;
 
 class UsersController extends BaseResourceController
 {
-	protected $title = 'Lista de Usuarios';
-	protected $label = 'Lista de Usuarios';
+	protected $label = 'Usuarios';
 
 	protected $indexView = 'admin::users/index';
 	protected $showView = 'admin::users/show';
@@ -28,10 +28,26 @@ class UsersController extends BaseResourceController
 			$table->rows($items);
 
 			$table->column('id', 'ID');
-			$table->column('full_name', 'Nombre Completo');
-			$table->column('account_age', 'Creado el');
-			$table->column('last_modified', 'Modificado el');
+			$table->column('full_name', 'Nombre Completo')->linkable();
+			$table->column('account_age', 'Creado');
+			$table->column('last_modified', 'Modificado');
 		});
+	}
+
+	public function detail($item)
+	{
+		return Admin::detail(function (Detail $detail) use ($item) {
+            $detail->title('Detalle de Usuario');
+            $detail->item($item);
+
+			$detail->field('full_name', 'Nombre Completo');
+			$detail->field('email', 'Email');
+			$detail->field('account_age', 'Creado');
+		});
+	}
+
+	public function form()
+	{
 	}
 
 	public function create()
@@ -39,24 +55,13 @@ class UsersController extends BaseResourceController
         return Admin::content(function (Content $content) {
             $content->header('Añadir Usuarios');
             $content->description('Añadir Usuarios');
-            $content->body('show create form');
+            $content->body($this->form());
         });
-
-		dd(User::getCreateFields());
-		return view('admin::crud/create', [
-			'title' => 'Añadir ' . $this->getLabel(),
-			'pageTitle' => 'Añadir ' . $this->getLabel(),
-			'label' => $this->getLabel(),
-			'back' => true,
-			'formFields' => User::getCreateFields(),
-		]);
 	}
 
 	public function store()
 	{
 		$this->validate(request(), $this->rules());
-
-		dd('foo');
 	}
 
 	public function rules()
