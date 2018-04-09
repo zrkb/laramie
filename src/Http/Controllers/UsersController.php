@@ -37,8 +37,8 @@ class UsersController extends BaseResourceController
 	public function detail($item)
 	{
 		return Admin::detail(function (Detail $detail) use ($item) {
-            $detail->title('Detalle de Usuario');
-            $detail->item($item);
+			$detail->title('Detalle de Usuario');
+			$detail->item($item);
 
 			$detail->field('full_name', 'Nombre Completo');
 			$detail->field('email', 'Email');
@@ -48,15 +48,19 @@ class UsersController extends BaseResourceController
 
 	public function form()
 	{
+		return Admin::form(function (Form $form) {
+			$form->input('');
+		});
 	}
 
 	public function create()
 	{
-        return Admin::content(function (Content $content) {
-            $content->header('Añadir Usuarios');
-            $content->description('Añadir Usuarios');
-            $content->body($this->form());
-        });
+		return view('admin::crud/create', [
+			'title' => 'Añadir ' . $this->getLabel(),
+			'pageTitle' => 'Añadir ' . $this->getLabel(),
+			'label' => $this->getLabel(),
+			'back' => true,
+		]);
 	}
 
 	public function store()

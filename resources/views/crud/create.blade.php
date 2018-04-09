@@ -1,8 +1,7 @@
 @component('admin::layouts/blank', [
 	'title' => $title,
-	'pageTitle' => $pageTitle ?? '',
-	'superactions' => $superactions ?? '',
-	'back' => $back ?? false,
+	'header' => $title,
+	'back' => true,
 ])
 
 	<div class="row mb-5 justify-content-center">
@@ -16,7 +15,7 @@
 							Completa los campos del formulario
 						</h5>
 						
-						@include('admin::crud/form')
+						{{-- @include('admin::crud/form') --}}
 					</div>
 					{{-- END card-body --}}
 

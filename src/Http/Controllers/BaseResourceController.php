@@ -12,12 +12,11 @@ use Laramie\Admin\Facades\Admin;
 use Laramie\Admin\Layout\Content;
 use Laramie\Admin\Layout\Table;
 use Laramie\Admin\Http\Controllers\Interfaces\Displayable;
-use Laramie\Admin\Http\Controllers\Interfaces\Viewable;
 use Laramie\Admin\Repositories\BaseRepository;
 
 abstract class BaseResourceController extends Controller
 {
-	use Displayable, Viewable;
+	use Displayable;
 
 	/**
 	 * @var app
@@ -80,12 +79,10 @@ abstract class BaseResourceController extends Controller
 	 */
 	public function create()
 	{
-		return view('admin::crud/create', [
-			'title' => 'Añadir ' . $this->getLabel(),
-			'pageTitle' => 'Añadir ' . $this->getLabel(),
-			'label' => $this->getLabel(),
-			'back' => true,
-		]);
+		return Admin::content(function (Content $content) use ($items) {
+			$content->title('Añadir ' . $this->getLabel());
+			$content->body($this->form());
+		});
 	}
 
 	/**
