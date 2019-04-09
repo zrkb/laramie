@@ -55,6 +55,6 @@
     "config": {
         "sort-packages": true
     },
-    "version": "0.2.3",
+    "version": "0.2.4",
     "minimum-stability": "dev"
 }
