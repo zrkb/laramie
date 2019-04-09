@@ -74,7 +74,7 @@ class AdminServiceProvider extends ServiceProvider
 			require $helper;
 		}
 		
-		$this->mergeConfigFrom(__DIR__ . '/../config/admin.php', 'laramie');
+		$this->mergeConfigFrom(__DIR__ . '/../config/laramie.php', 'laramie');
 
 		$this->registerThirdPartyVendors();
 	}
