@@ -1,0 +1,82 @@
+@extends('layouts/table')
+
+@section('content')
+
+	<div class="root">
+		@component('misc/page-title')
+			@slot('superactions')
+				@include('misc/models/segments')
+				
+				<a href="{{ resource('create') }}" class="btn btn-primary">
+					Añadir 
+					<i data-feather="plus" class="feather"></i>
+				</a>
+			@endslot
+
+			@slot('icon')
+				<a class="page-icon">
+					<span class="bg-primary text-white">
+						<i data-feather="FeatherIcon" class="feather"></i>
+					</span>
+				</a>
+			@endslot
+
+			PluralBaseClass
+			<small class="text-muted">({{ $PluralLowercaseBaseClass->count() }})</small>
+		@endcomponent
+
+		@include('misc/table-tools')
+
+		<div class="card">
+			@if ($PluralLowercaseBaseClass->isNotEmpty())
+				<div class="table-responsive">
+					<table class="table table-striped datatable">
+						<thead>
+							<tr>
+								<th class="tid">#ID</th>
+								<th>Nombre</th>
+								<th>Creado</th>
+								<th>Estado</th>
+								<th class="text-center">Acciones</th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach($PluralLowercaseBaseClass as $SingularLowercaseBaseClass)
+								<tr>
+									<td class="tid">{{ $SingularLowercaseBaseClass->id }}</td>
+									<td>
+										<a href="{{ resource('show', ['id' => $SingularLowercaseBaseClass->id]) }}">
+											@if ($SingularLowercaseBaseClass->trashed())
+												<s class="text-muted">{{ $SingularLowercaseBaseClass->name }}</s>
+											@else
+												{{ $SingularLowercaseBaseClass->name }}
+											@endif
+										</a>
+									</td>
+									<td>
+										{{ $SingularLowercaseBaseClass->created_at }}
+									</td>
+									<td>
+										@include('misc/models/status-badge', ['model' => $SingularLowercaseBaseClass])
+									</td>
+									<td class="actions text-center">
+										@include('misc/models/crud-actions', ['model' => $SingularLowercaseBaseClass])
+									</td>
+								</tr>
+							@endforeach
+						</tbody>
+					</table>
+					{{-- END datatables --}}
+				</div>
+				{{-- END table-responsive --}}
+			@else
+				@include('layouts/empty', [
+					'route' => resource('create'),
+				])
+			@endif
+		</div>
+		<!-- END card -->
+	</div>
+	{{-- END root --}}
+
+@endsection

@@ -64,11 +64,6 @@ class Admin
 			Route::post('login', 'LoginController@login');
 			Route::post('logout', 'LoginController@logout')->name('logout');
 
-			Route::group(['middleware' => 'auth'], function() {
-				// Resources
-				Route::resource('/users', 'UsersController');
-			});
-
 			// // Registration Routes...
 			// $this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 			// $this->post('register', 'Auth\RegisterController@register');

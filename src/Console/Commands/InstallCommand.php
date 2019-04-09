@@ -12,7 +12,7 @@ class InstallCommand extends Command
 	 *
 	 * @var string
 	 */
-	protected $signature = 'admin:install';
+	protected $signature = 'laramie:install';
 
 	/**
 	 * The console command description.
@@ -53,7 +53,7 @@ class InstallCommand extends Command
 			$message = $e->getMessage();
 
 			if (strpos($message, 'SQLSTATE') !== false) {
-				throw new Exception("Laramie can't connect to your database. Edit your .env file and run 'admin:install' again." . PHP_EOL . $message, 1);
+				throw new Exception("Laramie can't connect to your database. Edit your .env file and run '" . $this->signature . "' again." . PHP_EOL . $message, 1);
 			} else {
 				$this->error("Laramie::handle exception: " . $e);
 				throw new Exception("Laramie::handle Unable to install: " . $message, 1);
@@ -90,8 +90,8 @@ class InstallCommand extends Command
 		$this->makeDir('/');
 		$this->info('Admin directory was created: ' . str_replace(base_path(), '', $this->directory));
 
-        $this->createRoutesFile();
-		$this->createBackendController();
+        // $this->createRoutesFile();
+		$this->createAppController();
 	}
 
     /**
@@ -113,19 +113,19 @@ class InstallCommand extends Command
 	 *
 	 * @return void
 	 */
-	public function createBackendController()
+	public function createAppController()
 	{
 		$filename = config('admin.controller');
 		
-		$backendController = $this->directory . '/' . $filename . '.php';
+		$appController = $this->directory . '/' . $filename . '.php';
 		$contents = $this->getStub($filename);
 
 		$this->files->put(
-			$backendController,
+			$appController,
 			str_replace('DummyNamespace', config('admin.route.namespace'), $contents)
 		);
 
-		$this->info('BackendController file was created: '.str_replace(base_path(), '', $backendController));
+		$this->info('AppController file was created: '.str_replace(base_path(), '', $appController));
 	}
 
 	/**

@@ -1,37 +1,25 @@
 <!DOCTYPE html>
-<html class="js" lang="{{ app()->getLocale() }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+	{{-- Required meta tags --}}
 	<meta charset="utf-8">
-	<meta name="csrf-token" content="{{ csrf_token() }}">
-	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title>{{ isset($title) ? $title  . ' | ' : '' }}{{ env('APP_NAME', 'Laramie') }}</title>
-
-	<meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="author" content="@imfx">
 
-	@include('admin::layouts/favicons')
+	{{-- CSRF Token --}}
+	<meta name="csrf-token" content="{{ csrf_token() }}">
+
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>{{ isset($title) ? $title  . ' -' : '' }} {{ env('APP_NAME', 'Laramie') }}</title>
+
 	@include('admin::layouts/styles')
 </head>
 
 <body>
 
-	@include('admin::layouts/flash')
-
-    @auth
-		@include('admin::layouts/nav')
-		@include('admin::layouts/menu')
-    @endauth
-
-	<div class="container mt-5">
-		@yield('content')
+	<div id="app">
+		@yield('app')
 	</div>
 
-	@auth
-		@include('admin::layouts/footer')
-	@endauth
-
 	@include('admin::layouts/scripts')
-
 </body>
 </html>

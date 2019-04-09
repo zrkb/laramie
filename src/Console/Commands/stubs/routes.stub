@@ -13,10 +13,6 @@ Route::group([
 	'middleware'    => config('admin.route.middleware'),
 ], function () {
 	
-	Route::get('/',                         'BackendController@index')->name('backend');
-
-	Route::get('/user-interface/{slug}',    'BackendController@ui')->name('user-interface');
-	Route::get('/tables/{slug}',            'BackendController@tables')->name('tables');
-	Route::get('/extras/{slug}',            'BackendController@extras')->name('extras');
+	Route::get('/',                         'AppController@index')->name('app');
 
 });

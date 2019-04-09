@@ -27,3 +27,15 @@ if (! function_exists('resource')) {
     }
 }
 
+if (! function_exists('user')) {
+    /**
+     * Returns auth user.
+     * 
+     * @return \App\Models\User $user
+     */
+    function user()
+    {
+        return auth()->user();
+    }
+}
+

@@ -99,9 +99,21 @@ return [
 	*/
 
 	'custom' => [
-		'attribute-name' => [
-			'rule-name' => 'custom-message',
+		'stations' => [
+			'required' => 'Debes cargar datos al menos para una Estación.',
 		],
+		'stations.*.m' => [
+			'required' => 'Debes seleccionar al menos una Variante por cada Material.',
+		],
+		'stations.*.m.*.v' => [
+			'required' => 'Debes seleccionar al menos un Original por cada Variante.',
+		],
+		// 'stations.*.materials.*.variants.*.originals' => [
+		// 	'required' => 'Debes seleccionar al menos un Original por cada Variante.',
+		// ],
+		// 'stations.*.materials.*.variants.*.originals_quantity' => [
+		// 	'required' => 'Debes cargar la cantidad de unidades por cada Original seleccionado.',
+		// ],
 	],
 
 	/*
@@ -116,67 +128,6 @@ return [
 	*/
 
 	'attributes' => [
-		// EESS
-		'EESS_SQ_ID' => "EESS",
-		'EESS_TX_NOMBRE' => 'Nombre',
-		'EESS_TX_DIRECCION' => "Dirección",
-
-		// LOCALIDAD
-		'LOCA_SQ_ID' => "Localidad",
-
-		// ZONA
-		'ZONA_SQ_ID' => "Zona",
-		'ZONA_TX_NOMBRE' => "Nombre",
-
-		// ORGANIZACION
-		'ORGA_SQ_ID' => "Razón Social",
-		'ORGA_TX_RAZON_SOCIAL' => 'Razón Social',
-
-		// USUARIO
-		'USUA_TX_EMAIL' => "Email",
-		'USUA_TX_PASSWORD' => "Contraseña",
-		'USUA_TX_CONFIRMAR_PASSWORD' => "Confirmar Contraseña",
-		'USUA_TX_CURRENT_PASSWORD' => "Contraseña Actual",
-		'USUA_TX_NEW_PASSWORD' => "Nueva Contraseña",
-		'USUA_TX_CONFIRM_PASSWORD' => "Confirmar Contraseña",
-
-		// PERSONA
-		'PERS_TX_NOMBRE' => "Nombre",
-		'PERS_TX_APELLIDO' => "Apellido",
-		'PERS_TX_DNI' => "C.I.",
-		'PERS_TX_EMAIL' => "Email",
-		'PERS_TX_TELEFONO' => "Teléfono",
-		'PERS_DT_NACIMIENTO' => "Fecha de Nacimiento",
-
-		// ARTICULO
-		'ARTI_TX_CONTENIDO' => "Contenido",
-
-		// CUESTIONARIO
-		'CUES_SQ_ID' => "Cuestionario",
-		'CUES_TX_NOMBRE' => "Nombre del Cuestionario",
-
-		// EVALUACION
-		'EVAL_SQ_ID' => 'Evaluación',
-		'EVAL_DT_VISITA_FECHA' => "Fecha de la Visita",
-		'EVAL_DT_ENTRADA_HORA' => "Hora Entrada",
-		'EVAL_DT_SALIDA_HORA' => "Hora Salida",
-		'EVAL_CD_TURNO' => "Turno",
-		'EVAL_DT_PERIODO' => "Periodo",
-		'EVAL_IN_SECTOR_EVALUADO_PLAYA' => "Sector Evaluado (Playa)",
-		'EVAL_TX_AUTORIZANTE' => "Autorizante",
-
-		// EVALUACION_CLIENTE_EXIGENTE
-		'EVCE_TX_DNI_VENDEDOR_PLAYA' => 'C.I. del Vendedor de Playa',
-		'EVCE_QN_VEHICULOS_PLAYA' => 'Vehículos en Playa',
-		'EVCE_QN_PLAYEROS_PLAYA' => 'Playeros Visibles en Playa',
-		'EVCE_QN_TIEMPO_ESPERA_PLAYA' => 'Tiempo de Espera en Playa',
-		'EVCE_TX_DNI_VENDEDOR_TIENDA' => 'C.I. del Vendedor de Tienda',
-		'EVCE_QN_PERSONAS_TIENDA' => 'Personas Visibles en Tienda',
-		'EVCE_QN_VENDEDORES_TIENDA' => 'Vendedores Visibles en Tienda',
-		'EVCE_QN_TIEMPO_ESPERA_TIENDA' => 'Tiempo de Espera en Tienda',
-
-		// ROL
-		'ROLE' => 'Roles',
 	],
 
 ];

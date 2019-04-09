@@ -23,18 +23,32 @@ class AdminServiceProvider extends ServiceProvider
 	public function boot()
 	{
 		// Route Initiator
-		if (file_exists($routes = base_path() . '/routes/backend.php')) {
+		if (file_exists($routes = __DIR__ . '/../routes/backend.php')) {
 			$this->loadRoutesFrom($routes);
 		}
 
 		// Resources
 		if ($this->app->runningInConsole()) {
-			$this->publishes([__DIR__ . '/../config' => config_path()], 'laramie-config');
-			$this->publishes([ __DIR__ . '/../database/migrations' => database_path('migrations') ], 'laramie-migrations');
-			$this->publishes([ __DIR__ . '/../public' => public_path()], 'laramie-assets');
-			$this->publishes([ __DIR__ . '/../resources/lang' => resource_path() . '/lang'], 'laramie-translations');
 
-			// $this->publishes([ __DIR__ . '/Http/Controllers' => app_path('Http/Controllers')], 'laramie-controllers');
+			$this->publishes([
+				__DIR__ . '/../config' => config_path()
+			], 'laramie-config');
+
+			$this->publishes([
+				__DIR__ . '/../database/migrations' => database_path('migrations')
+			], 'laramie-migrations');
+
+			$this->publishes([
+				__DIR__ . '/../public' => public_path()
+			], 'laramie-assets');
+
+			$this->publishes([
+				__DIR__ . '/../resources/lang' => resource_path() . '/lang'
+			], 'laramie-translations');
+
+			// $this->publishes([
+			// 	__DIR__ . '/Http/Controllers' => app_path('Http/Controllers')
+			// ], 'laramie-controllers');
 		}
 
 		// Commands
