@@ -79,7 +79,7 @@ class InstallCommand extends Command
 	{
 		$this->warn('==> Initializing backend directory ...');
 
-		$this->directory = config('admin.directory');
+		$this->directory = config('laramie.directory');
 
 		if (is_dir($this->directory)) {
 			$this->line("<error>{$this->directory} directory already exists !</error> ");
@@ -104,7 +104,7 @@ class InstallCommand extends Command
         $file = base_path() . '/routes/backend.php';
 
         $contents = $this->getStub('routes');
-        $this->files->put($file, str_replace('DummyNamespace', config('admin.route.namespace'), $contents));
+        $this->files->put($file, str_replace('DummyNamespace', config('laramie.route.namespace'), $contents));
         $this->info('Routes file was created: ' . str_replace(base_path(), '', $file));
     }
 
@@ -115,17 +115,17 @@ class InstallCommand extends Command
 	 */
 	public function createAppController()
 	{
-		$filename = config('admin.controller');
+		$filename = config('laramie.controller');
 		
 		$appController = $this->directory . '/' . $filename . '.php';
 		$contents = $this->getStub($filename);
 
 		$this->files->put(
 			$appController,
-			str_replace('DummyNamespace', config('admin.route.namespace'), $contents)
+			str_replace('DummyNamespace', config('laramie.route.namespace'), $contents)
 		);
 
-		$this->info('AppController file was created: '.str_replace(base_path(), '', $appController));
+		$this->info('AppController file was created: ' . str_replace(base_path(), '', $appController));
 	}
 
 	/**
