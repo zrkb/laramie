@@ -54,7 +54,7 @@ class Admin
 	public function authRoutes()
 	{
 		$attributes = [
-			'prefix'     => config('admin.route.prefix'),
+			'prefix'     => config('laramie.route.prefix'),
 			'namespace'  => '\Laramie\Admin\Http\Controllers',
 			'middleware' => 'web',
 		];

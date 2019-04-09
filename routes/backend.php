@@ -8,11 +8,11 @@
 Admin::authRoutes();
 
 Route::group([
-	'prefix'		=> config('admin.route.prefix'),
-	'middleware'	=> config('admin.route.middleware'),
+	'prefix'		=> config('laramie.route.prefix'),
+	'middleware'	=> config('laramie.route.middleware'),
 ], function () {
 	
-	Route::group(['namespace' => config('admin.route.namespace')], function () {
+	Route::group(['namespace' => config('laramie.route.namespace')], function () {
 		// App Route
 		Route::get('/',                         	'AppController@index')->name('app');
 	});

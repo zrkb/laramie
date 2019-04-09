@@ -1,0 +1,86 @@
+<?php
+
+namespace Laramie\Admin\Models;
+
+use Laramie\Admin\Traits\HasPrevNext;
+use Laramie\Admin\Traits\ResourceModel;
+
+class Permission extends \Spatie\Permission\Models\Permission
+{
+	use ResourceModel, HasPrevNext;
+
+	public static function groupedByRoutes()
+	{
+		$permissions = static::orderBy('name')->get();
+
+		$grouped = $permissions->groupBy(function ($item, $key) {
+			list($action, $route) = explode('_', $item->name, 2);
+			return $route;
+		}, true);
+
+		return $grouped;
+	}
+
+	public function getActionAttribute()
+	{
+		list($action) = explode('_', $this->name);
+
+		return $action;
+	}
+
+	public function getRouteAttribute()
+	{
+		list(, $route) = explode('_', $this->name);
+
+		return $route;
+	}
+
+	public static function defaultViews() : array
+	{
+		return [
+			'users',
+			'roles',
+			'permissions',
+
+			'campaigns',
+			'contracts',
+			'materials',
+			'variants',
+			'originals',
+			'measurement_units',
+
+			'stations',
+			'organizations',
+			'zones',
+			'departments',
+			'townships',
+			'products',
+			'activities',
+		];
+	}
+
+	public static function defaultActions() : array
+	{
+		return [
+			'view'		=> "Ver",
+			'add'		=> "Crear",
+			'edit'		=> "Modificar",
+			'delete'	=> "Eliminar",
+		];
+	}
+	
+	public static function defaultPermissions() : array
+	{
+		$permissions = array_map(function ($view) {
+			$abilities = array_map(function ($action) use ($view) {
+				return "{$action}_{$view}";
+			}, array_keys(Permission::defaultActions()));
+
+			return $abilities;
+		}, static::defaultViews());
+		
+		$permissions = call_user_func_array('array_merge', $permissions);
+
+		return $permissions;
+	}
+}

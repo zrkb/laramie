@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace Laramie\Admin\Models;
 
 class AuthorizeAction
 {
