@@ -1,4 +1,4 @@
-@extends('layouts/master')
+@extends('admin::layouts/master')
 
 @section('app')
 
@@ -8,7 +8,7 @@
 				<div class="row">
 					<div class="col-12">
 						<div class="card-wrapper">
-							@include('layouts/errors')
+							@include('admin::layouts/errors')
 						</div>
 					</div>
 				</div>

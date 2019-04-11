@@ -1,6 +1,6 @@
 <?php
 
-namespace Laramie\Admin\Models\Presenters;
+namespace Laramie\Admin\Presenters;
 
 trait UserPresenter
 {

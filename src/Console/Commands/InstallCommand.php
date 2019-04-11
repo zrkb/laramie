@@ -65,8 +65,16 @@ class InstallCommand extends Command
 	{
 		$this->info('==> Laramie installation started ...');
 
+		$this->publishVendorFiles();
 		$this->runMigrations();
 		$this->initializeBackendDir();
+	}
+
+	public function publishVendorFiles()
+	{
+		$this->warn('==> Publishing vendor files ...');
+		$this->call('vendor:publish', ['--provider' => 'Spatie\Activitylog\ActivitylogServiceProvider']);
+		$this->call('vendor:publish', ['--provider' => 'Spatie\Permission\PermissionServiceProvider']);
 	}
 
 	public function runMigrations()

@@ -39,6 +39,10 @@ class AdminServiceProvider extends ServiceProvider
 			], 'laramie-migrations');
 
 			$this->publishes([
+				__DIR__ . '/../database/factories' => database_path('factories')
+			], 'laramie-factories');
+
+			$this->publishes([
 				__DIR__ . '/../public' => public_path()
 			], 'laramie-assets');
 
@@ -82,6 +86,7 @@ class AdminServiceProvider extends ServiceProvider
 	public function registerThirdPartyVendors()
 	{
 		$this->app->register(\Spatie\Html\HtmlServiceProvider::class);
+		$this->app->register(\Spatie\Activitylog\ActivitylogServiceProvider::class);
 		
 		AliasLoader::getInstance(['Html' => '\Spatie\Html\Facades\Html::class']);
 	}

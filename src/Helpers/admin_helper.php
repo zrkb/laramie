@@ -39,3 +39,9 @@ if (! function_exists('user')) {
     }
 }
 
+if (! function_exists('dev_role')) {
+    function dev_role() {
+        return 'Developer';
+    }
+}
+

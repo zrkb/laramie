@@ -2,79 +2,118 @@
 
 namespace Laramie\Admin\Http\Controllers;
 
-use App\Models\User;
-use Laramie\Admin\Http\Requests\UserRequest;
-use Laramie\Admin\Repositories\UserRepository;
-use Laramie\Admin\Facades\Admin;
-use Laramie\Admin\Layout\Content;
-use Laramie\Admin\Layout\Table;
-use Laramie\Admin\Layout\Detail;
+use Laramie\Admin\Models\Role;
+use Laramie\Admin\Models\User;
+use Laramie\Admin\Traits\PermissionModerator;
+use Illuminate\Http\Request;
 
-class UsersController extends BaseResourceController
+class UsersController extends ResourceController
 {
-	protected $label = 'Usuarios';
+	use PermissionModerator;
 
-	protected $indexView = 'admin::users/index';
-	protected $showView = 'admin::users/show';
+	protected $model = \App\Models\User::class;
 
-	public function repository()
+	public function index()
 	{
-		return UserRepository::class;
+		$users = User::withTrashed()->get();
+
+		return view('users/index', compact('users'));
 	}
 
-	public function list($items)
+	public function show($id)
 	{
-		return Admin::table(function (Table $table) use ($items) {
-			$table->rows($items);
+		$user = User::withTrashed()->find($id);
 
-			$table->column('id', 'ID');
-			$table->column('full_name', 'Nombre Completo')->linkable();
-			$table->column('account_age', 'Creado');
-			$table->column('last_modified', 'Modificado');
-		});
-	}
-
-	public function detail($item)
-	{
-		return Admin::detail(function (Detail $detail) use ($item) {
-			$detail->title('Detalle de Usuario');
-			$detail->item($item);
-
-			$detail->field('full_name', 'Nombre Completo');
-			$detail->field('email', 'Email');
-			$detail->field('account_age', 'Creado');
-		});
-	}
-
-	public function form()
-	{
-		return Admin::form(function (Form $form) {
-			$form->input('');
-		});
+		return view('users/show', compact('user'));
 	}
 
 	public function create()
 	{
-		return view('admin::crud/create', [
-			'title' => 'Añadir ' . $this->getLabel(),
-			'pageTitle' => 'Añadir ' . $this->getLabel(),
-			'label' => $this->getLabel(),
-			'back' => true,
-		]);
+		$roles = Role::all();
+
+		return view('users/create', compact('roles'));
 	}
 
-	public function store()
+	public function store(Request $request)
 	{
-		$this->validate(request(), $this->rules());
+		$creationRules = $this->creationRules();
+		$this->validate($request, $creationRules);
+
+		// Encrypt password
+		$request->merge(['password' => bcrypt($request->password)]);
+
+		// Remove unexistent data from rules
+		$data = array_intersect_key($request->all(), $creationRules);
+
+		$user = User::create(array_merge($data, [
+			'email_verified_at' => now(),
+			'remember_token'    => str_random(10),
+		]));
+
+		if ($user) {
+			$this->manageUser($request, $user);
+			session()->flash('success', 'El registro ha sido creado exitosamente.');
+		} else {
+			session()->flash('error', 'Error al crear el registro. Consulte con el administrador.');
+		}
+
+		return redirect(resource('index'));
 	}
 
-	public function rules()
+	public function edit($id)
+	{
+		$user = User::withTrashed()->find($id);
+		$roles = Role::all();
+
+		return view('users/edit', compact('user', 'roles'));
+	}
+
+	public function update(Request $request, $id)
+	{
+		$user = User::withTrashed()->find($id);
+		
+		$updateRules = $this->updateRules($user->id);
+		$this->validate($request, $updateRules);
+
+		// Encrypt password
+		if ($request->password) {
+			$passwordRules = ['password' => 'sometimes|nullable|min:6'];
+			$this->validate($request, $passwordRules);
+
+			$request->merge(['password' => bcrypt($request->password)]);
+
+			$updateRules = array_merge($updateRules, $passwordRules);
+		}
+
+		// Remove unexistent data from rules
+		$data = array_intersect_key($request->all(), $updateRules);
+
+		if ($user->update($data)) {
+			$this->manageUser($request, $user);
+			session()->flash('success', 'El registro ha sido modificado exitosamente.');
+		} else {
+			session()->flash('error', 'Error al modificar el registro. Consulte con el administrador.');
+		}
+
+		return redirect(resource('index'));
+	}
+
+	private function creationRules() : array
 	{
 		return [
-			'first_name' => 'required|max:255',
-			'last_name' => 'required|max:255',
-			'email' => 'required|unique:users|email|max:255',
-			'password' => 'required',
+			'first_name'    => 'required',
+			'last_name'     => 'required',
+			'email'         => 'required|email|unique:users,email',
+			'password'      => 'required|min:6',
+		];
+	}
+
+	private function updateRules($id) : array
+	{
+		return [
+			'first_name'    => 'required',
+			'last_name'     => 'required',
+			'email'         => 'required|email|unique:users,email,' . $id,
 		];
 	}
 }
