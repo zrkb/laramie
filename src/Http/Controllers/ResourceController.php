@@ -1,8 +1,8 @@
 <?php
 
-namespace Laramie\Admin\Http\Controllers;
+namespace Pandorga\Laramie\Http\Controllers;
 
-use Laramie\Admin\Exceptions\MissingModelException;
+use Pandorga\Laramie\Exceptions\MissingModelException;
 use Illuminate\Database\Eloquent\Model;
 
 abstract class ResourceController extends BaseController

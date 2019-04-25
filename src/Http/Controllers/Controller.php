@@ -1,6 +1,6 @@
 <?php
 
-namespace Laramie\Admin\Http\Controllers;
+namespace Pandorga\Laramie\Http\Controllers;
 
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;

@@ -1,4 +1,4 @@
-@component('admin::layouts/blank', [
+@component('laramie::layouts/blank', [
 	'title' => $title,
 	'header' => $title,
 	'back' => true,
@@ -11,16 +11,16 @@
 
 					<div class="card-body">
 						<h5 class="card-title mb-4 pb-3 border-bottom">
-							<i data-feather="terminal" class="ft mr-2 text-primary"></i>
+							<i data-feather="terminal" class="mr-2 text-primary"></i>
 							Completa los campos del formulario
 						</h5>
 						
-						{{-- @include('admin::crud/form') --}}
+						{{-- @include('laramie::crud/form') --}}
 					</div>
 					{{-- END card-body --}}
 
 					<div class="card-footer">
-						@include('admin::components/submit')
+						@include('laramie::components/submit')
 					</div>
 					{{-- END card-footer --}}
 					

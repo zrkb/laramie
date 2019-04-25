@@ -18,4 +18,4 @@
 	{{ form()->password('password', ['class' => 'form-control']) }}
 </div>
 
-@include('users/permissions')
+@include('laramie::users/permissions')

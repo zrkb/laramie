@@ -1,4 +1,4 @@
-@component('admin::layouts/blank', [
+@component('laramie::layouts/blank', [
 	'title' => $title,
 	'back' => true,
 ])
@@ -18,7 +18,7 @@
 	@slot('superactions')
 		<div class="float-right">
 			<button type="button" class="btn btn-success">
-				<i data-feather="edit-2" class="ft mr-2"></i>
+				<i data-feather="edit-2" class="mr-2"></i>
 				Editar
 			</button>
 		</div>
@@ -29,7 +29,7 @@
 			<div class="card">
 				<div class="card-body">
 					<h5 class="card-title mb-4 pb-3 border-bottom">
-						<i data-feather="layers" class="ft mr-2 text-primary"></i>
+						<i data-feather="layers" class="mr-2 text-primary"></i>
 						Datos del Registro
 					</h5>
 
@@ -55,7 +55,7 @@
 			<div class="card">
 				<div class="card-body">
 					<h5 class="card-title mb-4 pb-3 border-bottom">
-						<i data-feather="info" class="ft mr-2 text-primary"></i>
+						<i data-feather="info" class="mr-2 text-primary"></i>
 						Información Adicional
 					</h5>
 
@@ -102,13 +102,13 @@
 			<div class="card border-danger">
 				<div class="card-body">
 					<h5 class="card-title mb-4 pb-3 border-bottom">
-						<i data-feather="trash-2" class="ft mr-2 text-danger"></i>
+						<i data-feather="trash-2" class="mr-2 text-danger"></i>
 						Borrar Registro
 					</h5>
 
 					<p>Una vez que realice esta acción, ya no se podrá deshacer.</p>
 					
-					@component('admin::components/destroy', ['item' => $item])
+					@component('laramie::components/destroy', ['item' => $item])
 						<button class="btn btn-danger delete-record" data-record="{{ $item->getKey() }}" data-record-title="{{ $title ?? $label ?? $record ?? '' }}">Eliminar</button>
 					@endcomponent
 				</div>

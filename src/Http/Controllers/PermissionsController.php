@@ -1,33 +1,33 @@
 <?php
 
-namespace Laramie\Admin\Http\Controllers;
+namespace Pandorga\Laramie\Http\Controllers;
 
-use Laramie\Admin\Models\Permission;
+use Pandorga\Laramie\Models\Permission;
 use Illuminate\Http\Request;
 
 class PermissionsController extends ResourceController
 {
-	protected $model = \Laramie\Admin\Models\Permission::class;
+	protected $model = \Pandorga\Laramie\Models\Permission::class;
 
 	public function index()
 	{
 		$permissions = Permission::all();
 
-		return view('permissions/index', compact('permissions'));
+		return view('laramie::permissions/index', compact('permissions'));
 	}
 
 	public function show($id)
 	{
 		$permission = Permission::find($id);
 		
-		return view('permissions/show', compact('permission'));
+		return view('laramie::permissions/show', compact('permission'));
 	}
 
 	public function create()
 	{
 		$actions = Permission::defaultActions();
 
-		return view('permissions/create', compact('actions'));
+		return view('laramie::permissions/create', compact('actions'));
 	}
 
 	public function store(Request $request)
@@ -51,7 +51,7 @@ class PermissionsController extends ResourceController
 	{
 		$permission = Permission::find($id);
 
-		return view('permissions/edit', compact('permission'));
+		return view('laramie::permissions/edit', compact('permission'));
 	}
 
 	public function update(Request $request, $id)

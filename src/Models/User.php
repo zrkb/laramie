@@ -1,12 +1,12 @@
 <?php
 
-namespace Laramie\Admin\Models;
+namespace Pandorga\Laramie\Models;
 
-use Laramie\Admin\Presenters\UserPresenter;
-use Laramie\Admin\Traits\HasCustomFilters;
-use Laramie\Admin\Traits\HasPrevNext;
-use Laramie\Admin\Traits\HasSegments;
-use Laramie\Admin\Traits\ResourceModel;
+use Pandorga\Laramie\Presenters\UserPresenter;
+use Pandorga\Laramie\Traits\HasCustomFilters;
+use Pandorga\Laramie\Traits\HasPrevNext;
+use Pandorga\Laramie\Traits\HasSegments;
+use Pandorga\Laramie\Traits\ResourceModel;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;

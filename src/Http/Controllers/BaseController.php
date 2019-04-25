@@ -1,8 +1,8 @@
 <?php
 
-namespace Laramie\Admin\Http\Controllers;
+namespace Pandorga\Laramie\Http\Controllers;
 
-use Laramie\Admin\Traits\Authorizable;
+use Pandorga\Laramie\Traits\Authorizable;
 
 class BaseController extends Controller
 {

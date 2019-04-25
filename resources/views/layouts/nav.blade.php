@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
 	<div class="container-fluid">
-		<a class="navbar-brand" href="/">
+		<a class="navbar-brand" href="{{ route('app') }}">
 			<i data-feather="box" width="24" height="24" class="mr-2"></i>
 			{{ env('APP_NAME') }}
 		</a>
@@ -40,26 +40,25 @@
 
 						<a class="dropdown-item" href="{{ route('users.index') }}">
 							<i data-feather="users" class="mr-2 text-muted"></i>
-							@lang('messages.profile-menu-item-users')
+							@lang('laramie::messages.profile-menu-item-users')
 						</a>
 
 						<a class="dropdown-item" href="{{ route('roles.index') }}">
 							<i data-feather="star" class="mr-2 text-muted"></i>
-							@lang('messages.profile-menu-item-roles')
+							@lang('laramie::messages.profile-menu-item-roles')
 						</a>
 
 						<a class="dropdown-item" href="{{ route('permissions.index') }}">
 							<i data-feather="shield" class="mr-2 text-muted"></i>
-							@lang('messages.profile-menu-item-permissions')
+							@lang('laramie::messages.profile-menu-item-permissions')
 						</a>
 
 						<a
 							class="dropdown-item text-danger mt-2"
 							href="{{ route('logout') }}"
-							data-toggle="submiter"
-							data-target="#logout-form">
+							onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
 								<i data-feather="log-out" class="mr-2"></i>
-								@lang('messages.profile-menu-item-logout')
+								@lang('laramie::messages.profile-menu-item-logout')
 							</a>
 
 						<form

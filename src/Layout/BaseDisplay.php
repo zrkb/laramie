@@ -1,6 +1,6 @@
 <?php
 
-namespace Laramie\Admin\Layout;
+namespace Pandorga\Laramie\Layout;
 
 use Closure;
 use Illuminate\Contracts\Support\Renderable;
@@ -88,7 +88,7 @@ abstract class BaseDisplay implements Htmlable, Renderable
 			'slot'     => $this->build(),
 		];
 
-		return view('admin::layouts/card', $items)->render();
+		return view('laramie::layouts/card', $items)->render();
 	}
 
 	public function __toString()

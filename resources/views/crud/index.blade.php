@@ -1,4 +1,4 @@
-@component('admin::layouts/blank', ['title' => $title])
+@component('laramie::layouts/blank', ['title' => $title])
 
 	@slot('superactions')
 		<div class="float-right">
@@ -27,7 +27,7 @@
 					@endforeach
 
 					<td class="text-center">
-						@include('admin::components.actions', ['item' => $item])
+						@include('laramie::components.actions', ['item' => $item])
 					</td>
 				</tr>
 			@endforeach

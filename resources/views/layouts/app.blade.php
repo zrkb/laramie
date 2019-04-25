@@ -1,20 +1,20 @@
-@extends('admin::layouts/master')
+@extends('laramie::layouts/master')
 
 @section('app')
-	@include('admin::layouts/nav')
+	@include('laramie::layouts/nav')
 
 	<div class="container-fluid">
 		<div class="row">
 			<nav class="col-md-2 d-none d-md-block bg-light sidebar">
 				<div class="sidebar-sticky">
-					@include('admin::layouts/sidebar')
+					@include('laramie::layouts/sidebar')
 				</div>
 			</nav>
 			<!-- END nav -->
 
 			<main role="main" class="col-md-9 ml-sm-auto col-lg-10 main-content">
-				@include('admin::layouts/flash')
-				@include('admin::layouts/errors')
+				@include('laramie::layouts/flash')
+				@include('laramie::layouts/errors')
 
 				@yield('content')
 			</main>

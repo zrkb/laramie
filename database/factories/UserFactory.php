@@ -13,7 +13,7 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(Laramie\Admin\Models\User::class, function (Faker $faker) {
+$factory->define(\Pandorga\Laramie\Models\User::class, function (Faker $faker) {
 	return [
 		'first_name' => $faker->firstName,
 		'last_name' => $faker->lastName,

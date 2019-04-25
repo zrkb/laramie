@@ -1,9 +1,9 @@
 <?php
 
-namespace Laramie\Admin\Models;
+namespace Pandorga\Laramie\Models;
 
-use Laramie\Admin\Traits\HasPrevNext;
-use Laramie\Admin\Traits\ResourceModel;
+use Pandorga\Laramie\Traits\HasPrevNext;
+use Pandorga\Laramie\Traits\ResourceModel;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 class Role extends \Spatie\Permission\Models\Role

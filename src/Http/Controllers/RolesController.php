@@ -1,23 +1,23 @@
 <?php
 
-namespace Laramie\Admin\Http\Controllers;
+namespace Pandorga\Laramie\Http\Controllers;
 
-use Laramie\Admin\Models\Permission;
-use Laramie\Admin\Models\Role;
-use Laramie\Admin\Traits\PermissionModerator;
+use Pandorga\Laramie\Models\Permission;
+use Pandorga\Laramie\Models\Role;
+use Pandorga\Laramie\Traits\PermissionModerator;
 use Illuminate\Http\Request;
 
 class RolesController extends ResourceController
 {
 	use PermissionModerator;
 
-	protected $model = \Laramie\Admin\Models\Role::class;
+	protected $model = \Pandorga\Laramie\Models\Role::class;
 
 	public function index()
 	{
 		$roles = Role::all();
 
-		return view('roles/index', compact('roles'));
+		return view('laramie::roles/index', compact('roles'));
 	}
 
 	public function show($id)
@@ -25,14 +25,14 @@ class RolesController extends ResourceController
 		$role = Role::find($id);
 		$permissions = Permission::groupedByRoutes();
 		
-		return view('roles/show', compact('role', 'permissions'));
+		return view('laramie::roles/show', compact('role', 'permissions'));
 	}
 
 	public function create()
 	{
 		$permissions = Permission::groupedByRoutes();
 
-		return view('roles/create', compact('permissions'));
+		return view('laramie::roles/create', compact('permissions'));
 	}
 
 	public function store(Request $request)
@@ -60,7 +60,7 @@ class RolesController extends ResourceController
 		$role = Role::find($id);
 		$permissions = Permission::groupedByRoutes();
 
-		return view('roles/edit', compact('role', 'permissions'));
+		return view('laramie::roles/edit', compact('role', 'permissions'));
 	}
 
 	public function update(Request $request, $id)

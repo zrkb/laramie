@@ -1,6 +1,6 @@
 <?php
 
-namespace Laramie\Admin\Dashboard;
+namespace Pandorga\Laramie\Dashboard;
 
 class Display {
 

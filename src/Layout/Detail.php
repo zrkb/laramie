@@ -1,6 +1,6 @@
 <?php
 
-namespace Laramie\Admin\Layout;
+namespace Pandorga\Laramie\Layout;
 
 use Closure;
 use Illuminate\Contracts\Support\Renderable;
@@ -15,7 +15,7 @@ class Detail implements Htmlable, Renderable
 	 *
 	 * @var string
 	 */
-	protected $view = 'admin::crud/show';
+	protected $view = 'laramie::crud/show';
 
 	/**
 	 * Content title.

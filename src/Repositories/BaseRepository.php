@@ -1,6 +1,6 @@
 <?php
 
-namespace Laramie\Admin\Repositories;
+namespace Pandorga\Laramie\Repositories;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Container\Container as App;

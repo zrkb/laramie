@@ -15,7 +15,7 @@
 
 		@if (method_exists($model, 'trashed'))
 			@modelProperty(['title' => 'Estado'])
-				@include('misc/models/status-badge')
+				@include('laramie::misc/models/status-badge')
 			@endmodelProperty
 		@endif
 	</div>

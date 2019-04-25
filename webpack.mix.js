@@ -12,9 +12,7 @@ const mix = require('laravel-mix');
  */
 
 mix
-	.extract([
-		'feather-icons'
-	])
-	.js('resources/js/app.js', 'public/vendor/laramie/js')
-	.sass('resources/sass/app.scss', 'public/vendor/laramie//css')
-    .copy('resources/vendor', 'public/vendor');
+	.js('resources/js/app.js', 'public/js')
+	.sass('resources/sass/app.scss', 'public/css')
+    .copy('resources/fonts', 'public/fonts')
+    .copy('resources/libs', 'public/libs');

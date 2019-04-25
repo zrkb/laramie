@@ -1,6 +1,6 @@
 <?php
 
-namespace Laramie\Admin\Models;
+namespace Pandorga\Laramie\Models;
 
 class AuthorizeAction
 {

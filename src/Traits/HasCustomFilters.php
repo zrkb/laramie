@@ -1,8 +1,8 @@
 <?php
 
-namespace Laramie\Admin\Traits;
+namespace Pandorga\Laramie\Traits;
 
-use Laramie\Admin\Exceptions\MissingFilterException;
+use Pandorga\Laramie\Exceptions\MissingFilterException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 

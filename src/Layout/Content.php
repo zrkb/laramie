@@ -1,6 +1,6 @@
 <?php
 
-namespace Laramie\Admin\Layout;
+namespace Pandorga\Laramie\Layout;
 
 use Closure;
 use Illuminate\Contracts\Support\Renderable;
@@ -15,7 +15,7 @@ class Content implements Htmlable, Renderable
 	 *
 	 * @var string
 	 */
-	protected $view = 'admin::layouts/card';
+	protected $view = 'laramie::layouts/card';
 
 	/**
 	 * Content title.

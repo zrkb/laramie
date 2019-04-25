@@ -1,9 +1,9 @@
 <?php
 
-namespace Laramie\Admin\Traits;
+namespace Pandorga\Laramie\Traits;
 
-use Laramie\Admin\Exceptions\MissingFilterException;
-use Laramie\Admin\Segments\Segment;
+use Pandorga\Laramie\Exceptions\MissingFilterException;
+use Pandorga\Laramie\Segments\Segment;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;

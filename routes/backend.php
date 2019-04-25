@@ -5,7 +5,7 @@
 | Backend - (Private)
 |----------------------------------------------
 */
-Admin::authRoutes();
+Laramie::authRoutes();
 
 Route::group([
 	'prefix'		=> config('laramie.route.prefix'),
@@ -17,7 +17,7 @@ Route::group([
 		Route::get('/',                         	'AppController@index')->name('app');
 	});
 
-	Route::group(['namespace' => '\Laramie\\Admin\\Http\\Controllers'], function () {
+	Route::group(['namespace' => '\Pandorga\\Laramie\\Http\\Controllers'], function () {
 		// Activity Log
 		Route::get('activities',					'ActivitiesController@index')->name('activities.index');
 		

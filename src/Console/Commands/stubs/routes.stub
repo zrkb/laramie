@@ -5,7 +5,7 @@
 | Backend - (Private)
 |----------------------------------------------
 */
-Admin::authRoutes();
+Laramie::authRoutes();
 
 Route::group([
 	'prefix'        => config('laramie.route.prefix'),

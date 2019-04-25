@@ -1,12 +1,12 @@
-@extends('layouts/app')
+@extends('laramie::layouts/app')
 
 @section('content')
 
 	<div class="root">
 
-		@include('misc/models/restore-panel', ['model' => $SingularLowercaseBaseClass])
+		@include('laramie::misc/models/restore-panel', ['model' => $SingularLowercaseBaseClass])
 		
-		@component('misc/page-title')
+		@component('laramie::misc/page-title')
 			@slot('superactions')
 				<div class="float-right">
 					<a href="{{ resource('edit', ['id' => $SingularLowercaseBaseClass->id]) }}" class="btn btn-success">
@@ -18,7 +18,7 @@
 						Volver
 					</a>
 					
-					@include('misc/models/prev-next-rows', ['model' => $SingularLowercaseBaseClass])
+					@include('laramie::misc/models/prev-next-rows', ['model' => $SingularLowercaseBaseClass])
 				</div>
 			@endslot
 
@@ -40,7 +40,7 @@
 				<div class="card">
 					<div class="card-body">
 						<h5 class="card-title mb-4 pb-3 border-bottom">
-							<i data-feather="layers" class="ft mr-2 text-primary"></i>
+							<i data-feather="layers" class="mr-2 text-primary"></i>
 							Datos del Registro
 						</h5>
 
@@ -62,7 +62,7 @@
 			{{-- END col --}}
 
 			<div class="col-md-4">
-				@include('misc/models/additional-information', ['model' => $SingularLowercaseBaseClass])
+				@include('laramie::misc/models/additional-information', ['model' => $SingularLowercaseBaseClass])
 			</div>
 			{{-- END col --}}
 		</div>
@@ -70,7 +70,7 @@
 		
 		<div class="row mb-5 justify-content-center">
 			<div class="col-md-12">
-				@include('misc/models/delete-action', ['model' => $SingularLowercaseBaseClass])
+				@include('laramie::misc/models/delete-action', ['model' => $SingularLowercaseBaseClass])
 			</div>
 			{{-- END col --}}
 		</div>

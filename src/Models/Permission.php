@@ -1,9 +1,9 @@
 <?php
 
-namespace Laramie\Admin\Models;
+namespace Pandorga\Laramie\Models;
 
-use Laramie\Admin\Traits\HasPrevNext;
-use Laramie\Admin\Traits\ResourceModel;
+use Pandorga\Laramie\Traits\HasPrevNext;
+use Pandorga\Laramie\Traits\ResourceModel;
 
 class Permission extends \Spatie\Permission\Models\Permission
 {
@@ -41,20 +41,6 @@ class Permission extends \Spatie\Permission\Models\Permission
 			'users',
 			'roles',
 			'permissions',
-
-			'campaigns',
-			'contracts',
-			'materials',
-			'variants',
-			'originals',
-			'measurement_units',
-
-			'stations',
-			'organizations',
-			'zones',
-			'departments',
-			'townships',
-			'products',
 			'activities',
 		];
 	}

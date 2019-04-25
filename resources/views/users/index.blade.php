@@ -1,11 +1,11 @@
-@extends('layouts/table')
+@extends('laramie::layouts/table')
 
 @section('content')
 
 	<div class="root">
-		@component('misc/page-title')
+		@component('laramie::misc/page-title')
 			@slot('superactions')
-				@include('misc/models/segments')
+				@include('laramie::misc/models/segments')
 
 				<a href="{{ resource('create') }}" class="btn btn-primary">
 					Añadir 
@@ -25,7 +25,7 @@
 			<small class="text-muted">({{ $users->count() }})</small>
 		@endcomponent
 
-		@include('misc/table-tools')
+		@include('laramie::misc/table-tools')
 
 		<div class="card">
 			@if ($users->isNotEmpty())
@@ -68,10 +68,10 @@
 										@endforeach
 									</td>
 									<td>
-										@include('misc/models/status-badge', ['model' => $user])
+										@include('laramie::misc/models/status-badge', ['model' => $user])
 									</td>
 									<td class="actions text-center">
-										@include('misc/models/crud-actions', ['model' => $user])
+										@include('laramie::misc/models/crud-actions', ['model' => $user])
 									</td>
 								</tr>
 							@endforeach
@@ -81,7 +81,7 @@
 				</div>
 				{{-- END table-responsive --}}
 			@else
-				@include('layouts/empty', [
+				@include('laramie::layouts/empty', [
 					'route' => resource('create'),
 				])
 			@endif

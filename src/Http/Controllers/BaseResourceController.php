@@ -1,6 +1,6 @@
 <?php
 
-namespace Laramie\Admin\Http\Controllers;
+namespace Pandorga\Laramie\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Model;
@@ -8,11 +8,11 @@ use Illuminate\Http\Request;
 use Illuminate\Http\FormRequest;
 use Illuminate\Support\Collection;
 use Illuminate\Container\Container as App;
-use Laramie\Admin\Facades\Admin;
-use Laramie\Admin\Layout\Content;
-use Laramie\Admin\Layout\Table;
-use Laramie\Admin\Http\Controllers\Interfaces\Displayable;
-use Laramie\Admin\Repositories\BaseRepository;
+use Pandorga\Laramie\Facades\Admin;
+use Pandorga\Laramie\Layout\Content;
+use Pandorga\Laramie\Layout\Table;
+use Pandorga\Laramie\Http\Controllers\Interfaces\Displayable;
+use Pandorga\Laramie\Repositories\BaseRepository;
 
 abstract class BaseResourceController extends Controller
 {
@@ -39,7 +39,7 @@ abstract class BaseResourceController extends Controller
 		$repository = $this->app->make($this->repository());
  
 		if (!$repository instanceof BaseRepository) {
-			throw new Exception("Class {$this->repository()} must be an instance of Laramie\\Admin\\Repositories\\BaseRepository");
+			throw new Exception("Class {$this->repository()} must be an instance of Pandorga\\Laramie\\Repositories\\BaseRepository");
 		}
  
 		return $this->repository = $repository;
@@ -54,7 +54,7 @@ abstract class BaseResourceController extends Controller
 	{
 		$items = $this->repository->getAll();
 
-		return Admin::content(function (Content $content) use ($items) {
+		return Laramie::content(function (Content $content) use ($items) {
 			$content->title('Lista de ' . $this->getLabel());
 			$content->body($this->list($items)->render());
 		});
@@ -79,7 +79,7 @@ abstract class BaseResourceController extends Controller
 	 */
 	public function create()
 	{
-		return Admin::content(function (Content $content) use ($items) {
+		return Laramie::content(function (Content $content) use ($items) {
 			$content->title('Añadir ' . $this->getLabel());
 			$content->body($this->form());
 		});
@@ -103,7 +103,7 @@ abstract class BaseResourceController extends Controller
 	 */
 	public function edit($id)
 	{
-		return view('admin::crud/edit');
+		return view('laramie::crud/edit');
 	}
 
 	/**
@@ -115,7 +115,7 @@ abstract class BaseResourceController extends Controller
 	 */
 	public function update(FormRequest $request, $id)
 	{
-		return view('admin::crud/edit');
+		return view('laramie::crud/edit');
 	}
 
 	/**

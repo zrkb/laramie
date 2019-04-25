@@ -1,6 +1,6 @@
 <?php
 
-namespace Laramie\Admin\Traits;
+namespace Pandorga\Laramie\Traits;
 
 use Spatie\Activitylog\Traits\LogsActivity;
 

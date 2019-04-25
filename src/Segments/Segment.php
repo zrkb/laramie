@@ -1,6 +1,6 @@
 <?php
 
-namespace Laramie\Admin\Segments;
+namespace Pandorga\Laramie\Segments;
 
 abstract class Segment
 {

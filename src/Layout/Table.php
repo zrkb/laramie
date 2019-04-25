@@ -1,6 +1,6 @@
 <?php
 
-namespace Laramie\Admin\Layout;
+namespace Pandorga\Laramie\Layout;
 
 use Closure;
 use Illuminate\Contracts\Support\Renderable;
@@ -16,7 +16,7 @@ class Table implements Htmlable, Renderable
 	 *
 	 * @var String
 	 */
-	protected $view = 'admin::widgets/table';
+	protected $view = 'laramie::widgets/table';
 
     /**
      * @var Illuminate\Support\Collection

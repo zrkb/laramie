@@ -1,6 +1,6 @@
 <?php
 
-namespace Laramie\Admin\Http\Requests;
+namespace Pandorga\Laramie\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 

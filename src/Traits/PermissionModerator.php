@@ -1,9 +1,9 @@
 <?php
 
-namespace Laramie\Admin\Traits;
+namespace Pandorga\Laramie\Traits;
 
-use Laramie\Admin\Models\Permission;
-use Laramie\Admin\Models\Role;
+use Pandorga\Laramie\Models\Permission;
+use Pandorga\Laramie\Models\Role;
 use Illuminate\Http\Request;
 
 trait PermissionModerator

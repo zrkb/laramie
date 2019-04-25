@@ -1,6 +1,6 @@
 <?php
 
-namespace Laramie\Admin\Exceptions;
+namespace Pandorga\Laramie\Exceptions;
 
 use Exception;
 

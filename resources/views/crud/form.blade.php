@@ -5,7 +5,7 @@
 		<div class="row">
 			@foreach($prop as $f => $p)
 				<div class="col-md-{{ $div }}">
-					@include('admin::components/field', [
+					@include('laramie::components/field', [
 						'field' => $f,
 						'prop' => $p,
 					])
@@ -13,7 +13,7 @@
 			@endforeach
 		</div>
 	@else
-		@include('admin::components/field', [
+		@include('laramie::components/field', [
 			'field' => $field,
 			'prop' => $prop,
 		])

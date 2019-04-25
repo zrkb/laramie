@@ -1,9 +1,10 @@
 <?php
 
-namespace Laramie\Admin\Console\Commands;
+namespace Pandorga\Laramie\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Collection;
 
 class InstallCommand extends Command
 {
@@ -33,11 +34,11 @@ class InstallCommand extends Command
 	 *
 	 * @return void
 	 */
-	public function __construct(Filesystem $files)
+	public function __construct(Filesystem $filesystem)
 	{
 		parent::__construct();
 
-		$this->files = $files;
+		$this->filesystem = $filesystem;
 	}
 
 	/**
@@ -47,74 +48,35 @@ class InstallCommand extends Command
 	 */
 	public function handle()
 	{
-		try {
-			$this->wizard();
-		} catch (Exception $e) {
-			$message = $e->getMessage();
+		$this->comment(PHP_EOL . 'Laramie installation started' . PHP_EOL);
 
-			if (strpos($message, 'SQLSTATE') !== false) {
-				throw new Exception("Laramie can't connect to your database. Edit your .env file and run '" . $this->signature . "' again." . PHP_EOL . $message, 1);
-			} else {
-				$this->error("Laramie::handle exception: " . $e);
-				throw new Exception("Laramie::handle Unable to install: " . $message, 1);
-			}
+		$this->line('→ Publishing vendor files ... <info>✔</info>');
+		$this->callSilent('vendor:publish', ['--provider' => 'Spatie\Permission\PermissionServiceProvider']);
+
+		if ($this->activityLogMigrationIsMissing()) {
+			$this->callSilent('vendor:publish', ['--provider' => 'Spatie\Activitylog\ActivitylogServiceProvider']);
 		}
-	}
 
-	public function wizard()
-	{
-		$this->info('==> Laramie installation started ...');
+		$this->line('→ Publishing Laramie Service Provider ... <info>✔</info>');
+		$this->callSilent('vendor:publish', [
+			'--provider' => 'Pandorga\Laramie\LaramieServiceProvider',
+			'--force',
+		]);
 
-		$this->publishVendorFiles();
-		$this->runMigrations();
 		$this->initializeBackendDir();
-	}
 
-	public function publishVendorFiles()
-	{
-		$this->warn('==> Publishing vendor files ...');
-		$this->call('vendor:publish', ['--provider' => 'Spatie\Activitylog\ActivitylogServiceProvider']);
-		$this->call('vendor:publish', ['--provider' => 'Spatie\Permission\PermissionServiceProvider']);
-	}
-
-	public function runMigrations()
-	{
-		$this->warn('==> Running migrations ...');
-		$this->call('migrate', ['--seed' => true]);
+		$this->info(PHP_EOL . 'Done.');
 	}
 
 	public function initializeBackendDir()
 	{
-		$this->warn('==> Initializing backend directory ...');
+		$this->line('→ Initializing Laramie directory ... <info>✔</info>');
 
 		$this->directory = config('laramie.directory');
-
-		if (is_dir($this->directory)) {
-			$this->line("<error>{$this->directory} directory already exists !</error> ");
-
-			return;
-		}
-
 		$this->makeDir('/');
-		$this->info('Admin directory was created: ' . str_replace(base_path(), '', $this->directory));
 
-        // $this->createRoutesFile();
 		$this->createAppController();
 	}
-
-    /**
-     * Create routes file.
-     *
-     * @return void
-     */
-    protected function createRoutesFile()
-    {
-        $file = base_path() . '/routes/backend.php';
-
-        $contents = $this->getStub('routes');
-        $this->files->put($file, str_replace('DummyNamespace', config('laramie.route.namespace'), $contents));
-        $this->info('Routes file was created: ' . str_replace(base_path(), '', $file));
-    }
 
 	/**
 	 * Create Backend Controller
@@ -128,12 +90,10 @@ class InstallCommand extends Command
 		$appController = $this->directory . '/' . $filename . '.php';
 		$contents = $this->getStub($filename);
 
-		$this->files->put(
+		$this->filesystem->put(
 			$appController,
 			str_replace('DummyNamespace', config('laramie.route.namespace'), $contents)
 		);
-
-		$this->info('AppController file was created: ' . str_replace(base_path(), '', $appController));
 	}
 
 	/**
@@ -145,7 +105,7 @@ class InstallCommand extends Command
 	 */
 	protected function getStub($name)
 	{
-		return $this->files->get(__DIR__ . "/stubs/" . $name . ".stub");
+		return $this->filesystem->get(__DIR__ . "/stubs/" . $name . ".stub");
 	}
 
 	/**
@@ -155,6 +115,23 @@ class InstallCommand extends Command
 	 */
 	protected function makeDir($path = '')
 	{
-		$this->files->makeDirectory("{$this->directory}/$path", 0755, true, true);
+		$this->filesystem->makeDirectory("{$this->directory}/$path", 0755, true, true);
+	}
+
+	/**
+	 * Check if activity log migration file exists.
+	 *
+	 * @return bool
+	 */
+	protected function activityLogMigrationIsMissing() : bool
+	{
+		$timestamp = date('Y_m_d_His');
+		$folder = app()->databasePath() . DIRECTORY_SEPARATOR . 'migrations' . DIRECTORY_SEPARATOR;
+
+		return Collection::make($folder)
+			->flatMap(function ($path) {
+				return $this->filesystem->glob($path . '*_create_activity_log_table.php');
+			})
+			->isEmpty();
 	}
 }

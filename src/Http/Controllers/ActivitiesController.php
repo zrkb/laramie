@@ -1,8 +1,8 @@
 <?php
 
-namespace Laramie\Admin\Http\Controllers;
+namespace Pandorga\Laramie\Http\Controllers;
 
-use Laramie\Admin\Models\Activity;
+use Pandorga\Laramie\Models\Activity;
 
 class ActivitiesController extends BaseController
 {
@@ -10,6 +10,6 @@ class ActivitiesController extends BaseController
 	{
 		$activities = Activity::latest()->get();
 
-		return view('activities/index', compact('activities'));
+		return view('laramie::activities/index', compact('activities'));
 	}
 }

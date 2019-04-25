@@ -1,5 +1,7 @@
 <?php
 
+namespace Pandorga\Laramie\Database\Seeds;
+
 use Illuminate\Database\Seeder;
 
 abstract class BaseSeeder extends Seeder

@@ -1,10 +1,9 @@
 <?php
 
-namespace Laramie\Admin\Presenters;
+namespace Pandorga\Laramie\Presenters;
 
 trait UserPresenter
 {
-
     public function getInitialsAttribute()
     {
         return $this->first_name[0] . $this->last_name[0];

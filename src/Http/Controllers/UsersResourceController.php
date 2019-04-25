@@ -1,21 +1,21 @@
 <?php
 
-namespace Laramie\Admin\Http\Controllers;
+namespace Pandorga\Laramie\Http\Controllers;
 
 use App\Models\User;
-use Laramie\Admin\Http\Requests\UserRequest;
-use Laramie\Admin\Repositories\UserRepository;
-use Laramie\Admin\Facades\Admin;
-use Laramie\Admin\Layout\Content;
-use Laramie\Admin\Layout\Table;
-use Laramie\Admin\Layout\Detail;
+use Pandorga\Laramie\Http\Requests\UserRequest;
+use Pandorga\Laramie\Repositories\UserRepository;
+use Pandorga\Laramie\Facades\Admin;
+use Pandorga\Laramie\Layout\Content;
+use Pandorga\Laramie\Layout\Table;
+use Pandorga\Laramie\Layout\Detail;
 
-class UsersController extends BaseResourceController
+class UsersResourceController extends BaseResourceController
 {
 	protected $label = 'Usuarios';
 
-	protected $indexView = 'admin::users/index';
-	protected $showView = 'admin::users/show';
+	protected $indexView = 'laramie::users/index';
+	protected $showView = 'laramie::users/show';
 
 	public function repository()
 	{
@@ -55,7 +55,7 @@ class UsersController extends BaseResourceController
 
 	public function create()
 	{
-		return view('admin::crud/create', [
+		return view('laramie::crud/create', [
 			'title' => 'Añadir ' . $this->getLabel(),
 			'pageTitle' => 'Añadir ' . $this->getLabel(),
 			'label' => $this->getLabel(),

@@ -1,6 +1,6 @@
 <?php
 
-namespace Laramie\Admin\Http\Middleware;
+namespace Pandorga\Laramie\Http\Middleware;
 
 use Closure;
 use Carbon\Carbon;

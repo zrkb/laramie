@@ -1,4 +1,4 @@
-@extends('admin::layouts/master')
+@extends('laramie::layouts/master')
 
 @section('content')
 

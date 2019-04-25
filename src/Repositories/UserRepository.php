@@ -1,6 +1,6 @@
 <?php
 
-namespace Laramie\Admin\Repositories;
+namespace Pandorga\Laramie\Repositories;
 
 class UserRepository extends BaseRepository
 {

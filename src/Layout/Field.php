@@ -1,6 +1,6 @@
 <?php
 
-namespace Laramie\Admin\Layout;
+namespace Pandorga\Laramie\Layout;
 
 use Illuminate\Contracts\Support\Renderable;
 

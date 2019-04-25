@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\SingularBaseClass;
 use Illuminate\Http\Request;
+use Pandorga\Laramie\Http\Controllers\ResourceController;
 
 class PluralBaseClassController extends ResourceController
 {

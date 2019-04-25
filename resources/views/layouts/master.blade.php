@@ -11,7 +11,7 @@
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<title>{{ isset($title) ? $title  . ' -' : '' }} {{ env('APP_NAME', 'Laramie') }}</title>
 
-	@include('admin::layouts/styles')
+	@include('laramie::layouts/styles')
 </head>
 
 <body>
@@ -20,6 +20,6 @@
 		@yield('app')
 	</div>
 
-	@include('admin::layouts/scripts')
+	@include('laramie::layouts/scripts')
 </body>
 </html>

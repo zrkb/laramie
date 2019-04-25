@@ -1,16 +1,16 @@
-@extends('layouts/app')
+@extends('laramie::layouts/app')
 
 @section('content')
 
 	<div class="root">
 
-		@include('misc/models/restore-panel', ['model' => $user])
+		@include('laramie::misc/models/restore-panel', ['model' => $user])
 
-		@component('misc/page-title')
+		@component('laramie::misc/page-title')
 			@slot('superactions')
 				<div class="float-right">
 					<a href="{{ resource('edit', ['id' => $user->id]) }}" class="btn btn-success">
-						<i data-feather="edit-2" class="ft mr-2"></i>
+						<i data-feather="edit-2" class="mr-2"></i>
 						Editar
 					</a>
 					<a href="{{ resource('index') }}" class="btn btn-default">
@@ -35,7 +35,7 @@
 				<div class="card">
 					<div class="card-body">
 						<h5 class="card-title mb-4 pb-3 border-bottom">
-							<i data-feather="layers" class="ft mr-2 text-primary"></i>
+							<i data-feather="layers" class="mr-2 text-primary"></i>
 							Datos del Registro
 						</h5>
 
@@ -61,7 +61,7 @@
 			{{-- END col --}}
 
 			<div class="col-md-4">
-				@include('misc/models/additional-information', ['model' => $user])
+				@include('laramie::misc/models/additional-information', ['model' => $user])
 			</div>
 			{{-- END col --}}
 		</div>
@@ -70,7 +70,7 @@
 		@if ($user->id != auth()->user()->id)
 			<div class="row mb-5 justify-content-center">
 				<div class="col-md-12">
-					@include('misc/models/delete-action', ['model' => $user])
+					@include('laramie::misc/models/delete-action', ['model' => $user])
 				</div>
 				{{-- END col --}}
 			</div>

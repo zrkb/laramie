@@ -1,6 +1,6 @@
 <?php
 
-namespace Laramie\Admin\Http\Controllers\Interfaces;
+namespace Pandorga\Laramie\Http\Controllers\Interfaces;
 
 trait Displayable
 {

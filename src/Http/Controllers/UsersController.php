@@ -1,37 +1,37 @@
 <?php
 
-namespace Laramie\Admin\Http\Controllers;
+namespace Pandorga\Laramie\Http\Controllers;
 
-use Laramie\Admin\Models\Role;
-use Laramie\Admin\Models\User;
-use Laramie\Admin\Traits\PermissionModerator;
+use Pandorga\Laramie\Models\Role;
+use Pandorga\Laramie\Models\User;
+use Pandorga\Laramie\Traits\PermissionModerator;
 use Illuminate\Http\Request;
 
 class UsersController extends ResourceController
 {
 	use PermissionModerator;
 
-	protected $model = \App\Models\User::class;
+	protected $model = \Pandorga\Laramie\Models\User::class;
 
 	public function index()
 	{
 		$users = User::withTrashed()->get();
 
-		return view('users/index', compact('users'));
+		return view('laramie::users/index', compact('users'));
 	}
 
 	public function show($id)
 	{
 		$user = User::withTrashed()->find($id);
 
-		return view('users/show', compact('user'));
+		return view('laramie::users/show', compact('user'));
 	}
 
 	public function create()
 	{
 		$roles = Role::all();
 
-		return view('users/create', compact('roles'));
+		return view('laramie::users/create', compact('roles'));
 	}
 
 	public function store(Request $request)
@@ -65,7 +65,7 @@ class UsersController extends ResourceController
 		$user = User::withTrashed()->find($id);
 		$roles = Role::all();
 
-		return view('users/edit', compact('user', 'roles'));
+		return view('laramie::users/edit', compact('user', 'roles'));
 	}
 
 	public function update(Request $request, $id)

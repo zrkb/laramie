@@ -1,6 +1,6 @@
 <?php
 
-namespace Laramie\Admin\Http\Controllers;
+namespace Pandorga\Laramie\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -40,7 +40,7 @@ class LoginController extends Controller
 	
 	public function showLoginForm()
 	{
-		return view('admin::auth/login');
+		return view('laramie::auth/login');
 	}
 	
 	public function logout(Request $request)

@@ -1,8 +1,8 @@
 <?php
 
-namespace Laramie\Admin\Traits;
+namespace Pandorga\Laramie\Traits;
 
-use Laramie\Admin\Models\AuthorizeAction;
+use Pandorga\Laramie\Models\AuthorizeAction;
 
 trait Authorizable
 {

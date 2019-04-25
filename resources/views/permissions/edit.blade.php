@@ -1,9 +1,9 @@
-@extends('layouts/app')
+@extends('laramie::layouts/app')
 
 @section('content')
 
 	<div class="root">
-		@component('misc/page-title')
+		@component('laramie::misc/page-title')
 			@slot('superactions')
 				<div class="float-right">
 					<a href="{{ resource('index') }}" class="btn btn-default">
@@ -28,7 +28,7 @@
 			<div class="card">		
 				<div class="card-body">
 					<h5 class="card-title mb-4 pb-3 border-bottom">
-						<i data-feather="terminal" class="ft mr-2 text-primary"></i>
+						<i data-feather="terminal" class="mr-2 text-primary"></i>
 						Completa los campos del formulario
 					</h5>
 
