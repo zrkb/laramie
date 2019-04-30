@@ -37,25 +37,22 @@
 
 		<div class="row mb-5 justify-content-center">
 			<div class="col-md-8">
-				<div class="card">
-					<div class="card-body">
-						<h5 class="card-title mb-4 pb-3 border-bottom">
-							<i data-feather="layers" class="mr-2 text-primary"></i>
-							Datos del Registro
-						</h5>
+				<div class="card card-body">
+					<h5 class="card-title mb-4 pb-3 border-bottom">
+						<i data-feather="layers" class="mr-2 text-primary"></i>
+						Datos del Registro
+					</h5>
 
-						<div class="form mt-3">
-							@modelProperty(['title' => 'Nombre'])
-								{{ $SingularLowercaseBaseClass->name }}
-							@endmodelProperty
+					<div class="form mt-3">
+						@modelProperty(['title' => 'Nombre'])
+							{{ $SingularLowercaseBaseClass->name }}
+						@endmodelProperty
 
-							@modelProperty(['title' => 'Creado hace'])
-								{{ $SingularLowercaseBaseClass->created_at->diffForHumans() }}
-							@endmodelProperty
-						</div>
-						{{-- END form --}}
+						@modelProperty(['title' => 'Creado hace'])
+							{{ $SingularLowercaseBaseClass->created_at->diffForHumans() }}
+						@endmodelProperty
 					</div>
-					{{-- END card-body --}}
+					{{-- END form --}}
 				</div>
 				{{-- END card --}}
 			</div>
