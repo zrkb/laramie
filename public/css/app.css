@@ -14698,7 +14698,6 @@ div.table-responsive > div.dataTables_wrapper > div.row > div[class^=col-]:last-
 
 .select2-results {
   display: block;
-  box-shadow: 0 0 0 5px rgba(148, 156, 177, 0.05);
 }
 
 .select2-results > .select2-results__options {
