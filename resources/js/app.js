@@ -1,6 +1,7 @@
 'use strict';
 
 window.feather = require('feather-icons');
+import EditorJS from '@editorjs/editorjs';
 
 window.dd = function(data)
 {
@@ -16,6 +17,36 @@ jQuery(document).ready(function ($) {
 	 */
 	// Feather Icons
 	feather.replace();
+
+	const MediumEditor = require('medium-editor');
+	const editor = new MediumEditor('.editable', {
+		placeholder: {
+			text: 'Escriba el contenido aquí ...',
+			hideOnClick: false
+		},
+		toolbar: {
+			/* These are the default options for the toolbar,
+			if nothing is passed this is what is used */
+			allowMultiParagraphSelection: true,
+			buttons: ['bold', 'italic', 'underline', 'anchor', 'h2', 'h3', 'quote'],
+			diffLeft: 0,
+			diffTop: -10,
+			firstButtonClass: 'medium-editor-button-first',
+			lastButtonClass: 'medium-editor-button-last',
+			relativeContainer: null,
+			standardizeSelectionStart: false,
+			static: false,
+			/* options which only apply when static is true */
+			align: 'center',
+			sticky: false,
+			updateOnEmptySelection: false
+		}
+	});
+	const bodyEl = document.getElementById('body');
+
+	setInterval(() => {
+		bodyEl.value = editor.getContent();
+	}, 1000);
 
 	// Select2
 	$('.select2').each(function (index, element) {
@@ -73,13 +104,13 @@ jQuery(document).ready(function ($) {
 	// $('.main-content form input:text:visible:first').focus();
 
 	// Delete File
-	$('.delete-file').on('click', function (event) {
+	$('.upload-wrapper .delete-file').on('click', function (event) {
 		let el = $(this);
-		let parent = el.parents('.file-action');
-		let container = parent.find('.file-container');
-		let inputFile = parent.find('.custom-file');
-		container.remove();
-		inputFile.removeClass('d-none');
+		let parent = el.parents('.upload-wrapper');
+		let filePreview = parent.find('.file-preview');
+		let uploadBox = parent.find('.upload-box');
+		filePreview.remove();
+		uploadBox.removeClass('d-none');
 	});
 
 	// Delete Record
@@ -229,5 +260,59 @@ jQuery(document).ready(function ($) {
 		let target = el.data('target');
 
 		$(target).collapse('hide');
+	});
+
+	// feature detection for drag&drop upload
+	var isAdvancedUpload = function() {
+		var div = document.createElement('div');
+		return ( ( 'draggable' in div ) || ( 'ondragstart' in div && 'ondrop' in div ) ) && 'FormData' in window && 'FileReader' in window;
+	}();
+
+	$('form').each(function () {
+		var $form		 = $(this),
+			$wrapper	 = $form.find('.upload-wrapper'),
+			$box		 = $wrapper.find('.upload-box'),
+			$input		 = $box.find('input[type="file"]'),
+			$multipleAttr= $input.attr('multiple'),
+			$label		 = $wrapper.find('.upload-dragndrop'),
+			$errorMsg	 = $wrapper.find('.upload-error span'),
+			$restart	 = $wrapper.find('.upload-restart'),
+			droppedFiles = false,
+			$fileHasMultipleAttr = (typeof $multipleAttr !== typeof undefined && $multipleAttr !== false),
+			showFiles	 = function( files, isMultiple )
+			{
+				$label.text( isMultiple && files.length > 1 ? ( $input.attr( 'data-multiple-caption' ) || '' ).replace( '{count}', files.length ) : files[ 0 ].name );
+			};
+
+		$input.on('change', function (e) {
+			showFiles(e.target.files, $fileHasMultipleAttr);
+		});
+
+		// drag&drop files if the feature is available
+		if (isAdvancedUpload) {
+			$wrapper
+			.addClass( 'has-advanced-upload' ) // letting the CSS part to know drag&drop is supported by the browser
+			.on( 'drag dragstart dragend dragover dragenter dragleave drop', function (e) {
+				// preventing the unwanted behaviours
+				e.preventDefault();
+				e.stopPropagation();
+			})
+			.on( 'dragover dragenter', function () {
+				$box.addClass( 'is-dragover' );
+			})
+			.on( 'dragleave dragend drop', function () {
+				$box.removeClass( 'is-dragover' );
+			})
+			.on( 'drop', function (e) {
+				droppedFiles = e.originalEvent.dataTransfer.files;
+				showFiles( droppedFiles, $fileHasMultipleAttr );
+				$input.get(0).files = droppedFiles;
+			});
+		}
+
+		// Firefox focus bug fix for file input
+		$input
+			.on( 'focus', function(){ $input.addClass( 'has-focus' ); })
+			.on( 'blur', function(){ $input.removeClass( 'has-focus' ); });
 	});
 });

@@ -7,7 +7,7 @@
 			@slot('superactions')
 				<div class="float-right">
 					<a href="{{ resource('index') }}" class="btn btn-default">
-						Volver a la lista
+						@lang('laramie::resource.back-to-list') <i data-feather="arrow-right" class="ml-2"></i>
 					</a>
 				</div>
 			@endslot
@@ -29,16 +29,18 @@
 				<div class="card-body">
 					<h5 class="card-title mb-4 pb-3 border-bottom">
 						<i data-feather="terminal" class="mr-2 text-primary"></i>
-						Completa los campos del formulario
+						@lang('laramie::resource.complete-form')
 					</h5>
 
 					@include('PluralSnakeBaseClass/form')
 
 					<div class="form-group mt-5 mb-3">
-						<a href="{{ resource('index') }}" class="btn btn-light text-primary mr-2">Cancelar</a>
+						<a href="{{ resource('index') }}" class="btn btn-light text-primary mr-2">
+							@lang('laramie::resource.cancel-form-button')
+						</a>
 
 						<button type="submit" class="btn btn-primary btn-activity">
-							Guardar
+							@lang('laramie::resource.submit-form-button')
 						</button>
 					</div>
 				</div>

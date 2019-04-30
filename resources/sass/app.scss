@@ -1,5 +1,7 @@
 @charset "utf-8";
 @import "type";
+@import url("https://cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css");
+@import url("https://cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/themes/beagle.css");
 
 /* --------------------------
 	Custom variables
@@ -35,7 +37,7 @@ $gray-900:						#1F2637 !default;
 
 $primary:						#3047ff;
 $secondary:						$bg;
-$success:						#00ca99;
+$success:						#20CE53;
 $info:							#30CEF5;
 $warning:						#FCB338;
 $danger:						#F55753;
@@ -377,6 +379,12 @@ th {
 
 .text-default {
 	color: $text-base;
+}
+
+.file-preview {
+	@extend .col-md-6;
+	@extend .m-0;
+	@extend .p-0;
 }
 
 .file-icon {
@@ -1443,4 +1451,14 @@ $disabled-color: darken($text-light, 10%);
 
 .form-segment-dropdown {
 	min-width: 200px;
+}
+
+// Medium Editor
+.editable {
+	outline: none;
+	min-height: 400px;
+
+	& > *:last-child {
+		margin-bottom: 0;
+	}
 }

@@ -3,6 +3,7 @@
 namespace Pandorga\Laramie;
 
 use Illuminate\Foundation\AliasLoader;
+use Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Pandorga\Laramie\Http\Middleware\AppLocale;
@@ -36,12 +37,17 @@ class LaramieServiceProvider extends ServiceProvider
 		}
 
         // Middlewares
-        $this->app->singleton('Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode', function($app){
-            return new AppLocale($app);
-        });
+        $this->registerMiddlewares();
 
 		// Register Blade Components
 		Blade::component('laramie::components/model-property', 'modelProperty');
+	}
+
+	public function registerMiddlewares()
+	{
+		$this->app->singleton(CheckForMaintenanceMode::class, function($app){
+            return new AppLocale($app);
+        });
 	}
 
 	public function publishResources()
@@ -107,10 +113,16 @@ class LaramieServiceProvider extends ServiceProvider
 
 	public function registerThirdPartyVendors()
 	{
+		// Activity Log
 		$this->app->register(\Spatie\Activitylog\ActivitylogServiceProvider::class);
-		$this->app->register(\Collective\Html\HtmlServiceProvider::class);
 		
+		// Laravel Collective: HTML
+		$this->app->register(\Collective\Html\HtmlServiceProvider::class);
 		AliasLoader::getInstance(['Form' => \Collective\Html\FormFacade::class]);
 		AliasLoader::getInstance(['Html' => \Collective\Html\HtmlFacade::class]);
+
+		// Mediable
+		$this->app->register(\Plank\Mediable\MediableServiceProvider::class);
+		AliasLoader::getInstance(['MediaUploader' => \Plank\Mediable\MediaUploaderFacade::class]);
 	}
 }

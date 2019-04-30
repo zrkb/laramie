@@ -4,6 +4,7 @@ namespace Pandorga\Laramie\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
+use Pandorga\Laramie\Models\Permission;
 
 class ForgeResource extends Command
 {
@@ -42,6 +43,7 @@ class ForgeResource extends Command
 		$this->createModel();
 		$this->createController();
 		$this->createViews();
+		$this->createAndAssignPermissions();
 	}
 
 	public function createMigration()
@@ -78,6 +80,33 @@ class ForgeResource extends Command
 			'--icon' => $this->option('icon'),
 			'--force',
 		]);
+	}
+
+	public function createAndAssignPermissions()
+	{
+		$route = Str::plural(Str::snake(class_basename($this->argument('name'))));
+
+		$abilities = [
+			AuthorizeAction::View,
+			AuthorizeAction::Add,
+			AuthorizeAction::Edit,
+			AuthorizeAction::Delete,
+		];
+
+		$permissions = [];
+
+		foreach ($abilities as $ability) {
+			$permissions[] = [
+				'name' => $ability . '_' . $route,
+				'guard_name' => 'web',
+			];
+		}
+
+		// Create new permissions
+		Permission::insert($permissions);
+
+		// Asign to Developer Role
+		$role->syncPermissions(Permission::all());
 	}
 
 	protected function getStub($type)

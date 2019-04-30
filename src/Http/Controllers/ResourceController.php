@@ -50,6 +50,7 @@ abstract class ResourceController extends BaseController
 
 	/**
 	 * Perform delete or forceDelete acording to model status.
+	 * 
 	 * @return bool|null
 	 */
 	public function destroyModel(Model $instance)
@@ -60,7 +61,6 @@ abstract class ResourceController extends BaseController
 				$result = $instance->forceDelete();
 			} catch (\Illuminate\Database\QueryException $exception) {
 				return false;
-				// list() = $e->errorInfo;
 			}
 
 			return $result;
@@ -78,6 +78,7 @@ abstract class ResourceController extends BaseController
 
 	/**
 	 * Return resource model.
+	 * 
 	 * @return string
 	 */
 	public function getModel() : string

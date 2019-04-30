@@ -53,8 +53,12 @@ class InstallCommand extends Command
 		$this->line('→ Publishing vendor files ... <info>✔</info>');
 		$this->callSilent('vendor:publish', ['--provider' => 'Spatie\Permission\PermissionServiceProvider']);
 
-		if ($this->activityLogMigrationIsMissing()) {
+		if ($this->migrationFileIsMissing('*_create_activity_log_table.php')) {
 			$this->callSilent('vendor:publish', ['--provider' => 'Spatie\Activitylog\ActivitylogServiceProvider']);
+		}
+
+		if ($this->migrationFileIsMissing('*_create_mediable_tables.php')) {
+			$this->callSilent('vendor:publish', ['--provider' => 'Plank\Mediable\MediableServiceProvider']);
 		}
 
 		$this->line('→ Publishing Laramie Service Provider ... <info>✔</info>');
@@ -119,18 +123,18 @@ class InstallCommand extends Command
 	}
 
 	/**
-	 * Check if activity log migration file exists.
+	 * Check if migration file exists.
 	 *
 	 * @return bool
 	 */
-	protected function activityLogMigrationIsMissing() : bool
+	protected function migrationFileIsMissing($filename) : bool
 	{
 		$timestamp = date('Y_m_d_His');
 		$folder = app()->databasePath() . DIRECTORY_SEPARATOR . 'migrations' . DIRECTORY_SEPARATOR;
 
 		return Collection::make($folder)
-			->flatMap(function ($path) {
-				return $this->filesystem->glob($path . '*_create_activity_log_table.php');
+			->flatMap(function ($path) use ($filename) {
+				return $this->filesystem->glob($path . $filename);
 			})
 			->isEmpty();
 	}

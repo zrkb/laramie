@@ -2,21 +2,17 @@
 
 namespace Pandorga\Laramie\Models;
 
-use Pandorga\Laramie\Presenters\UserPresenter;
-use Pandorga\Laramie\Traits\HasCustomFilters;
-use Pandorga\Laramie\Traits\HasPrevNext;
-use Pandorga\Laramie\Traits\HasSegments;
-use Pandorga\Laramie\Traits\ResourceModel;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Schema;
+use Pandorga\Laramie\Models\Authenticatable;
+use Pandorga\Laramie\Presenters\UserPresenter;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-	use Notifiable, HasRoles, SoftDeletes, UserPresenter, ResourceModel, HasSegments, HasCustomFilters, HasPrevNext;
+	use Notifiable, HasRoles, SoftDeletes, UserPresenter;
 
 	protected static $ignoreChangedAttributes = ['remember_token'];
 

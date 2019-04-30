@@ -611,6 +611,13 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
+"@editorjs/editorjs@^2.13.0":
+  version "2.13.0"
+  resolved "https://registry.yarnpkg.com/@editorjs/editorjs/-/editorjs-2.13.0.tgz#4f98158fda8d99e73d8d24ecbff9edbfe585e6e5"
+  integrity sha512-oeYsIRvm0bSUJsggZK0marTYfatXILhESoqshwGnPCinaEbA1VAAWfc74saMLuTmujyefgQE2qYjHpKyZNM0mQ==
+  dependencies:
+    codex-notifier "^1.1.2"
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
@@ -1483,6 +1490,11 @@ code-point-at@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
   integrity sha1-DQcLTQQ6W+ozovGkDi7bPZpMz3c=
+
+codex-notifier@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/codex-notifier/-/codex-notifier-1.1.2.tgz#a733079185f4c927fa296f1d71eb8753fe080895"
+  integrity sha512-DCp6xe/LGueJ1N5sXEwcBc3r3PyVkEEDNWCVigfvywAkeXcZMk9K41a31tkEFBW0Ptlwji6/JlAb49E3Yrxbtg==
 
 collection-visit@^1.0.0:
   version "1.0.0"

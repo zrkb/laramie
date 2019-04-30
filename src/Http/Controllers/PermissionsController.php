@@ -70,7 +70,7 @@ class PermissionsController extends ResourceController
 			session()->flash('error', 'Error al modificar el registro. Consulte con el administrador.');
 		}
 
-		return redirect(resource('index'));
+		return redirect(resource('show', $id));
 	}
 
 	private function creationRules() : array

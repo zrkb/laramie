@@ -5,6 +5,7 @@
 
 <script src="{{ asset('vendor/laramie/libs/bootbox/bootbox.js') }}"></script>
 <script src="{{ asset('vendor/laramie/libs/mask/jquery.mask.js') }}"></script>
+<script src="{{ asset('vendor/laramie/libs/select2/select2.min.js') }}"></script>
 <script src="{{ mix('/js/app.js', 'vendor/laramie') }}" defer></script>
 
 @stack('scripts')

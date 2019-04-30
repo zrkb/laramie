@@ -78,3 +78,25 @@ if (! function_exists('package_path')) {
         return __DIR__ . '/../..' . ($path ? DIRECTORY_SEPARATOR.$path : $path);
     }
 }
+
+if (! function_exists('format_bytes')) {   
+    /**
+     * Format bytes to kb, mb, gb, tb
+     *
+     * @param  integer $size
+     * @param  integer $precision
+     * @return integer
+     */
+    function format_bytes($size, $precision = 2)
+    {
+        if ($size > 0) {
+            $size = (int) $size;
+            $base = log($size) / log(1024);
+            $suffixes = array(' bytes', ' KB', ' MB', ' GB', ' TB');
+
+            return round(pow(1024, $base - floor($base)), $precision) . $suffixes[floor($base)];
+        } else {
+            return $size;
+        }
+    }
+}
