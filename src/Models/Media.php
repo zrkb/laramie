@@ -66,11 +66,14 @@ class Media extends PlankMedia
 		return $this->aggregate_type == PlankMedia::TYPE_IMAGE;
 	}
 
-	public function render()
+	public function render($collection = null)
 	{
 		return new HtmlString(
-			view('laramie::misc/icon-block', ['media' => $this])
+			view('laramie::misc/media', ['media' => $this])
 		);
+		// return new HtmlString(
+		// 	view('laramie::misc/icon-block', ['media' => $this])
+		// );
 	}
 
     public static function updateMedia(Request $request, Media $media)

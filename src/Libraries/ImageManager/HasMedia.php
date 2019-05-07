@@ -51,9 +51,7 @@ trait HasMedia
 
 	public function renderMedia($collection = null)
 	{
-		return new HtmlString(
-			view('laramie::misc/media', ['media' => $this->firstMedia($collection)])
-		);
+		return $this->firstMedia($collection)->render();
 	}
 
 	/**

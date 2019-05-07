@@ -10142,11 +10142,7 @@ jQuery(document).ready(function ($) {
       sticky: false,
       updateOnEmptySelection: false
     }
-  });
-  var bodyEl = document.getElementById('body');
-  setInterval(function () {
-    bodyEl.value = editor.getContent();
-  }, 1000); // Select2
+  }); // Select2
 
   $('.select2').each(function (index, element) {
     var el = $(this);

@@ -64,7 +64,10 @@ class InstallCommand extends Command
 		$this->line('→ Publishing Laramie Service Provider ... <info>✔</info>');
 		$this->callSilent('vendor:publish', [
 			'--provider' => 'Pandorga\Laramie\LaramieServiceProvider',
-			'--force',
+		]);
+		$this->callSilent('vendor:publish', [
+			'--tag' => 'laramie-factories',
+			'--force' => true,
 		]);
 
 		$this->initializeBackendDir();

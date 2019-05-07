@@ -8,7 +8,7 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'back-to-list' => 'Back to list',
+    'back-to-list' => 'Back',
     'complete-form' => 'Complete the fields',
     'cancel-form-button' => 'Cancel',
     'submit-form-button' => 'Save',

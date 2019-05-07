@@ -92,11 +92,6 @@ jQuery(document).ready(function ($) {
 			updateOnEmptySelection: false
 		}
 	});
-	const bodyEl = document.getElementById('body');
-
-	setInterval(() => {
-		bodyEl.value = editor.getContent();
-	}, 1000);
 
 	// Select2
 	$('.select2').each(function (index, element) {
