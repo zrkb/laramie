@@ -171,7 +171,6 @@ That's all! You may refresh your dashboard page and you'll see a new item in the
 * [ ] Analyze Scaffold vs Runtime Gen
 * [ ] Add middleware for [auth routes redirect](https://laracasts.com/discuss/channels/general-discussion/l5-register-a-route-middleware-at-package?page=1) when login
 * [ ] Separate blog as a package
-* [ ] Add 
 
 
 ## Security

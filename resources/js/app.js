@@ -107,6 +107,10 @@ jQuery(document).ready(function ($) {
 			settings.minimumResultsForSearch = 'Infinity';
 		}
 
+		if (el.data('placeholder')) {
+			settings.placeholder = el.data('placeholder');
+		}
+
 		el.select2(settings);
 	});
 

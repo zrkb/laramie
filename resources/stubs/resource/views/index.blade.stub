@@ -30,7 +30,7 @@
 		<div class="card">
 			@if ($PluralLowercaseBaseClass->isNotEmpty())
 				<div class="table-responsive">
-					<table class="table table-striped datatable">
+					<table class="table table-striped table-hover datatable">
 						<thead>
 							<tr>
 								<th class="tid">#ID</th>
