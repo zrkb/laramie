@@ -14,7 +14,7 @@ abstract class ResourceController extends BaseController
 		$instance = $this->getModel()::withTrashed()->find($id);
 
 		if ($instance->restore()) {
-			session()->flash('success', 'El registro ha sido restaurado exitosamente.');
+			session()->flash('info', 'El registro ha sido restaurado exitosamente.');
 		} else {
 			session()->flash('danger', 'No se pudo restaurar el registro. Por favor comuníquese con el administrador.');
 		}

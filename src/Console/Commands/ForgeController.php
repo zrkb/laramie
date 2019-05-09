@@ -81,7 +81,11 @@ class ForgeController extends GeneratorCommand
 
         $stub = parent::replaceClass($stub, $name);
 
+        // Extract first dash for class namespace
+        $baseNamespace = preg_replace('/\\\/', '', config('laramie.route.namespace'), 1);
+
         $substitutions = [
+            'ClassNamespace'             => $baseNamespace,
             'SingularBaseClass'          => $singularBaseClass,
             'PluralBaseClass'            => $pluralBaseClass,
             'SingularLowercaseBaseClass' => $singularLowercaseBaseClass,
@@ -110,7 +114,7 @@ class ForgeController extends GeneratorCommand
 	 */
 	protected function getDefaultNamespace($rootNamespace)
 	{
-		return $rootNamespace . '\Http\Controllers';
+		return $rootNamespace . '\Http\Controllers\Backend';
 	}
 
     /**

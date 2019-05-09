@@ -14,8 +14,7 @@
 						Editar
 					</a>
 					<a href="{{ resource('index') }}" class="btn btn-default">
-						<i data-feather="list" class="mr-2"></i>
-						Volver
+						@lang('laramie::resource.back-to-list') <i data-feather="arrow-right" class="ml-2"></i>
 					</a>
 					
 					@include('laramie::misc/models/prev-next-rows', ['model' => $SingularLowercaseBaseClass])

@@ -7,7 +7,7 @@
 			@slot('superactions')
 				<div class="float-right">
 					<a href="{{ resource('index') }}" class="btn btn-default">
-						Volver a la lista
+						@lang('laramie::resource.back-to-list') <i data-feather="arrow-right" class="ml-2"></i>
 					</a>
 				</div>
 			@endslot

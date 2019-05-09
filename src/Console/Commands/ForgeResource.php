@@ -3,8 +3,12 @@
 namespace Pandorga\Laramie\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
+use Pandorga\Laramie\Models\AuthorizeAction;
 use Pandorga\Laramie\Models\Permission;
+use Pandorga\Laramie\Models\Role;
 
 class ForgeResource extends Command
 {
@@ -27,9 +31,11 @@ class ForgeResource extends Command
 	 *
 	 * @return void
 	 */
-	public function __construct()
+	public function __construct(Filesystem $filesystem)
 	{
 		parent::__construct();
+
+		$this->filesystem = $filesystem;
 	}
 
 	/**
@@ -48,11 +54,16 @@ class ForgeResource extends Command
 
 	public function createMigration()
 	{
+
 		$table = Str::plural(Str::snake(class_basename($this->argument('name'))));
 
-		$this->call('make:migration', [
-			'name' => "create_{$table}_table",
-		]);
+		if ($this->migrationFileIsMissing(sprintf('*_create_%s_table.php', $table))) {
+			$this->call('make:migration', [
+				'name' => "create_{$table}_table",
+			]);
+		} else {
+			$this->error('Migration already exists!');
+		}
 	}
 
 	public function createModel()
@@ -106,7 +117,7 @@ class ForgeResource extends Command
 		Permission::insert($permissions);
 
 		// Asign to Developer Role
-		$role->syncPermissions(Permission::all());
+		(Role::findByName(dev_role()))->syncPermissions(Permission::all());
 	}
 
 	protected function getStub($type)
@@ -123,5 +134,22 @@ class ForgeResource extends Command
 		);
 
 		file_put_contents(app_path("/{$name}.php"), $modelTemplate);
+	}
+
+	/**
+	 * Check if migration file exists.
+	 *
+	 * @return bool
+	 */
+	protected function migrationFileIsMissing($filename) : bool
+	{
+		$timestamp = date('Y_m_d_His');
+		$folder = app()->databasePath() . DIRECTORY_SEPARATOR . 'migrations' . DIRECTORY_SEPARATOR;
+
+		return Collection::make($folder)
+			->flatMap(function ($path) use ($filename) {
+				return $this->filesystem->glob($path . $filename);
+			})
+			->isEmpty();
 	}
 }
