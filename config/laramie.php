@@ -3,7 +3,7 @@
 return [
 	'route' => [
 		'prefix' => 'admin',
-		'namespace' => 'App\\Http\\Controllers\\Backend',
+		'namespace' => '\App\Http\Controllers\Backend',
 		'middleware' => ['web', 'auth'],
 	],
 
