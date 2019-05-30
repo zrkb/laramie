@@ -19,6 +19,29 @@ Run the following command in your console terminal:
 $ composer require pandorga/laramie
 ```
 
+Or if you want to download the files, add the following configuration to the composer.json file:
+
+```json
+"repositories": [
+    {
+        "type": "path",
+        "url": "../laramie"
+    }
+],
+```
+
+Next, add the package to the require section of your composer.json file:
+
+```json
+"require": {
+    "php": "^7.2",
+    "fideloper/proxy": "^4.0",
+    "laravel/framework": "5.8.*",
+    "laravel/tinker": "^1.0",
+    "pandorga/laramie": "*"
+},
+```
+
 Now run `composer update` command:
 
 ```bash
