@@ -50,4 +50,9 @@ class LoginController extends Controller
 
 		return redirect()->route('login');
 	}
+
+    public function redirectTo()
+    {
+        return route('app');
+    }
 }
