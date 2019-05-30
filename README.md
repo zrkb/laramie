@@ -13,30 +13,13 @@
 
 ### Installing Laramie
 
-Add the following configuration to the `composer.json` file:
+Run the following command in your console terminal:
 
-```json
-"repositories": [
-    {
-        "type": "path",
-        "url": "../laramie"
-    }
-],
+```bash
+$ composer require pandorga/laramie
 ```
 
-Next, add the package to the require section of your `composer.json` file:
-
-```json
-"require": {
-    "php": "^7.1.3",
-    "fideloper/proxy": "^4.0",
-    "laravel/framework": "5.8.*",
-    "laravel/tinker": "^1.0",
-    "pandorga/laramie": "*"
-},
-```
-
-Now run `composer update` command in your console terminal:
+Now run `composer update` command:
 
 ```bash
 $ composer update
