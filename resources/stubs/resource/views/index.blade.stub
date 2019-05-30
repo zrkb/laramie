@@ -35,9 +35,9 @@
 							<tr>
 								<th class="tid">#ID</th>
 								<th>Nombre</th>
-								<th>Creado</th>
+								<th class="w-20">Creado</th>
 								<th>Estado</th>
-								<th class="text-center">Acciones</th>
+								<th class="text-center w-10">Acciones</th>
 							</tr>
 						</thead>
 						<tbody>

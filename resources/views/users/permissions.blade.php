@@ -3,9 +3,9 @@
 	(isset($user) && $user->id != auth()->user()->id && auth()->user()->can('edit_users'))
 )
 	<div class="form-group">
-		{{ Form::label('roles', 'Roles', ['class' => 'col-sm-3 control-label']) }}
+		{{ Form::label('roles', 'Roles', ['class' => 'control-label']) }}
 
-		<div class="col-sm-6">
+		<div class="permissions-checkbox">
 			@foreach ($roles as $role)
 
 				@php

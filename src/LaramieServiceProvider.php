@@ -19,15 +19,7 @@ class LaramieServiceProvider extends ServiceProvider
 	{
 		if ($this->app->runningInConsole()) {
 			$this->publishResources();
-			
-			$this->commands([
-				Console\Commands\InstallCommand::class,
-				Console\Commands\SeedCommand::class,
-				Console\Commands\ForgeController::class,
-				Console\Commands\ForgeModel::class,
-				Console\Commands\ForgeResource::class,
-				Console\Commands\ForgeViews::class,
-			]);
+			$this->registerCommands();
 		}
 
 		$this->loadResources();
@@ -38,6 +30,9 @@ class LaramieServiceProvider extends ServiceProvider
 
         // Middlewares
         $this->registerMiddlewares();
+
+        // Helpers
+        $this->registerHelpers();
 
 		// Register Blade Components
 		Blade::component('laramie::components/model-property', 'modelProperty');
@@ -103,11 +98,6 @@ class LaramieServiceProvider extends ServiceProvider
 	 */
 	public function register()
 	{
-		// Helper File
-		if (file_exists($helper = __DIR__ . '/Helpers/laramie_helper.php')) {
-			require $helper;
-		}
-
 		$this->registerThirdPartyVendors();
 	}
 
@@ -124,5 +114,24 @@ class LaramieServiceProvider extends ServiceProvider
 		// Mediable
 		$this->app->register(\Plank\Mediable\MediableServiceProvider::class);
 		AliasLoader::getInstance(['MediaUploader' => \Plank\Mediable\MediaUploaderFacade::class]);
+	}
+
+	public function registerCommands()
+	{
+		$this->commands([
+			Console\Commands\InstallCommand::class,
+			Console\Commands\SeedCommand::class,
+			Console\Commands\ForgeController::class,
+			Console\Commands\ForgeModel::class,
+			Console\Commands\ForgeResource::class,
+			Console\Commands\ForgeViews::class,
+		]);
+	}
+
+	public function registerHelpers()
+	{
+		foreach (glob(__DIR__ . '/Helpers/*.php') as $filename) {
+			require_once($filename);
+		}
 	}
 }

@@ -24,7 +24,6 @@ class DummyModel extends Model
 	 * @var array
 	 */
 	protected $dates = [
-		'created',
 		'deleted_at',
 	];
 }

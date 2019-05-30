@@ -1,0 +1,77 @@
+<?php
+
+use Carbon\Carbon;
+
+if (! function_exists('months_for_select')) {
+	/**
+	 * Retorna la lista de meses para rellenar un <select>
+	 * 
+	 * @param $all Si este parametro viene con valor false, la opción "Todos" no se devolverá
+	 */
+	function months_for_select(Bool $all = true)
+	{
+		
+		$months = [0 => 'Todos'];
+
+		for ($x = 1; $x <= 12; $x ++) {
+			$months[$x] = month_name($x);
+		}
+
+		if ($all == false) unset($months[0]);
+
+		return $months;
+	}
+}
+
+if (! function_exists('month_name')) {
+	/**
+	 * Retorna la fecha actual
+	 */
+	function month_name($month)
+	{
+		$time = mktime(0, 0, 0, (int)$month, 1);
+		$key = date('m', $time);
+		$name =  ucfirst(strftime('%B', $time));
+
+		return $name;
+	}
+}
+
+if (! function_exists('years_for_select')) {
+	/**
+	 * Retorna la lista de años para rellenar un <select>
+	 */
+	function years_for_select($width = 5)
+	{
+		$init = 2017;
+		$end = ((int)date('Y')) + $width; 
+
+		$years = [];
+
+		for ($i = $init; $i <= $end; $i++) {
+			$years[$i] = $i;
+		}
+
+		return $years;
+	}
+}
+
+if (! function_exists('now')) {
+	/**
+	 * Get Carbon instance for current date and time
+	 * 
+	 * @return static
+	 */
+	function now()
+	{
+		return Carbon::now();
+	}
+}
+
+if (! function_exists('set_locale')) {
+	function set_locale()
+	{
+		setlocale(LC_ALL, 'es_ES', 'es', 'ES');
+		Carbon::setLocale(config('app.locale'));
+	}
+}

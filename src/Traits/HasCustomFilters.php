@@ -13,6 +13,11 @@ trait HasCustomFilters
 	 */
 	protected $filters;
 
+	/**
+	 * @var string
+	 */
+	protected $filterSuffix = '-filter';
+
 	public function scopeFilterBy($query, $request = null)
 	{
 		$request = $request ?? request()->all();
@@ -20,7 +25,7 @@ trait HasCustomFilters
 		$this->filters = $this->extractFiltersFrom($request);
 
 		$this->filters->each(function($value, $key) use (&$query) {
-			$filter = str_replace('_filter', '', $key);
+			$filter = str_replace($this->filterSuffix, '', $key);
 			$field = $this->getRelationFieldName($filter);
 
 			if ($this->filterClassExists($filter)) {
@@ -28,7 +33,8 @@ trait HasCustomFilters
 			} else if ($this->columnExists($field)) {
 				$query->where($field, $value);
 			} else {
-				throw new MissingFilterException(sprintf('There is no filter for "%s" key', $key));
+				// TODO: Add bypass option
+				// throw new MissingFilterException(sprintf('There is no filter for "%s" key', $key));
 			}
 		});
 
@@ -63,7 +69,7 @@ trait HasCustomFilters
 	public function extractFiltersFrom(array $request)
 	{
 		return collect($request)->filter(function ($input, $key) {
-			return preg_match('/_filter$/', $key);
+			return preg_match('/'. $this->filterSuffix . '$/', $key);
 		});
 	}
 
