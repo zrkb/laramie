@@ -169,13 +169,13 @@ That's all! You may refresh your dashboard page and you'll see a new item in the
 
 ## Todo
 
+* [x] Assign permissions automatically to role Developer when creating a resource
+* [x] Add middleware for [auth routes redirect](https://laracasts.com/discuss/channels/general-discussion/l5-register-a-route-middleware-at-package?page=1) when login
 * [ ] Migration file stub
 * [ ] Menus Admin
 * [ ] Media Library Admin
-* [ ] Assign permissions automatically to role Developer when creating a resource
 * [ ] Conditionals for stubs files (Case: not all models will use SoftDelete feature)
 * [ ] Analyze Scaffold vs Runtime Gen
-* [ ] Add middleware for [auth routes redirect](https://laracasts.com/discuss/channels/general-discussion/l5-register-a-route-middleware-at-package?page=1) when login
 * [ ] Separate blog as a package
 
 
