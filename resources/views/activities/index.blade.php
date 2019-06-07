@@ -38,12 +38,12 @@
 									<td>
 										@if ($activity->causer)
 											<div class="user-avatar mr-2">
-												<span class="no-image-user" title="{{ $activity->causer->full_name }}">
+												<span class="no-image-user" title="{{ $activity->causer->fullname }}">
 													{{ $activity->causer->initials }}
 												</span>
 											</div>
-											<a href="{{ route('users.show', ['id' => $activity->causer->id]) }}">
-												{{ $activity->causer->full_name }}
+											<a href="{{ route('admins.show', ['id' => $activity->causer->id]) }}">
+												{{ $activity->causer->fullname }}
 											</a>
 										@else
 											<div class="user-avatar mr-2">

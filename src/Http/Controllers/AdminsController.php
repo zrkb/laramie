@@ -3,35 +3,35 @@
 namespace Pandorga\Laramie\Http\Controllers;
 
 use Pandorga\Laramie\Models\Role;
-use Pandorga\Laramie\Models\User;
+use Pandorga\Laramie\Models\Admin;
 use Pandorga\Laramie\Traits\PermissionModerator;
 use Illuminate\Http\Request;
 
-class UsersController extends ResourceController
+class AdminsController extends ResourceController
 {
 	use PermissionModerator;
 
-	protected $model = \Pandorga\Laramie\Models\User::class;
+	protected $model = \Pandorga\Laramie\Models\Admin::class;
 
 	public function index()
 	{
-		$users = User::withTrashed()->get();
+		$admins = Admin::withTrashed()->get();
 
-		return view('laramie::users/index', compact('users'));
+		return view('laramie::admins/index', compact('admins'));
 	}
 
 	public function show($id)
 	{
-		$user = User::withTrashed()->find($id);
+		$admin = Admin::withTrashed()->find($id);
 
-		return view('laramie::users/show', compact('user'));
+		return view('laramie::admins/show', compact('admin'));
 	}
 
 	public function create()
 	{
 		$roles = Role::all();
 
-		return view('laramie::users/create', compact('roles'));
+		return view('laramie::admins/create', compact('roles'));
 	}
 
 	public function store(Request $request)
@@ -45,13 +45,13 @@ class UsersController extends ResourceController
 		// Remove unexistent data from rules
 		$data = array_intersect_key($request->all(), $creationRules);
 
-		$user = User::create(array_merge($data, [
+		$admin = Admin::create(array_merge($data, [
 			'email_verified_at' => now(),
 			'remember_token'    => str_random(10),
 		]));
 
-		if ($user) {
-			$this->manageUser($request, $user);
+		if ($admin) {
+			$this->manageAdmin($request, $admin);
 			session()->flash('success', 'El registro ha sido creado exitosamente.');
 		} else {
 			session()->flash('error', 'Error al crear el registro. Consulte con el administrador.');
@@ -62,17 +62,17 @@ class UsersController extends ResourceController
 
 	public function edit($id)
 	{
-		$user = User::withTrashed()->find($id);
+		$admin = Admin::withTrashed()->find($id);
 		$roles = Role::all();
 
-		return view('laramie::users/edit', compact('user', 'roles'));
+		return view('laramie::admins/edit', compact('admin', 'roles'));
 	}
 
 	public function update(Request $request, $id)
 	{
-		$user = User::withTrashed()->find($id);
+		$admin = Admin::withTrashed()->find($id);
 		
-		$updateRules = $this->updateRules($user->id);
+		$updateRules = $this->updateRules($admin->id);
 		$this->validate($request, $updateRules);
 
 		// Encrypt password
@@ -88,8 +88,8 @@ class UsersController extends ResourceController
 		// Remove unexistent data from rules
 		$data = array_intersect_key($request->all(), $updateRules);
 
-		if ($user->update($data)) {
-			$this->manageUser($request, $user);
+		if ($admin->update($data)) {
+			$this->manageAdmin($request, $admin);
 			session()->flash('success', 'El registro ha sido modificado exitosamente.');
 		} else {
 			session()->flash('error', 'Error al modificar el registro. Consulte con el administrador.');
@@ -101,9 +101,9 @@ class UsersController extends ResourceController
 	private function creationRules() : array
 	{
 		return [
-			'first_name'    => 'required',
-			'last_name'     => 'required',
-			'email'         => 'required|email|unique:users,email',
+			'firstname'    => 'required',
+			'lastname'     => 'required',
+			'email'         => 'required|email|unique:admins,email',
 			'password'      => 'required|min:6',
 		];
 	}
@@ -111,9 +111,9 @@ class UsersController extends ResourceController
 	private function updateRules($id) : array
 	{
 		return [
-			'first_name'    => 'required',
-			'last_name'     => 'required',
-			'email'         => 'required|email|unique:users,email,' . $id,
+			'firstname'    => 'required',
+			'lastname'     => 'required',
+			'email'         => 'required|email|unique:admins,email,' . $id,
 		];
 	}
 }

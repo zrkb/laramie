@@ -38,7 +38,7 @@ class Permission extends \Spatie\Permission\Models\Permission
 	public static function defaultViews() : array
 	{
 		return [
-			'users',
+			'admins',
 			'roles',
 			'permissions',
 			'activities',

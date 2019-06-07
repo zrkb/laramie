@@ -56,19 +56,9 @@ class Laramie
 		];
 
 		Route::group($attributes, function () {
-			Route::get('login', 'LoginController@showLoginForm')->name('login');
+			Route::get('login', 'LoginController@showLoginForm');
 			Route::post('login', 'LoginController@login');
-			Route::post('logout', 'LoginController@logout')->name('logout');
-
-			// // Registration Routes...
-			// $this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-			// $this->post('register', 'Auth\RegisterController@register');
-
-			// // Password Reset Routes...
-			// $this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
-			// $this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-			// $this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
-			// $this->post('password/reset', 'Auth\ResetPasswordController@reset');
+			Route::post('logout', 'LoginController@logout');
 		});
 	}
 }

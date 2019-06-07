@@ -24,23 +24,23 @@
 						aria-haspopup="true"
 						aria-expanded="false">
 						<div class="user-avatar">
-							<span class="no-image-user" title="{{ user()->full_name }}">
-								{{ user()->initials }}
+							<span class="no-image-user" title="{{ admin()->fullname }}">
+								{{ admin()->initials }}
 							</span>
-							<!-- <img src="assets/img/avatars/quaver.svg" title="{{ user()->full_name }}"> -->
+							<!-- <img src="assets/img/avatars/quaver.svg" title="{{ admin()->fullname }}"> -->
 						</div>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="profile-dropdown">
-						<a class="dropdown-item" href="{{ route('users.show', ['id' => user()->id]) }}">
-							{{ user()->full_name }}
-							<span>{{ user()->email }}</span>
+						<a class="dropdown-item" href="{{ route('admins.show', ['id' => admin()->id]) }}">
+							{{ admin()->fullname }}
+							<span>{{ admin()->email }}</span>
 						</a>
 
 						<div class="dropdown-divider"></div>
 
-						<a class="dropdown-item" href="{{ route('users.index') }}">
+						<a class="dropdown-item" href="{{ route('admins.index') }}">
 							<i data-feather="users" class="mr-2 text-muted"></i>
-							@lang('laramie::messages.profile-menu-item-users')
+							@lang('laramie::messages.profile-menu-item-admins')
 						</a>
 
 						<a class="dropdown-item" href="{{ route('roles.index') }}">
@@ -55,7 +55,7 @@
 
 						<a
 							class="dropdown-item text-danger mt-2"
-							href="{{ route('logout') }}"
+							href="{{ admin_base_path('logout') }}"
 							onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
 								<i data-feather="log-out" class="mr-2"></i>
 								@lang('laramie::messages.profile-menu-item-logout')
@@ -63,7 +63,7 @@
 
 						<form
 							id="logout-form"
-							action="{{ route('logout') }}"
+							action="{{ admin_base_path('logout') }}"
 							method="POST"
 							class="d-none">
 							@csrf

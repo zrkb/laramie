@@ -1,11 +1,11 @@
 <div class="form-group">
-	{{ form()->label('first_name', 'Nombre', ['class' => 'control-label']) }}
-	{{ form()->text('first_name', null, ['class' => 'form-control']) }}
+	{{ form()->label('firstname', 'Nombre', ['class' => 'control-label']) }}
+	{{ form()->text('firstname', null, ['class' => 'form-control']) }}
 </div>
 
 <div class="form-group">
-	{{ form()->label('last_name', 'Apellido', ['class' => 'control-label']) }}
-	{{ form()->text('last_name', null, ['class' => 'form-control']) }}
+	{{ form()->label('lastname', 'Apellido', ['class' => 'control-label']) }}
+	{{ form()->text('lastname', null, ['class' => 'form-control']) }}
 </div>
 
 <div class="form-group">

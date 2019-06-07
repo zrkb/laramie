@@ -2,16 +2,16 @@
 
 namespace Pandorga\Laramie\Presenters;
 
-trait UserPresenter
+trait AdminPresenter
 {
     public function getInitialsAttribute()
     {
-        return $this->first_name[0] . $this->last_name[0];
+        return $this->firstname[0] . $this->lastname[0];
     }
 
-    public function getFullNameAttribute()
+    public function getFullnameAttribute()
     {
-        return implode(' ', [$this->first_name, $this->last_name]);
+        return implode(' ', [$this->firstname, $this->lastname]);
     }
     
     public function getAccountAgeAttribute()

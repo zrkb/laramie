@@ -112,6 +112,24 @@ if (!function_exists('dashboard')) {
 	}
 }
 
+if (!function_exists('admin_base_path')) {
+    /**
+     * Get admin url.
+     *
+     * @param string $path
+     *
+     * @return string
+     */
+    function admin_base_path($path = '')
+    {
+        $prefix = '/'.trim(config('laramie.route.prefix'), '/');
+
+        $prefix = ($prefix == '/') ? '' : $prefix;
+
+        return $prefix.'/'.trim($path, '/');
+    }
+}
+
 if (!function_exists('toc_file')) {
 	function toc_file()
 	{

@@ -13,10 +13,10 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(\Pandorga\Laramie\Models\User::class, function (Faker $faker) {
+$factory->define(\Pandorga\Laramie\Models\Admin::class, function (Faker $faker) {
 	return [
-		'first_name' => $faker->firstName,
-		'last_name' => $faker->lastName,
+		'firstname' => $faker->firstName,
+		'lastname' => $faker->lastName,
 		'email' => $faker->unique()->safeEmail,
 		'password' => bcrypt('secret'),
 		'remember_token' => str_random(10),

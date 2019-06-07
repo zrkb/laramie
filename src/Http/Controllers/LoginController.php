@@ -2,8 +2,9 @@
 
 namespace Pandorga\Laramie\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -48,11 +49,21 @@ class LoginController extends Controller
 		$this->guard()->logout();
 		$request->session()->invalidate();
 
-		return redirect()->route('login');
+		return redirect()->to(admin_base_path('login'));
 	}
 
     public function redirectTo()
     {
         return route('app');
+    }
+
+    /**
+     * Get the guard to be used during authentication.
+     *
+     * @return \Illuminate\Contracts\Auth\StatefulGuard
+     */
+    protected function guard()
+    {
+        return Auth::guard('admin');
     }
 }

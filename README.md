@@ -77,15 +77,15 @@ In order to init the wizard, run the next command:
 $ php artisan laramie:seed
 ```
 
-### User Provider
+### Admin User Provider
 
-Your admin user must subclass from Laramie User Model, edit your user provider in `config/auth.php` file:
+Your admin user must subclass from Laramie Admin Model, you can change this in `laramie.php` config file:
 
 ```php
 'providers' => [
-    'users' => [
+    'admins' => [
         'driver' => 'eloquent',
-        'model' => Pandorga\Laramie\Models\User::class,
+        'model' => \Pandorga\Laramie\Models\Admin::class,
     ],
 
     // ...
@@ -170,8 +170,8 @@ That's all! You may refresh your dashboard page and you'll see a new item in the
 ## Todo
 
 * [ ] Migration file stub
-* [ ] Menus Administrator
-* [ ] Media Library Administrator
+* [ ] Menus Admin
+* [ ] Media Library Admin
 * [ ] Assign permissions automatically to role Developer when creating a resource
 * [ ] Conditionals for stubs files (Case: not all models will use SoftDelete feature)
 * [ ] Analyze Scaffold vs Runtime Gen

@@ -6,11 +6,11 @@ use Pandorga\Laramie\Html\Html;
 use Pandorga\Laramie\Html\Elements\Form;
 use Pandorga\Laramie\Laramie;
 
-if (! function_exists('admin')) {
+if (! function_exists('laramie')) {
     /**
      * @return \Pandorga\Laramie\Laramie
      */
-    function admin()
+    function laramie()
     {
         return app(Laramie::class);
     }
@@ -41,15 +41,27 @@ if (! function_exists('__m')) {
     }
 }
 
+if (! function_exists('admin')) {
+    /**
+     * Returns auth admin.
+     * 
+     * @return \Pandorga\Laramie\Models\Admin
+     */
+    function admin()
+    {
+        return auth()->guard('admin')->user();
+    }
+}
+
 if (! function_exists('user')) {
     /**
-     * Returns auth user.
+     * Returns auth admin.
      * 
-     * @return \App\Models\User $user
+     * @return \Pandorga\Laramie\Models\Admin
      */
     function user()
     {
-        return auth()->user();
+        return auth()->guard('web')->user();
     }
 }
 

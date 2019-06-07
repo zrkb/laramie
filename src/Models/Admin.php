@@ -7,16 +7,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Schema;
 use Pandorga\Laramie\Models\Authenticatable;
-use Pandorga\Laramie\Presenters\UserPresenter;
+use Pandorga\Laramie\Presenters\AdminPresenter;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable
+class Admin extends Authenticatable
 {
-	use Notifiable, HasRoles, SoftDeletes, UserPresenter;
+	use Notifiable, HasRoles, SoftDeletes, AdminPresenter;
 
 	protected static $ignoreChangedAttributes = ['remember_token'];
 
-	protected $guard_name = 'web';
+	protected $guard_name = 'admin';
 
 	/**
 	 * The attributes that are mass assignable.
@@ -24,8 +24,10 @@ class User extends Authenticatable
 	 * @var array
 	 */
 	protected $fillable = [
-		'first_name', 'last_name',
-		'name', 'email', 'password',
+		'firstname',
+		'lastname',
+		'email',
+		'password',
 	];
 
 	/**

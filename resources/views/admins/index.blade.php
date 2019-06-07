@@ -22,13 +22,13 @@
 			@endslot
 
 			Usuarios
-			<small class="text-muted">({{ $users->count() }})</small>
+			<small class="text-muted">({{ $admins->count() }})</small>
 		@endcomponent
 
 		@include('laramie::misc/table-tools')
 
 		<div class="card">
-			@if ($users->isNotEmpty())
+			@if ($admins->isNotEmpty())
 				<div class="table-responsive">
 					<table class="table table-striped datatable">
 						<thead>
@@ -42,36 +42,36 @@
 							</tr>
 						</thead>
 						<tbody>
-							@foreach($users as $user)
+							@foreach($admins as $admin)
 								<tr>
-									<td class="tid">{{ $user->id }}</td>
+									<td class="tid">{{ $admin->id }}</td>
 									<td>
 										<div class="user-avatar mr-2">
-											<span class="no-image-user" title="{{ $user->full_name }}">
-												{{ $user->initials }}
+											<span class="no-image-user" title="{{ $admin->fullname }}">
+												{{ $admin->initials }}
 											</span>
 										</div>
-										<a href="{{ resource('show', ['id' => $user->id]) }}">
-											@if ($user->trashed())
-												<s class="text-muted">{{ $user->full_name }}</s>
+										<a href="{{ resource('show', ['id' => $admin->id]) }}">
+											@if ($admin->trashed())
+												<s class="text-muted">{{ $admin->fullname }}</s>
 											@else
-												{{ $user->full_name }}
+												{{ $admin->fullname }}
 											@endif
 										</a>
 									</td>
 									<td>
-										{{ $user->email }}
+										{{ $admin->email }}
 									</td>
 									<td>
-										@foreach($user->roles as $role)
+										@foreach($admin->roles as $role)
 											<span class="badge badge-secondary">{{ $role->name }}</span>
 										@endforeach
 									</td>
 									<td>
-										@include('laramie::misc/models/status-badge', ['model' => $user])
+										@include('laramie::misc/models/status-badge', ['model' => $admin])
 									</td>
 									<td class="actions text-center">
-										@include('laramie::misc/models/crud-actions', ['model' => $user])
+										@include('laramie::misc/models/crud-actions', ['model' => $admin])
 									</td>
 								</tr>
 							@endforeach

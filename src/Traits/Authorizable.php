@@ -30,7 +30,7 @@ trait Authorizable
 	public function callAction($method, $parameters)
 	{
 		if( $ability = $this->getAbility($method) ) {
-			$this->authorize($ability);
+			$this->authorizeForUser(admin(), $ability);
 		}
 
 		return parent::callAction($method, $parameters);

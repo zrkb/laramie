@@ -23,7 +23,7 @@
 			Editar Usuario
 		@endcomponent
 
-		{{ form()->model($user, ['route' => ['users.update', $user->id], 'method' => 'PUT']) }}
+		{{ form()->model($admin, ['route' => ['admins.update', $admin->id], 'method' => 'PUT']) }}
 
 			<div class="card">		
 				<div class="card-body">
@@ -32,7 +32,7 @@
 						Completa los campos del formulario
 					</h5>
 
-					@include('laramie::users/form')
+					@include('laramie::admins/form')
 
 					<div class="form-group mt-5 mb-3">
 						<a href="{{ resource('index') }}" class="btn btn-default mr-2">Cancelar</a>

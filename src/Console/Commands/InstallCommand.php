@@ -97,10 +97,7 @@ class InstallCommand extends Command
 		$appController = $this->directory . '/' . $filename . '.php';
 		$contents = $this->getStub($filename);
 
-		$this->filesystem->put(
-			$appController,
-			str_replace('DummyNamespace', config('laramie.route.namespace'), $contents)
-		);
+		$this->filesystem->put($appController, $contents);
 	}
 
 	/**
@@ -112,7 +109,7 @@ class InstallCommand extends Command
 	 */
 	protected function getStub($name)
 	{
-		return $this->filesystem->get(__DIR__ . "/stubs/" . $name . ".stub");
+		return $this->filesystem->get(__DIR__ . '/stubs/' . $name . '.stub');
 	}
 
 	/**

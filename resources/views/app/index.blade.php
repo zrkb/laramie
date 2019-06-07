@@ -5,9 +5,9 @@
 		<h1 class="display-6 mt-4">@lang('laramie::messages.splash-title')</h1>
 		<p class="lead">@lang('laramie::messages.splash-message')</p>
 		<p>
-			<a href="{{ route('users.index') }}">
+			<a href="{{ route('admins.index') }}">
 				<i data-feather="chevron-right" class="feather"></i>
-				@lang('laramie::messages.splash-users-menu')
+				@lang('laramie::messages.splash-admins-menu')
 			</a>
 		</p>
 		<p>

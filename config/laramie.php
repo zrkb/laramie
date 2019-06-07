@@ -2,12 +2,39 @@
 
 return [
 	'route' => [
-		'prefix' => 'admin',
+		'prefix' => 'app',
 		'namespace' => '\App\Http\Controllers\Backend',
-		'middleware' => ['web', 'auth'],
+		'middleware' => ['web', 'admin'],
 	],
 
 	'directory' => app_path('Http/Controllers/Backend'),
 
 	'controller' => 'AppController',
+
+    /*
+     * Auth Guards
+     */
+    'auth' => [
+        'guards' => [
+            'admin' => [
+                'driver'   => 'session',
+                'provider' => 'admins',
+            ],
+        ],
+
+        'providers' => [
+            'admins' => [
+                'driver' => 'eloquent',
+                'model'  => \Pandorga\Laramie\Models\Admin::class,
+            ],
+        ],
+
+        'passwords' => [
+            'admins' => [
+                'provider' => 'admins',
+                'table' => 'password_resets',
+                'expire' => 15,
+            ],
+        ],
+    ],
 ];

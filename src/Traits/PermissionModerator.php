@@ -22,11 +22,12 @@ trait PermissionModerator
 	}
 
 	/**
-	 * Update User Roles.
+	 * Update Admin Roles.
+	 * 
 	 * @param $request \Illuminate\Http\Request
-	 * @param $user \App\Models\User
+	 * @param $admin \Pandorga\Laramie\Models\Admin
 	 */
-	public function manageUser(Request $request, $user)
+	public function manageAdmin(Request $request, $admin)
 	{
 		if (is_null($request->role)) return;
 		
@@ -38,16 +39,16 @@ trait PermissionModerator
 		$roles = Role::find($roles);
 
 		// check for current role changes
-		if( ! $user->hasAllRoles( $roles ) ) {
-			// reset all direct permissions for user
-			$user->permissions()->sync([]);
+		if( ! $admin->hasAllRoles( $roles ) ) {
+			// reset all direct permissions for admin
+			$admin->permissions()->sync([]);
 		} else {
 			// handle permissions
-			$user->syncPermissions($permissions);
+			$admin->syncPermissions($permissions);
 		}
 
-		$user->syncRoles($roles);
+		$admin->syncRoles($roles);
 
-		return $user;
+		return $admin;
 	}
 }

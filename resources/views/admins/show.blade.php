@@ -4,12 +4,12 @@
 
 	<div class="root">
 
-		@include('laramie::misc/models/restore-panel', ['model' => $user])
+		@include('laramie::misc/models/restore-panel', ['model' => $admin])
 
 		@component('laramie::misc/page-title')
 			@slot('superactions')
 				<div class="float-right">
-					<a href="{{ resource('edit', ['id' => $user->id]) }}" class="btn btn-success">
+					<a href="{{ resource('edit', ['id' => $admin->id]) }}" class="btn btn-success">
 						<i data-feather="edit-2" class="mr-2"></i>
 						Editar
 					</a>
@@ -21,13 +21,13 @@
 
 			@slot('icon')
 				<a class="page-icon">
-					<span title="{{ $user->fullName }}">{{ $user->initials }}</span>
+					<span title="{{ $admin->fullname }}">{{ $admin->initials }}</span>
 				</a>
 			@endslot
 
-			<span class="text-primary">#{{ $user->id }}</span>
+			<span class="text-primary">#{{ $admin->id }}</span>
 			<span class="text-muted">&rarr;</span>
-			{{ $user->full_name }}
+			{{ $admin->fullname }}
 		@endcomponent
 
 		<div class="row mb-5 justify-content-center">
@@ -41,15 +41,15 @@
 
 						<div class="form mt-3">
 							@modelProperty(['title' => 'Nombre Completo'])
-								{{ $user->full_name }}
+								{{ $admin->fullname }}
 							@endmodelProperty
 
 							@modelProperty(['title' => 'Email'])
-								{{ $user->email }}
+								{{ $admin->email }}
 							@endmodelProperty
 
 							@modelProperty(['title' => 'Creado'])
-								{{ $user->accountAge }}
+								{{ $admin->accountAge }}
 							@endmodelProperty
 						</div>
 						{{-- END form --}}
@@ -61,16 +61,16 @@
 			{{-- END col --}}
 
 			<div class="col-md-4">
-				@include('laramie::misc/models/additional-information', ['model' => $user])
+				@include('laramie::misc/models/additional-information', ['model' => $admin])
 			</div>
 			{{-- END col --}}
 		</div>
 		{{-- END row --}}
 
-		@if ($user->id != auth()->user()->id)
+		@if ($admin->id != admin()->id)
 			<div class="row mb-5 justify-content-center">
 				<div class="col-md-12">
-					@include('laramie::misc/models/delete-action', ['model' => $user])
+					@include('laramie::misc/models/delete-action', ['model' => $admin])
 				</div>
 				{{-- END col --}}
 			</div>

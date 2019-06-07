@@ -10,6 +10,34 @@ use Pandorga\Laramie\Http\Middleware\AppLocale;
 
 class LaramieServiceProvider extends ServiceProvider
 {
+    /**
+     * The application's route middleware.
+     *
+     * @var array
+     */
+    protected $routeMiddleware = [
+        'admin.auth'       => \Pandorga\Laramie\Http\Middleware\Authenticate::class,
+        // 'admin.pjax'       => \Pandorga\Laramie\Middleware\Pjax::class,
+        // 'admin.log'        => \Pandorga\Laramie\Middleware\LogOperation::class,
+        // 'admin.permission' => \Pandorga\Laramie\Middleware\Permission::class,
+        // 'admin.bootstrap'  => \Pandorga\Laramie\Middleware\Bootstrap::class,
+    ];
+
+    /**
+     * The application's route middleware groups.
+     *
+     * @var array
+     */
+    protected $middlewareGroups = [
+        'admin' => [
+            'admin.auth',
+            // 'admin.pjax',
+            // 'admin.log',
+            // 'admin.bootstrap',
+            // 'admin.permission',
+        ],
+    ];
+
 	/**
 	 * Perform post-registration booting of services.
 	 *
@@ -76,6 +104,16 @@ class LaramieServiceProvider extends ServiceProvider
 		], 'laramie-fonts');
 	}
 
+    /**
+     * Setup auth configuration.
+     *
+     * @return void
+     */
+protected function loadAdminAuthConfig()
+    {
+        config(array_dot(config('laramie.auth', []), 'auth.'));
+    }
+
 	public function loadResources()
 	{
 		// Migrations
@@ -98,7 +136,9 @@ class LaramieServiceProvider extends ServiceProvider
 	 */
 	public function register()
 	{
+        $this->loadAdminAuthConfig();
 		$this->registerThirdPartyVendors();
+        $this->registerRouteMiddleware();
 	}
 
 	public function registerThirdPartyVendors()
@@ -134,4 +174,22 @@ class LaramieServiceProvider extends ServiceProvider
 			require_once($filename);
 		}
 	}
+
+    /**
+     * Register the route middleware.
+     *
+     * @return void
+     */
+    protected function registerRouteMiddleware()
+    {
+        // register route middleware.
+        foreach ($this->routeMiddleware as $key => $middleware) {
+            app('router')->aliasMiddleware($key, $middleware);
+        }
+
+        // register middleware group.
+        foreach ($this->middlewareGroups as $key => $middleware) {
+            app('router')->middlewareGroup($key, $middleware);
+        }
+    }
 }

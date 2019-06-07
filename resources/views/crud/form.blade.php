@@ -24,14 +24,14 @@
 <div class="row">
 	<div class="col-md-6">
 		<div class="form-group">
-			<label for="first_name">Nombre</label>
-			<input type="text" class="form-control" id="first_name" name="first_name">
+			<label for="firstname">Nombre</label>
+			<input type="text" class="form-control" id="firstname" name="firstname">
 		</div>
 	</div>
 	<div class="col-md-6">
 		<div class="form-group">
-			<label for="last_name">Apellido</label>
-			<input type="text" class="form-control" id="last_name" name="last_name">
+			<label for="lastname">Apellido</label>
+			<input type="text" class="form-control" id="lastname" name="lastname">
 		</div>
 	</div>
 </div>
