@@ -3,7 +3,7 @@
 	{{ form()->text('name', null, ['class' => 'form-control']) }}
 </div>
 
-{{ form()->hidden('guard_name', 'web', ['class' => 'form-control']) }}
+{{ form()->hidden('guard_name', 'admin', ['class' => 'form-control']) }}
 
 <div class="form-group">
 	{{ form()->label('actions', 'Acciones', ['class' => 'control-label']) }}

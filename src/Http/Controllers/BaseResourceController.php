@@ -63,7 +63,7 @@ abstract class BaseResourceController extends Controller
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  \App\User  $user
+	 * @param  string $id Model's Instance Id
 	 * @return \Illuminate\Http\Response
 	 */
 	public function show($id)
