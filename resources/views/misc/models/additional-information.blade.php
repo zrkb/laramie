@@ -1,16 +1,16 @@
 <div class="card">
 	<div class="card-body">
 		<h5 class="card-title mb-4 pb-3 border-bottom">
-			<i data-feather="info" class="mr-2 text-primary"></i>
+			<i class="bx bx-info-circle text-primary mr-2"></i>
 			Información Adicional
 		</h5>
 
 		@modelProperty(['title' => 'Creado el'])
-			{{ $model->created_at->formatLocalized('%B %d, %Y @ %H:%mhs') }}
+			{{ $model->created_at->formatLocalized('%d de %B de %Y, %H:%mhs') }}
 		@endmodelProperty
 
 		@modelProperty(['title' => 'Última Modificación'])
-			{{ $model->updated_at->formatLocalized('%B %d, %Y @ %H:%mhs') }}
+			{{ $model->updated_at->formatLocalized('%d de %B de %Y, %H:%mhs') }}
 		@endmodelProperty
 
 		@if (method_exists($model, 'trashed'))

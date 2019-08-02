@@ -10,7 +10,7 @@
 			@slot('superactions')
 				<div class="float-right">
 					<a href="{{ resource('edit', ['id' => $admin->id]) }}" class="btn btn-success">
-						<i data-feather="edit-2" class="mr-2"></i>
+						<i class="bx bx-pencil mr-2"></i>
 						Editar
 					</a>
 					<a href="{{ resource('index') }}" class="btn btn-default">
@@ -35,7 +35,7 @@
 				<div class="card">
 					<div class="card-body">
 						<h5 class="card-title mb-4 pb-3 border-bottom">
-							<i data-feather="layers" class="mr-2 text-primary"></i>
+							<i class="bx bx-layer text-primary mr-2"></i>
 							Datos del Registro
 						</h5>
 

@@ -10,7 +10,7 @@ $avatar-bg:						#ECEDF3;
 $form-control-height:			44px;
 $form-control-height-sm:		37px;
 
-$bg:							#F8F9FD;
+$bg:							#F8F9FC;
 $border-light:					#E5E5EB;
 $card-header-footer:			#EFF3FA;
 
@@ -25,20 +25,16 @@ $type-300:						300;
 $type-400:						400;
 $type-500:						500;
 
-// $text-light:					#676B7F;
-$text-light:					#949CB1;
-// $text-base: 					#676B7F;
-// $text-base: 					#54586C;
-$text-base: 					#3c4858;
-// $text-bold:						#454850;
-$text-bold:						#1f2d3d;
+$text-light:					#a8afbb;
+$text-base: 					#647787;
+$text-bold:						#2b3035;
 
 $gray-100:						#f8f9fd !default;
 $gray-600:						$text-light !default;
 $gray-800:						#343C49 !default;
 $gray-900:						#1F2637 !default;
 
-$primary:						#3047ff;
+$primary:						#137eff;
 $secondary:						$bg;
 $success:						#20CE53;
 $info:							#30CEF5;
@@ -72,12 +68,11 @@ $theme-colors: (
 // Misc
 $body-bg:						$bg !default;
 $body-color:					$text-base !default;
-$border-color:					#d4d9e6 !default;
+$border-color:					rgba(72, 94, 144, 0.16) !default;
 
 // Font
-$font-family-sans-serif:		system-ui, -apple-system, BlinkMacSystemFont, "San Francisco", Roboto, "Segoe UI", "Helvetica Neue", sans-serif !default;
 $font-family-monospace:			"Roboto Mono", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
-$font-family-base:				"Apercu", "FaktProSoft", $font-family-sans-serif !default;
+$font-family-base:				-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
 
 $font-size-base:				1rem !default; // Assumes the browser default, typically `16px`
 
@@ -117,7 +112,7 @@ $form-text-margin-top: 			0.5rem;
 
 // Headings
 $headings-font-weight:			$type-400 !default;
-// $headings-color:				$text-bold !default;
+$headings-color:				$text-bold !default;
 
 // Modals
 $modal-bg:						#1F2430;
@@ -189,10 +184,10 @@ $breadcrumb-divider:			"\0002f" !default;
 $breadcrumb-padding-x:			0;
 
 // Buttons
-$btn-padding-y:					0.6rem !default;
-$btn-padding-x:					1.25rem !default;
-$btn-padding-y-sm:				0.5rem !default;
-$input-padding-y-sm:			1.16rem !default;
+$btn-padding-y:					0.55rem !default;
+$btn-padding-x:					1rem !default;
+$btn-padding-y-sm:				0.45rem !default;
+$input-padding-y-sm:			.95rem !default;
 
 // Jumbotron
 $jumbotron-bg:					$light !default;
@@ -217,6 +212,7 @@ $tooltip-padding-x:				.75rem !default;
 @import "datatables";
 @import "daterangepicker";
 @import "select2";
+@import "upload-box";
 
 // Generate alert modifier classes
 @each $color, $value in $theme-colors {
@@ -228,7 +224,6 @@ $tooltip-padding-x:				.75rem !default;
 
 body {
 	letter-spacing: 0;
-	-webkit-font-smoothing: antialiased;
 	font-weight: $type-400;
 }
 
@@ -462,9 +457,9 @@ $card-modal-space: 250px;
 	overflow-y: scroll;
 }
 
-.card-wrapper {
+.card-login-wrapper {
 	width: 100%;
-	max-width: 400px;
+	max-width: 350px;
 	margin: 0 auto;
 }
 
@@ -485,6 +480,28 @@ span.icon svg {
 	top: -1px;
 }
 
+.bx {
+	font-size: 140%;
+}
+
+.navbar-brand .bx {
+	position: relative;
+	top: 6px;
+}
+
+.card-title .bx,
+.btn .bx {
+	font-size: 110%;
+	position: relative;
+	top: 2px;
+}
+
+.page-icon .bx {
+	position: relative;
+	top: 4px;
+	font-size: 125%;
+}
+
 // Separator Line
 .separator-line {
 	border-bottom: 1px solid $border-color;
@@ -503,18 +520,19 @@ span.icon svg {
 }
 .dropdown-menu {
 	top: 130%;
+	padding: 5px;
 	// animation-name: animate-flyout;
 	// animation-duration: 0.2s;
 
 	.dropdown-item {
 		color: $text-bold;
 		font-size: .9rem;
+		@include border-radius(.25rem);
 
 		&:focus,
 		&:hover,
 		&.active {
-			background-color: transparent;
-			color: $primary;
+			background: #f5f6fa;
 		}
 
 		span {
@@ -543,10 +561,11 @@ span.icon svg {
 
 
 // Forms
-.form-property-static {
-	font-size: 1.05rem;
+.model-property {
+	font-size: 11px; line-height: 15px;
+	@extend .text-muted, .font-weight-bold, .text-uppercase, .mb-2;
+	letter-spacing: 0.6px;
 }
-
 .form-control {
 	&:focus {
 		box-shadow: none;
@@ -652,6 +671,7 @@ select.form-control {
 .btn {
 	cursor: pointer;
 	font-weight: $type-400;
+	font-size: .95rem;
 	color: white;
 	outline: none;
 	border: none;
@@ -907,174 +927,6 @@ pre {
 	}
 }
 
-// Upload File
-.upload-box {
-	font-size: 1.1rem;
-	position: relative;
-	padding: 100px 20px;
-	background-color: $bg;
-	border: 2px dashed $border-color;
-	@include border-radius(3px);
-
-	-webkit-transition: outline-offset .15s ease-in-out, border .15s linear;
-	transition: outline-offset .15s ease-in-out, border .15s linear;
-
-	&.has-advanced-upload {
-		-webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
-		transition: outline-offset .15s ease-in-out, background-color .15s linear;
-
-		.upload-dragndrop {
-			display: inline;
-		}
-	}
-
-	.upload-input {
-		text-align: center;
-	}
-
-	.upload-icon {
-		width: 100%;
-		height: 50px;
-		fill: $text-light;
-		display: block;
-		margin-bottom: 30px;
-	}
-
-	&.is-dragover {
-		border: 2px solid $primary;
-
-		.upload-icon {
-			fill: $primary;
-		}
-	}
-}
-
-.upload-box .upload-dragndrop,
-.upload-icon
-{
-	display: none;
-}
-
-.upload-box.is-uploading .upload-input,
-.upload-box.is-success .upload-input,
-.upload-box.is-error .upload-input
-{
-	visibility: hidden;
-}
-
-.upload-uploading,
-.upload-success,
-.upload-error
-{
-	text-align: center;
-	display: none;
-}
-.upload-box.is-uploading .upload-uploading,
-.upload-box.is-success .upload-success,
-.upload-box.is-error .upload-error
-{
-	display: block;
-	position: absolute;
-	top: 50%;
-	right: 0;
-	left: 0;
-
-	-webkit-transform: translateY( -50% );
-	transform: translateY( -50% );
-}
-.upload-uploading
-{
-	font-style: italic;
-	width: 30%;
-	margin: 0 auto;
-}
-.upload-success
-{
-	-webkit-animation: appear-from-inside .25s ease-in-out;
-	animation: appear-from-inside .25s ease-in-out;
-}
-
-	@-webkit-keyframes appear-from-inside
-	{
-		from	{ -webkit-transform: translateY( -50% ) scale( 0 ); }
-		75%		{ -webkit-transform: translateY( -50% ) scale( 1.1 ); }
-		to		{ -webkit-transform: translateY( -50% ) scale( 1 ); }
-	}
-	@keyframes appear-from-inside
-	{
-		from	{ transform: translateY( -50% ) scale( 0 ); }
-		75%		{ transform: translateY( -50% ) scale( 1.1 ); }
-		to		{ transform: translateY( -50% ) scale( 1 ); }
-	}
-
-.upload-file
-{
-	width: 0.1px;
-	height: 0.1px;
-	opacity: 0;
-	overflow: hidden;
-	position: absolute;
-	z-index: -1;
-}
-
-.upload-file + label
-{
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	cursor: pointer;
-	display: inline-block;
-	overflow: hidden;
-	margin: 0 auto;
-	text-align: center;
-	color: $text-base;
-
-	// strong {
-	// 	color: $primary;
-	// }
-}
-
-.upload-file + label:hover strong,
-.upload-file:focus + label strong,
-.upload-file.has-focus + label strong
-{
-	// color: $primary;
-}
-
-.upload-file:focus + label,
-.upload-file.has-focus + label
-{
-	outline: 1px dotted $text-base;
-	outline: -webkit-focus-ring-color auto 5px;
-}
-	.upload-file + label *
-	{
-		/* pointer-events: none; */ /* in case of FastClick lib use */
-	}
-
-.no-js .upload-file + label
-{
-	display: none;
-}
-
-.no-js .upload-button
-{
-	display: block;
-}
-.upload-button
-{
-	font-weight: 700;
-	color: #e5edf1;
-	background-color: #39bfd3;
-	display: none;
-	padding: 8px 16px;
-	margin: 40px auto 0;
-}
-	.upload-button:hover,
-	.upload-button:focus
-	{
-		background-color: #0f3c4b;
-	}
-
 .lead {
 	padding: 0.5rem 0;
 }
@@ -1088,14 +940,14 @@ pre {
 	bottom: 0;
 	left: 0;
 	z-index: 100; /* Behind the navbar */
-	padding: 65px 0 0; /* Height of navbar */
+	padding: 63px 0 0; /* Height of navbar */
 }
 
 .sidebar-sticky {
-	background-color: white;
+	background-color: $gray-900;
 	position: relative;
 	top: 0;
-	height: calc(100vh - 65px);
+	height: calc(100vh - 63px);
 	padding: $container-padding;
 	overflow-x: hidden;
 	overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
@@ -1150,7 +1002,7 @@ pre {
 
 .menu {
 	.menu-label {
-		color: $text-light;
+		// color: $text-light;
 		font-size: 0.75em;
 		text-transform: uppercase;
 		margin-top: .5rem;
@@ -1165,18 +1017,18 @@ pre {
 		padding: 0;
 		padding-bottom: 1rem;
 
+		li {
+			position: relative;
+		}
+
 		a {
-			color: $text-base;
+			color: $text-muted;
 			padding: 0.5em 0.75em;
 			display: flex;
 			font-size: 0.9rem;
 
 			@include hover-focus {
 				text-decoration: none;
-			}
-
-			&.active {
-				color: $primary;
 			}
 
 			.feather {
@@ -1194,6 +1046,22 @@ pre {
 		& > li > a {
 			padding-left: 0;
 			padding-right: 0;
+		}
+
+		& > li.active {
+
+			a {
+				color: $gray-100;
+			}
+
+			&::after {
+				content: '';
+				position: absolute;
+				top: -2px;
+				bottom: 0;
+				left: -32px;
+				border-left: 3px solid $primary;
+			}
 		}
 	}
 }
@@ -1464,4 +1332,8 @@ $disabled-color: darken($text-light, 10%);
 	& > *:last-child {
 		margin-bottom: 0;
 	}
+}
+
+.box-shadow {
+    box-shadow: 0 1px 3px rgba(0,0,0,.05), 0 -1px 0 rgba(0,0,0,.015);
 }

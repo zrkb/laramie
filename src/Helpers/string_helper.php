@@ -47,9 +47,14 @@ if (! function_exists('remove_thousands_separator')) {
 	}
 }
 
-
 if (! function_exists('format_amount')) {
 	function format_amount($amount, $prefix = 'Gs. ') : string {
 		return $prefix . add_thousands_separator($amount);
+	}
+}
+
+if (! function_exists('amount')) {
+	function amount($amount, $prefix = 'Gs. ') : string {
+		return format_amount($amount, $prefix);
 	}
 }

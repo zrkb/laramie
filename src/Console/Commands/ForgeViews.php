@@ -97,7 +97,7 @@ class ForgeViews extends GeneratorCommand
 			'SingularLowercaseBaseClass' => $singularLowercaseBaseClass,
 			'PluralLowercaseBaseClass'   => $pluralLowercaseBaseClass,
             'PluralSnakeBaseClass'       => $pluralSnakeBaseClass,
-			'FeatherIcon'                => $this->option('icon'),
+			'BoxIcon'                => $this->option('icon'),
 		];
 
 		return str_replace(array_keys($substitutions), array_values($substitutions), $stub);

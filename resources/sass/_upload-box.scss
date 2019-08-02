@@ -1,0 +1,167 @@
+// Upload File
+.upload-box {
+	font-size: 1.1rem;
+	position: relative;
+	padding: 100px 20px;
+	background-color: $bg;
+	border: 2px dashed $border-color;
+	@include border-radius(3px);
+
+	-webkit-transition: outline-offset .15s ease-in-out, border .15s linear;
+	transition: outline-offset .15s ease-in-out, border .15s linear;
+
+	&.has-advanced-upload {
+		-webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+		transition: outline-offset .15s ease-in-out, background-color .15s linear;
+
+		.upload-dragndrop {
+			display: inline;
+		}
+	}
+
+	.upload-input {
+		text-align: center;
+	}
+
+	.upload-icon {
+		width: 100%;
+		height: 50px;
+		fill: $text-light;
+		display: block;
+		margin-bottom: 30px;
+	}
+
+	&.is-dragover {
+		border: 2px solid $primary;
+
+		.upload-icon {
+			fill: $primary;
+		}
+	}
+}
+
+.upload-box .upload-dragndrop,
+.upload-icon
+{
+	display: none;
+}
+
+.upload-box.is-uploading .upload-input,
+.upload-box.is-success .upload-input,
+.upload-box.is-error .upload-input
+{
+	visibility: hidden;
+}
+
+.upload-uploading,
+.upload-success,
+.upload-error
+{
+	text-align: center;
+	display: none;
+}
+.upload-box.is-uploading .upload-uploading,
+.upload-box.is-success .upload-success,
+.upload-box.is-error .upload-error
+{
+	display: block;
+	position: absolute;
+	top: 50%;
+	right: 0;
+	left: 0;
+
+	-webkit-transform: translateY( -50% );
+	transform: translateY( -50% );
+}
+.upload-uploading
+{
+	font-style: italic;
+	width: 30%;
+	margin: 0 auto;
+}
+.upload-success
+{
+	-webkit-animation: appear-from-inside .25s ease-in-out;
+	animation: appear-from-inside .25s ease-in-out;
+}
+
+	@-webkit-keyframes appear-from-inside
+	{
+		from	{ -webkit-transform: translateY( -50% ) scale( 0 ); }
+		75%		{ -webkit-transform: translateY( -50% ) scale( 1.1 ); }
+		to		{ -webkit-transform: translateY( -50% ) scale( 1 ); }
+	}
+	@keyframes appear-from-inside
+	{
+		from	{ transform: translateY( -50% ) scale( 0 ); }
+		75%		{ transform: translateY( -50% ) scale( 1.1 ); }
+		to		{ transform: translateY( -50% ) scale( 1 ); }
+	}
+
+.upload-file
+{
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.upload-file + label
+{
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	cursor: pointer;
+	display: inline-block;
+	overflow: hidden;
+	margin: 0 auto;
+	text-align: center;
+	color: $text-base;
+
+	// strong {
+	// 	color: $primary;
+	// }
+}
+
+.upload-file + label:hover strong,
+.upload-file:focus + label strong,
+.upload-file.has-focus + label strong
+{
+	// color: $primary;
+}
+
+.upload-file:focus + label,
+.upload-file.has-focus + label
+{
+	outline: 1px dotted $text-base;
+	outline: -webkit-focus-ring-color auto 5px;
+}
+	.upload-file + label *
+	{
+		/* pointer-events: none; */ /* in case of FastClick lib use */
+	}
+
+.no-js .upload-file + label
+{
+	display: none;
+}
+
+.no-js .upload-button
+{
+	display: block;
+}
+.upload-button
+{
+	font-weight: 700;
+	color: #e5edf1;
+	background-color: #39bfd3;
+	display: none;
+	padding: 8px 16px;
+	margin: 40px auto 0;
+}
+	.upload-button:hover,
+	.upload-button:focus
+	{
+		background-color: #0f3c4b;
+	}

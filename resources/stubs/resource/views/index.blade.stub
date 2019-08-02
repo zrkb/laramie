@@ -9,14 +9,14 @@
 				
 				<a href="{{ resource('create') }}" class="btn btn-primary">
 					Añadir 
-					<i data-feather="plus" class="feather"></i>
+					<i class="bx bx-plus ml-1"></i>
 				</a>
 			@endslot
 
 			@slot('icon')
 				<a class="page-icon">
 					<span class="bg-primary text-white">
-						<i data-feather="FeatherIcon" class="feather"></i>
+						<i class="bx bxs-BoxIcon"></i>
 					</span>
 				</a>
 			@endslot
@@ -35,9 +35,9 @@
 							<tr>
 								<th class="tid">#ID</th>
 								<th>Nombre</th>
+								<th class="text-center w-10">Acciones</th>
 								<th class="w-20">Creado</th>
 								<th>Estado</th>
-								<th class="text-center w-10">Acciones</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -53,14 +53,14 @@
 											@endif
 										</a>
 									</td>
+									<td class="actions text-center">
+										@include('laramie::misc/models/crud-actions', ['model' => $SingularLowercaseBaseClass])
+									</td>
 									<td>
 										{{ $SingularLowercaseBaseClass->created_at }}
 									</td>
 									<td>
 										@include('laramie::misc/models/status-badge', ['model' => $SingularLowercaseBaseClass])
-									</td>
-									<td class="actions text-center">
-										@include('laramie::misc/models/crud-actions', ['model' => $SingularLowercaseBaseClass])
 									</td>
 								</tr>
 							@endforeach

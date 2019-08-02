@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
+<nav class="navbar navbar-expand-md bg-white border-bottom fixed-top">
 	<div class="container-fluid">
 		<a class="navbar-brand" href="{{ route('app') }}">
-			<i data-feather="box" width="24" height="24" class="mr-2"></i>
+			<i class="bx bxs-server mr-2"></i>
 			{{ env('APP_NAME') }}
 		</a>
 
@@ -13,7 +13,7 @@
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item">
 					<a class="nav-link" href="{{ route('activities.index') }}" title="Notificaciones">
-						<i data-feather="activity" class="feather"></i>
+						<i class="bx bx-terminal"></i>
 					</a>
 				</li>
 				<li class="nav-item dropdown">
@@ -33,7 +33,7 @@
 					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="profile-dropdown">
 						<a class="dropdown-item" href="{{ route('admins.show', ['id' => admin()->id]) }}">
 							{{ admin()->fullname }}
-							<span>{{ admin()->email }}</span>
+							<span class="text-muted">{{ admin()->email }}</span>
 						</a>
 
 						<div class="dropdown-divider"></div>

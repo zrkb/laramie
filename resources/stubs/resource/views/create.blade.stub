@@ -7,7 +7,8 @@
 			@slot('superactions')
 				<div class="float-right">
 					<a href="{{ resource('index') }}" class="btn btn-default">
-						@lang('laramie::resource.back-to-list') <i data-feather="arrow-right" class="ml-2"></i>
+						@lang('laramie::resource.back-to-list')
+						<i class="bx bx-right-arrow-alt ml-1"></i>
 					</a>
 				</div>
 			@endslot
@@ -15,7 +16,7 @@
 			@slot('icon')
 				<a class="page-icon">
 					<span class="bg-primary text-white">
-						<i data-feather="FeatherIcon" class="feather"></i>
+						<i class="bx bxs-BoxIcon"></i>
 					</span>
 				</a>
 			@endslot
@@ -27,7 +28,7 @@
 		
 			<div class="card card-body">
 				<h5 class="card-title mb-4 pb-3 border-bottom">
-					<i data-feather="terminal" class="mr-2 text-primary"></i>
+					<i class="bx bx-info-circle mr-2 text-primary"></i>
 					@lang('laramie::resource.complete-form')
 				</h5>
 

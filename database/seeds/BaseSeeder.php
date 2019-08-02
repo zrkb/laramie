@@ -9,7 +9,7 @@ abstract class BaseSeeder extends Seeder
 	public function seedFromJson($jsonFilePath, $model, $closure = null)
 	{
 		$jsonData = File::get(database_path($jsonFilePath));
-		$data = (json_decode($jsonData, true));
+		$object = (json_decode($jsonData, true));
 
 		if ($closure) {
 			$data = array_map(function($key, $item) use ($closure) {

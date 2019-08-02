@@ -24,7 +24,7 @@
 			@slot('icon')
 				<a class="page-icon">
 					<span class="bg-primary text-white">
-						<i data-feather="FeatherIcon" class="feather"></i>
+						<i data-feather="BoxIcon" class="feather"></i>
 					</span>
 				</a>
 			@endslot

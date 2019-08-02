@@ -102,7 +102,7 @@ You may want to generate a new resource using the `laramie:resource` Artisan com
 $ php artisan laramie:resource bookmarks --icon=bookmark
 ```
 
-> Specify an icon from [FeatherIcons](https://feathericons.com/) with the `--icon` option.
+> Specify an icon from [BoxIcons](https://feathericons.com/) with the `--icon` option.
 
 This will create the following files:
 

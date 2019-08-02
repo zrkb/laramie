@@ -6,26 +6,28 @@
 {{ form()->label('file', $title ?? 'Archivo', ['class' => 'control-label']) }}
 
 <div class="upload-wrapper">
-	<div class="file-preview @if($isMediaPresent == false) d-none @endif">
+	@if ($isMediaPresent)
+		<div class="file-preview">
 
-		@if ($media->isImage())
-			<img src="{{ $media->getUrl() }}" class="img-fluid img-thumbnail rounded" alt="{{ $media->name }}">
-		@else
-			<img src="/img/file-icon.svg" class="img-content" alt="{{ $media->name }}">
-		@endif
-	
-		<div class="d-flex justify-content-between py-2">
-			<span class="d-inline-block text-truncate" style="max-width: 75%;">
-				{{ $media->basename }} <small class="text-muted">({{ $media->getSize() }})</small>
-			</span>
-	
-			<a href="javascript:;" class="text-danger delete-file">
-				<i data-feather="trash-2" class="feather"></i>
-				<span>Borrar archivo</span>
-			</a>
+				@if ($media->isImage())
+					<img src="{{ $media->getUrl() }}" class="img-fluid img-thumbnail rounded" alt="{{ $media->name }}">
+				@else
+					<img src="/img/file-icon.svg" class="img-content" alt="{{ $media->name }}">
+				@endif
+		
+				<div class="d-flex justify-content-between py-2">
+					<span class="d-inline-block text-truncate" style="max-width: 75%;">
+						{{ $media->basename }} <small class="text-muted">({{ $media->getSize() }})</small>
+					</span>
+			
+					<a href="javascript:;" class="text-danger delete-file">
+						<i data-feather="trash-2" class="feather"></i>
+						<span>Borrar archivo</span>
+					</a>
+				</div>
 		</div>
-	</div>
-	{{-- END file-preview --}}
+		{{-- END file-preview --}}
+	@endif
 	
 	<div class="upload-box @if($isMediaPresent) d-none @endif">
 		<div class="upload-input">

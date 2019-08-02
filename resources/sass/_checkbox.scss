@@ -1,4 +1,4 @@
-$checkbox-size: 1.4rem;
+$checkbox-size: 1.3rem;
 
 // Checkboxes
 .form-check {
@@ -27,7 +27,7 @@ $checkbox-size: 1.4rem;
 			& + span {
 
 				&::before {
-					font-size: .7rem;
+					font-size: .65rem;
 					display: inline-block;
 					font-style: normal;
 					font-variant: normal;
@@ -41,6 +41,7 @@ $checkbox-size: 1.4rem;
 					border: 1px solid $border-color;
 					width: $checkbox-size;
 					height: $checkbox-size;
+					line-height: 2;
 					float: left;
 					margin-right: .7rem;
 

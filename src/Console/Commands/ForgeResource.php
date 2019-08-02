@@ -109,7 +109,7 @@ class ForgeResource extends Command
 		foreach ($abilities as $ability) {
 			$permissions[] = [
 				'name' => $ability . '_' . $route,
-				'guard_name' => 'web',
+				'guard_name' => 'admin',
 			];
 		}
 
@@ -117,7 +117,7 @@ class ForgeResource extends Command
 		Permission::insert($permissions);
 
 		// Asign to Developer Role
-		(Role::findByName(dev_role()))->syncPermissions(Permission::all());
+		(Role::findByName(dev_role(), 'admin'))->syncPermissions(Permission::all());
 	}
 
 	protected function getStub($type)

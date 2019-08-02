@@ -11,6 +11,8 @@
 				this.tables = $('.datatable');
 
 				this.language = {
+					"searchPlaceholder": "Buscar",
+					"sSearch":         "",
 					"sProcessing":     "Procesando...",
 					"sLengthMenu":     "Mostrar _MENU_ registros",
 					"sZeroRecords":    "No se encontraron resultados",
@@ -19,7 +21,6 @@
 					"sInfoEmpty":      "",
 					"sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
 					"sInfoPostFix":    "",
-					"sSearch":         "Buscar: ",
 					"sUrl":            "",
 					"sInfoThousands":  ",",
 					"sLoadingRecords": "Cargando ...",
