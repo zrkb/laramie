@@ -7,14 +7,14 @@
 			@slot('superactions')
 				<a href="{{ resource('create') }}" class="btn btn-primary">
 					Añadir 
-					<i data-feather="plus" class="feather"></i>
+					<i class="bx bx-plus ml-1"></i>
 				</a>
 			@endslot
 
 			@slot('icon')
 				<a class="page-icon">
 					<span class="bg-primary text-white">
-						<i data-feather="star" class="feather"></i>
+						<i class="bx bxs-star"></i>
 					</span>
 				</a>
 			@endslot

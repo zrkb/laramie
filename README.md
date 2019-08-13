@@ -22,12 +22,29 @@ $ composer require pandorga/laramie
 Or if you want to download the files, add the following configuration to the composer.json file:
 
 ```json
-"repositories": [
-    {
-        "type": "path",
-        "url": "../laramie"
-    }
-],
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../laramie"
+        }
+    ],
+```
+
+or if you are symlinking the package locally:
+
+```bash
+$ ln -s ../laramie laramie
+```
+
+```json
+
+    "repositories": [
+        {
+            "type": "path",
+            "url": "laramie",
+            "symlink": true
+        }
+    ],
 ```
 
 Next, add the package to the require section of your composer.json file:

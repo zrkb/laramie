@@ -28,7 +28,7 @@
 		
 			<div class="card card-body">
 				<h5 class="card-title mb-4 pb-3 border-bottom">
-					<i class="bx bx-info-circle mr-2 text-primary"></i>
+					<i class="bx bxs-edit-alt mr-2 text-primary"></i>
 					@lang('laramie::resource.complete-form')
 				</h5>
 

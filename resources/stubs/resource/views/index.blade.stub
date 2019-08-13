@@ -35,9 +35,9 @@
 							<tr>
 								<th class="tid">#ID</th>
 								<th>Nombre</th>
-								<th class="text-center w-10">Acciones</th>
-								<th class="w-20">Creado</th>
 								<th>Estado</th>
+								<th class="w-20">Creado</th>
+								<th class="text-center w-10">Acciones</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -53,14 +53,14 @@
 											@endif
 										</a>
 									</td>
-									<td class="actions text-center">
-										@include('laramie::misc/models/crud-actions', ['model' => $SingularLowercaseBaseClass])
-									</td>
 									<td>
 										{{ $SingularLowercaseBaseClass->created_at }}
 									</td>
 									<td>
 										@include('laramie::misc/models/status-badge', ['model' => $SingularLowercaseBaseClass])
+									</td>
+									<td class="actions text-center">
+										@include('laramie::misc/models/crud-actions', ['model' => $SingularLowercaseBaseClass])
 									</td>
 								</tr>
 							@endforeach
