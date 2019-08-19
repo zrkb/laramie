@@ -17,6 +17,7 @@ class LaramieServiceProvider extends ServiceProvider
      */
     protected $routeMiddleware = [
         'admin.auth'       => \Pandorga\Laramie\Http\Middleware\Authenticate::class,
+        'can_register'		=> \Pandorga\Laramie\Http\Middleware\CanRegister::class,
         // 'admin.pjax'       => \Pandorga\Laramie\Middleware\Pjax::class,
         // 'admin.log'        => \Pandorga\Laramie\Middleware\LogOperation::class,
         // 'admin.permission' => \Pandorga\Laramie\Middleware\Permission::class,

@@ -18,8 +18,12 @@ class Laramie
 		];
 
 		Route::group($attributes, function () {
-			Route::get('register', 'RegisterController@showRegistrationForm')->name('register');
-			Route::post('register', 'RegisterController@register');
+
+			Route::group(['middleware' => 'can_register'], function () {
+				Route::get('register', 'RegisterController@showRegistrationForm')->name('register');
+				Route::post('register', 'RegisterController@register');
+			});
+
 			Route::get('login', 'LoginController@showLoginForm')->name('login');
 			Route::post('login', 'LoginController@login');
 			Route::post('logout', 'LoginController@logout');

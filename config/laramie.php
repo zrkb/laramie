@@ -11,6 +11,8 @@ return [
 
 	'controller' => 'AppController',
 
+    'registration_enabled' => true,
+
     /*
      * Auth Guards
      */

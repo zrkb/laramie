@@ -72,12 +72,15 @@
                     <button class="btn btn-lg btn-block btn-primary mb-3">
                         @lang('laramie::login.submit-label')
                     </button>
-                    <!-- Link -->
-                    <div class="text-center">
-                        <span class="text-muted text-center">
-                            @lang('laramie::login.footer')
-                        </span>
-                    </div>
+
+                    @if (config('laramie.registration_enabled'))
+                        <!-- Link -->
+                        <div class="text-center">
+                            <span class="text-muted text-center">
+                                @lang('laramie::login.footer')
+                            </span>
+                        </div>
+                    @endif
                 </form>
             </div>
         </div>
