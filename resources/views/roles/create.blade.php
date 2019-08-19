@@ -35,10 +35,12 @@
 					@include('laramie::roles/form')
 
 					<div class="form-group mt-5 mb-3">
-						<a href="{{ resource('index') }}" class="btn btn-default mr-2">Cancelar</a>
+						<a href="{{ resource('index') }}" class="btn btn-white mr-2">
+							@lang('laramie::resource.cancel-form-button')
+						</a>
 
 						<button type="submit" class="btn btn-primary btn-activity">
-							Guardar
+							@lang('laramie::resource.submit-form-button')
 						</button>
 					</div>
 				</div>

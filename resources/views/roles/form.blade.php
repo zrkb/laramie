@@ -29,10 +29,10 @@
 						@endphp
 
 						<td class="text-center">
-							<div class="checkbox">
-								<label class="m-0">
-									{{ form()->checkbox('permissions[]', $action->name, $roleHasPermission) }}
-									<span></span>
+							<div class="custom-control custom-checkbox">
+								{{ form()->checkbox('permissions[]', $action->name, $roleHasPermission, ['class' => 'custom-control-input']) }}
+								<label class="custom-control-label m-0" for="ordersSelectOne">
+									&nbsp;
 								</label>
 							</div>
 						</td>
