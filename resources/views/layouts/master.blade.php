@@ -13,12 +13,9 @@
 
 	@include('laramie::layouts/styles')
 </head>
-
 <body>
 
-	<div id="app">
-		@yield('app')
-	</div>
+	@yield('app')
 
 	@include('laramie::layouts/scripts')
 </body>

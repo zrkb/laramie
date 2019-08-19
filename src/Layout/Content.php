@@ -15,7 +15,7 @@ class Content implements Htmlable, Renderable
 	 *
 	 * @var string
 	 */
-	protected $view = 'laramie::layouts/card';
+	protected $view = 'laramie::layouts/content';
 
 	/**
 	 * Content title.

@@ -1,9 +1,11 @@
 <div class="form-group">
 	@isset($title)
-		<div class="model-property">
+		<label class="text-muted">
 			{{ $title }}
-		</div>
+		</label>
 	@endisset
 	
-	<p class="form-control-static form-property-static text-dark">{{ $slot }}</p>
+	<p class="form-control-static form-property-static h3 mt-2 font-weight-normal">
+		{{ $slot }}
+	</p>
 </div>

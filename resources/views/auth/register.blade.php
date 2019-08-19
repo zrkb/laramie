@@ -1,77 +1,90 @@
-@extends('layouts.app')
+@extends('laramie::layouts/master')
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+@section('app')
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
-
-                                @if ($errors->has('name'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+<div class="d-flex align-items-center bg-auth border-top border-top-2 border-primary min-vh-100">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-12 col-md-6 offset-xl-2 offset-md-1 order-md-2 mb-5 mb-md-0">
+                <!-- Image -->
+                <div class="text-center">
+                    <img src="{{ asset('vendor/laramie/assets/img/illustrations/happiness.svg') }}" alt="..." class="img-fluid">
                 </div>
             </div>
+            <div class="col-12 col-md-5 col-xl-4 order-md-1 my-5">
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card-wrapper">
+                            @include('laramie::layouts/errors')
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Heading -->
+                <h1 class="display-4 text-center mb-3">
+                    @lang('laramie::register.welcome-title')
+                </h1>
+                
+                <!-- Subheading -->
+                <p class="text-muted text-center mb-5">
+                    @lang('laramie::register.welcome-slogan')
+                </p>
+                <!-- Form -->
+                <form action="{{ admin_base_path('register') }}" method="POST">
+                    @csrf
+                    <!-- Name -->
+                    <div class="form-group">
+                        <!-- Label -->
+                        <label>
+                            @lang('laramie::register.name-label')
+                        </label>
+                        <!-- Input -->
+                        {{ form()->text('firstname', null, ['class' => 'form-control', 'placeholder' => trans('laramie::register.name-placeholder') ]) }}
+                    </div>
+                    <!-- Email address -->
+                    <div class="form-group">
+                        <!-- Label -->
+                        <label>
+                            @lang('laramie::register.user-label')
+                        </label>
+                        <!-- Input -->
+                        {{ form()->email('email', null, ['class' => 'form-control', 'placeholder' => trans('laramie::register.user-placeholder') ]) }}
+                    </div>
+                    <!-- Password -->
+                    <div class="form-group">
+                        <!-- Label -->
+                        <label>
+                            @lang('laramie::register.password-label')
+                        </label>
+                        <!-- Input -->
+                        {{ form()->password('password', ['class' => 'form-control', 'placeholder' => trans('laramie::register.password-placeholder') ]) }}
+                    </div>
+                    <!-- Password Confirmation -->
+                    <div class="form-group">
+                        <!-- Label -->
+                        <label>
+                            @lang('laramie::register.password-confirmation-label')
+                        </label>
+                        <!-- Input -->
+                        {{ form()->password('password_confirmation', ['class' => 'form-control', 'placeholder' => trans('laramie::register.password-confirmation-placeholder') ]) }}
+                    </div>
+                    <!-- Submit -->
+                    <button class="btn btn-lg btn-block btn-primary mb-3">
+                        @lang('laramie::register.submit-label')
+                    </button>
+                    <!-- Link -->
+                    <div class="text-center">
+                        <span class="text-muted text-center">
+                            @lang('laramie::register.footer')
+                        </span>
+                    </div>
+                </form>
+            </div>
         </div>
+        <!-- / .row -->
     </div>
+    <!-- / .container -->
 </div>
+
 @endsection

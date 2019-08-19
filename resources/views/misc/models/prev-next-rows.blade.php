@@ -1,7 +1,7 @@
 @php
 	$prev = $model->prev();
 	$next = $model->next();
-	$buttonStyle = 'btn-default';
+	$buttonStyle = 'btn-white';
 @endphp
 
 <a href="{{ resource('show', $prev ? $prev->id : $model->id) }}" role="button"
@@ -11,7 +11,7 @@
 	@else
 		class="btn {{ $buttonStyle }} disabled" tabindex="-1" aria-disabled="true"
 	@endif>
-	<i data-feather="chevron-left"></i>
+	<i class='bx bx-chevron-left'></i>
 </a>
 
 <a href="{{ resource('show', $next ? $next->id : $model->id) }}" role="button"
@@ -21,5 +21,5 @@
 	@else
 		class="btn {{ $buttonStyle }} disabled" tabindex="-1" aria-disabled="true"
 	@endif>
-	<i data-feather="chevron-right"></i>
+	<i class='bx bx-chevron-right'></i>
 </a>

@@ -9,6 +9,16 @@ class Permission extends \Spatie\Permission\Models\Permission
 {
 	use ResourceModel, HasPrevNext;
 
+	/**
+	 * The attributes that are mass assignable.
+	 *
+	 * @var array
+	 */
+	protected $fillable = [
+		'name',
+		'guard_name',
+	];
+
 	public static function groupedByRoutes()
 	{
 		$permissions = static::orderBy('name')->get();

@@ -34,7 +34,7 @@
 			<div class="col-md-8">
 				<div class="card">
 					<div class="card-body">
-						<h5 class="card-title mb-4 pb-3 border-bottom">
+						<h5 class="card-title mb-4 pb-4 border-bottom">
 							<i class="bx bx-layer text-primary mr-2"></i>
 							Datos del Registro
 						</h5>

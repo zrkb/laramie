@@ -6,6 +6,16 @@ use Pandorga\Laramie\Html\Html;
 use Pandorga\Laramie\Html\Elements\Form;
 use Pandorga\Laramie\Laramie;
 
+if (! function_exists('assets_path')) {
+    /**
+     * @return string
+     */
+    function assets_path()
+    {
+        return '/vendor/laramie';
+    }
+}
+
 if (! function_exists('laramie')) {
     /**
      * @return \Pandorga\Laramie\Laramie

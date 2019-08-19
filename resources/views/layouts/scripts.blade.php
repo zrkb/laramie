@@ -1,11 +1,25 @@
-<!-- Scripts -->
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<!-- JAVASCRIPT
+================================================== -->
+<!-- Libs JS -->
+<script src="{{ assets_path() }}/assets/libs/jquery/dist/jquery.min.js"></script>
+<script src="{{ assets_path() }}/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{ assets_path() }}/assets/libs/@shopify/draggable/lib/es5/draggable.bundle.legacy.js"></script>
+<script src="{{ assets_path() }}/assets/libs/autosize/dist/autosize.min.js"></script>
+<script src="{{ assets_path() }}/assets/libs/chart.js/dist/Chart.min.js"></script>
+<script src="{{ assets_path() }}/assets/libs/dropzone/dist/min/dropzone.min.js"></script>
+<script src="{{ assets_path() }}/assets/libs/flatpickr/dist/flatpickr.min.js"></script>
+<script src="{{ assets_path() }}/assets/libs/highlightjs/highlight.pack.min.js"></script>
+<script src="{{ assets_path() }}/assets/libs/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
+<script src="{{ assets_path() }}/assets/libs/list.js/dist/list.min.js"></script>
+<script src="{{ assets_path() }}/assets/libs/quill/dist/quill.min.js"></script>
+<script src="{{ assets_path() }}/assets/libs/select2/dist/js/select2.min.js"></script>
+<script src="{{ assets_path() }}/assets/libs/chart.js/Chart.extension.min.js"></script>
+<script src="{{ assets_path() }}/assets/libs/bootbox/bootbox.js"></script>
 
-<script src="{{ asset('vendor/laramie/libs/bootbox/bootbox.js') }}"></script>
-<script src="{{ asset('vendor/laramie/libs/mask/jquery.mask.js') }}"></script>
-<script src="{{ asset('vendor/laramie/libs/select2/select2.min.js') }}"></script>
-<script src="{{ mix('/js/app.js', 'vendor/laramie') }}" defer></script>
+<!-- Map -->
+<script src='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+
+<!-- Theme JS -->
+<script src="{{ mix('/assets/js/app.js', 'vendor/laramie') }}" defer></script>
 
 @stack('scripts')

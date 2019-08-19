@@ -2,64 +2,88 @@
 
 @section('app')
 
-	<div class="mt-5 pt-4">
-		<section class="h-100">
-			<div class="container h-100">
-				<div class="row">
-					<div class="col-12">
-						<div class="card-wrapper">
-							@include('laramie::layouts/errors')
-						</div>
-					</div>
-				</div>
+<div class="d-flex align-items-center bg-auth border-top border-top-2 border-primary min-vh-100">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-12 col-md-6 offset-xl-2 offset-md-1 order-md-2 mb-5 mb-md-0">
+                <!-- Image -->
+                <div class="text-center">
+                    <img src="{{ asset('vendor/laramie/assets/img/illustrations/happiness.svg') }}" alt="..." class="img-fluid">
+                </div>
+            </div>
+            <div class="col-12 col-md-5 col-xl-4 order-md-1 my-5">
 
-				<div class="row justify-content-md-center h-100">
-					<div class="card-login-wrapper">
-						<div class="card card-shadow">
-							<div class="card-body">
-								<h5 class="card-title pb-3 mt-2 mb-4 border-bottom">
-									@lang('laramie::login.welcome-title')
-								</h5>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card-wrapper">
+                            @include('laramie::layouts/errors')
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Heading -->
+                <h1 class="display-4 text-center mb-3">
+                    @lang('laramie::login.welcome-title')
+                </h1>
+                
+                <!-- Subheading -->
+                <p class="text-muted text-center mb-5">
+                    @lang('laramie::login.welcome-slogan')
+                </p>
+                <!-- Form -->
+                <form action="{{ admin_base_path('login') }}" method="POST">
+                    @csrf
+                    <!-- Email address -->
+                    <div class="form-group">
+                        <!-- Label -->
+                        <label>
+                            @lang('laramie::login.user-label')
+                        </label>
+                        <!-- Input -->
+                        <input
+                            name="email"
+                            type="email"
+                            class="form-control"
+                            placeholder="@lang('laramie::login.user-placeholder')">
+                    </div>
+                    <!-- Password -->
+                    <div class="form-group">
+                        <!-- Label -->
+                        <label>
+                            @lang('laramie::login.password-label')
+                        </label>
+                        <!-- Input group -->
+                        <div class="input-group input-group-merge">
+                            <!-- Input -->
+                            <input
+                                name="password"
+                                type="password"
+                                class="form-control form-control-appended"
+                                placeholder="@lang('laramie::login.password-placeholder')">
+                            <!-- Icon -->
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                    <i class="fe fe-eye"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Submit -->
+                    <button class="btn btn-lg btn-block btn-primary mb-3">
+                        @lang('laramie::login.submit-label')
+                    </button>
+                    <!-- Link -->
+                    <div class="text-center">
+                        <span class="text-muted text-center">
+                            @lang('laramie::login.footer')
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- / .row -->
+    </div>
+    <!-- / .container -->
+</div>
 
-								<form action="{{ admin_base_path('login') }}" method="POST">
-									@csrf
-
-									<div class="form-group">
-										<label class="control-label">@lang('laramie::login.user-label')</label>
-
-										<input
-											name="email"
-											type="email"
-											class="form-control"
-											placeholder="@lang('laramie::login.user-placeholder')">
-									</div>
-
-									<div class="form-group">
-										<label class="control-label">@lang('laramie::login.password-label')</label>
-										
-										<input
-											name="password"
-											type="password"
-											class="form-control"
-											placeholder="@lang('laramie::login.password-placeholder')">
-									</div>
-
-									<div class="form-group mt-5 mb-3">
-										<button
-											type="submit"
-											class="btn btn-primary btn-block">
-											@lang('laramie::login.submit-label')
-										</button>
-									</div>
-								</form>
-							</div>
-						</div>
-						<div class="text-center text-muted p-4">
-							@lang('laramie::login.footer')
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-	</div>
 @endsection

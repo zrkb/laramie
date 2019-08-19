@@ -16,7 +16,7 @@ class Table implements Htmlable, Renderable
 	 *
 	 * @var String
 	 */
-	protected $view = 'laramie::widgets/table';
+	protected $view = 'laramie::layouts/table';
 
     /**
      * @var Illuminate\Support\Collection

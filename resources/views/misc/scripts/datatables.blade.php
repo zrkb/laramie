@@ -99,6 +99,16 @@
 
 			init()
 			{
+
+				$.fn.dataTable.Buttons.defaults.dom.button.className = 'btn btn-sm btn-white px-3';
+
+				var extensions = {
+					"sWrapper": "dataTables_wrapper dt-bootstrap4",
+					"sFilterInput": "form-control form-control-flush search"
+				}
+
+				$.extend($.fn.dataTableExt.oStdClasses, extensions);
+
 				this.tables.each((index, element) => {
 					let table = $(element);
 					let userDefaults = {};

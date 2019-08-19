@@ -6,7 +6,7 @@ trait AdminPresenter
 {
     public function getInitialsAttribute()
     {
-        return $this->firstname[0] . $this->lastname[0];
+        return $this->firstname[0] ?? 'X' . $this->lastname[0] ?? '';
     }
 
     public function getFullnameAttribute()

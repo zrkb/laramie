@@ -1,9 +1,9 @@
 <div class="card border-danger">
 	<div class="card-body">
-		<h5 class="card-title mb-4 pb-3 border-bottom text-danger">
-			<i data-feather="trash-2" class="mr-2"></i>
+		<h3 class="card-title mb-4 pb-4 border-bottom text-danger font-weight-normal">
+			<i class='bx bx-trash-alt mr-2'></i>
 			Eliminar Registro
-		</h5>
+		</h3>
 
 		@if (
 			method_exists($model, 'trashed') == false ||

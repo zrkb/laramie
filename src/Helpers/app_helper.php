@@ -48,24 +48,6 @@ if (! function_exists('check')) {
 	}
 }
 
-if (!function_exists('asset_url')) {
-    /**
-     * Genera una URL del Theme para los assets de la aplicación con cachebusting.
-     *
-     * @param  string $path
-     * @param  bool $secure
-     * 
-     * @return string
-     */
-    function asset_url($path, $secure = null)
-    {
-        $currentTheme = app(\Karlomikus\Theme\Contracts\ThemeInterface::class)->get()->getNamespace();
-        $file = 'themes' . DIRECTORY_SEPARATOR . $currentTheme . DIRECTORY_SEPARATOR . $path;
-
-        return app('url')->asset($file . '?' . cached(), $secure);
-    }
-}
-
 if (!function_exists('cached')) {
 	function cached()
 	{
@@ -128,18 +110,4 @@ if (!function_exists('admin_base_path')) {
 
         return $prefix.'/'.trim($path, '/');
     }
-}
-
-if (!function_exists('toc_file')) {
-	function toc_file()
-	{
-	    return asset('docs/challenge/Bases-y-Condiciones-Desafio-2019.pdf');
-	}
-}
-
-if (!function_exists('brochure_file')) {
-	function brochure_file()
-	{
-	    return asset('docs/challenge/Brochure-Desafio-2019.pdf');
-	}
 }

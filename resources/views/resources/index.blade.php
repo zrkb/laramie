@@ -1,0 +1,72 @@
+@extends('laramie::layouts/table')
+
+@section('content')
+
+	@component('laramie::misc/page-title')
+		@slot('superactions')
+			<a href="{{ resource('create') }}" class="btn btn-primary lift">
+				Añadir
+				<i class="bx bx-plus ml-1"></i>
+			</a>
+		@endslot
+
+		@include('laramie::misc/models/segments')
+
+		{{ $resource->label() }}
+	@endcomponent
+
+    @include('laramie::layouts/errors')
+    @include('laramie::layouts/flash')
+
+	<div class="card">
+		<div class="card-header">
+			@include('laramie::misc/table-tools')
+		</div>
+
+		@if ($items->isNotEmpty())
+			<div class="table-responsive">
+				<table class="table table-hover card-table datatable">
+					<thead>
+						<tr>
+							@foreach ($resource->indexFields() as $field)
+								@php
+									$tdClass = $field->attribute == 'id' ? 'class=tid' : ''
+								@endphp
+								<th {{ $tdClass }}>{{ $field->name }}</th>
+							@endforeach
+							<th class="text-center">Status</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach($items as $item)
+							<tr>
+								@foreach ($resource->indexFields() as $field)
+									@php
+										$tdClass = $field->attribute == 'id' ? 'class=tid' : ''
+									@endphp
+									<td {{ $tdClass }}>{{ $field->renderForIndex($item) }}</td>
+								@endforeach
+
+								<td class="actions text-center">
+									@include('laramie::misc/models/status-badge', ['model' => $item])
+								</td>
+								<td class="actions text-center">
+									@include('laramie::misc/models/crud-actions', ['model' => $item])
+								</td>
+							</tr>
+						@endforeach
+					</tbody>
+				</table>
+				{{-- END datatables --}}
+			</div>
+			{{-- END table-responsive --}}
+		@else
+			@include('laramie::layouts/empty', [
+				'route' => resource('create'),
+			])
+		@endif
+	</div>
+	<!-- END card -->
+
+@endsection

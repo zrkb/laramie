@@ -1,26 +1,29 @@
-<div class="page-loading mt-4 text-center">
+<div class="card-body text-center">
 
-	@isset($icon)
-		<h1 class="h1 text-primary">
-			<i data-feather="{{ $icon }}" style="width: 50px; height: 50px;"></i>
+	<div class="my-5 pb-3">
+		<!-- Image -->
+		<img src="{{ assets_path() }}/assets/img/illustrations/coworking.svg" alt="..." class="img-fluid mb-4" style="max-width: 182px;">
+
+		<!-- Title -->
+		<h1>
+			{{ $message ?? 'No se encontraron resultados' }}
 		</h1>
-	@endisset
 
-	<h3 class="page-loading-title">{{ $message ?? 'No se encontraron resultados' }}</h3>
-
-	<p class="page-loading-description mb-5">
-		<span class="mb-4 d-block">
+		<!-- Subtitle -->
+		<p class="text-muted">
 			@if (isset($description))
 				{{ $description }}
 			@else
-				Puedes agregar más items haciendo <br>click en el botón de abajo.
+				Puedes agregar más items haciendo click en Agregar.
 			@endif
-		</span>
-		
+		</p>
+
+		<!-- Button -->
 		@isset($route)
-			<a href="{{ $route }}" class="btn btn-primary btn-block">
+			<a href="{{ $route }}" class="btn btn-primary px-4 lift">
 				Añadir
 			</a>
 		@endisset
-	</p>
+	</div>
+
 </div>

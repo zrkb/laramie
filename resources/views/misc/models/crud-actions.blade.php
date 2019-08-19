@@ -1,7 +1,7 @@
 <div class="dropdown">
 	<a href="javascript:;" id="crud-actions-{{ $model->getKey() }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		<span class="action-item">
-			<i data-feather="more-horizontal"></i>
+			<i class='bx bx-dots-horizontal-rounded'></i>
 		</span>
 	</a>
 

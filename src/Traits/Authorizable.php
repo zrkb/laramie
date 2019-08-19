@@ -39,9 +39,15 @@ trait Authorizable
 	public function getAbility($method)
 	{
 		$routeName = $this->getRouteName();
+		$resource = $routeName[0];
+
+		if (strlen($resource) == 0) {
+			$resource = request()->route('resource');
+		}
+
 		$action = array_get($this->getAbilities(), $method);
 
-		return $action ? $action . '_' . $routeName[0] : $method . '_' . $routeName[0];
+		return $action ? $action . '_' . $resource : $method . '_' . $resource;
 	}
 
 	private function getRouteName() : array

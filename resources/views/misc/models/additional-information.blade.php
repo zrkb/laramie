@@ -1,9 +1,9 @@
 <div class="card">
 	<div class="card-body">
-		<h5 class="card-title mb-4 pb-3 border-bottom">
+		<h3 class="card-title mb-4 pb-4 border-bottom font-weight-normal">
 			<i class="bx bx-info-circle text-primary mr-2"></i>
 			Información Adicional
-		</h5>
+		</h3>
 
 		@modelProperty(['title' => 'Creado el'])
 			{{ $model->created_at->formatLocalized('%d de %B de %Y, %H:%mhs') }}

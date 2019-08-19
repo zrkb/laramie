@@ -2,12 +2,13 @@
 
 namespace Pandorga\Laramie\Http\Controllers;
 
+use Illuminate\Http\Request;
+use Pandorga\Laramie\Http\Controllers\BaseController;
 use Pandorga\Laramie\Models\Permission;
 use Pandorga\Laramie\Models\Role;
 use Pandorga\Laramie\Traits\PermissionModerator;
-use Illuminate\Http\Request;
 
-class RolesController extends ResourceController
+class RolesController extends BaseController
 {
 	use PermissionModerator;
 

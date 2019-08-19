@@ -2,48 +2,10 @@
 
 namespace Pandorga\Laramie;
 
-use Closure;
 use Illuminate\Support\Facades\Route;
-use Pandorga\Laramie\Dashboard\Display;
-use Pandorga\Laramie\Layout\Content;
-use Pandorga\Laramie\Layout\Detail;
-use Pandorga\Laramie\Layout\Table;
 
 class Laramie
 {
-	/**
-	 * @var \Pandorga\Laramie\Dashboard\Display
-	 */
-	protected $display;
-	
-	/**
-	 * Create a new Skeleton Instance
-	 */
-	public function __construct(Display $display)
-	{
-		$this->display = $display;
-	}
-
-    public function content(Closure $callable = null)
-    {
-        return new Content($callable);
-    }
-
-    public function detail(Closure $callable = null)
-    {
-        return new Detail($callable);
-    }
-
-    public function table(Closure $callable = null)
-    {
-        return new Table($callable);
-    }
-
-	public function display()
-	{
-		return $this->display;
-	}
-
 	/**
 	 * Auth routes.
 	 */
@@ -51,14 +13,30 @@ class Laramie
 	{
 		$attributes = [
 			'prefix'     => config('laramie.route.prefix'),
-			'namespace'  => '\Pandorga\Laramie\Http\Controllers',
+			'namespace'  => '\Pandorga\Laramie\Http\Controllers\Auth',
 			'middleware' => 'web',
 		];
 
 		Route::group($attributes, function () {
-			Route::get('login', 'LoginController@showLoginForm');
+			Route::get('register', 'RegisterController@showRegistrationForm')->name('register');
+			Route::post('register', 'RegisterController@register');
+			Route::get('login', 'LoginController@showLoginForm')->name('login');
 			Route::post('login', 'LoginController@login');
 			Route::post('logout', 'LoginController@logout');
+		});
+	}
+
+	public function resource($resource, $controller)
+	{
+		$attributes = [
+			'namespace'  => config('laramie.route.namespace'),
+			'middleware' => config('laramie.route.middleware'),
+		];
+
+		Route::group($attributes, function () use ($resource, $controller) {
+			Route::resource($resource, $controller);
+			Route::post("{$resource}/{id}/restore", "{$controller}@restore")
+				 ->name("{$resource}.restore");
 		});
 	}
 }

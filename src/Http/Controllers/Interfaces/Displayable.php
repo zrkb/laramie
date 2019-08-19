@@ -5,7 +5,7 @@ namespace Pandorga\Laramie\Http\Controllers\Interfaces;
 trait Displayable
 {
     protected $title = 'Blank Page';
-    protected $label = 'Item';
+    protected $label = 'Items';
 
     public function getItems()
     {

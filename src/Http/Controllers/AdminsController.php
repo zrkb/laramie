@@ -7,7 +7,7 @@ use Pandorga\Laramie\Models\Admin;
 use Pandorga\Laramie\Traits\PermissionModerator;
 use Illuminate\Http\Request;
 
-class AdminsController extends ResourceController
+class AdminsController extends BaseController
 {
 	use PermissionModerator;
 

@@ -8,7 +8,7 @@
 				@include('laramie::misc/models/segments')
 				
 				<a href="{{ resource('create') }}" class="btn btn-primary">
-					Añadir 
+					Añadir
 					<i class="bx bx-plus ml-1"></i>
 				</a>
 			@endslot

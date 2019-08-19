@@ -2,149 +2,164 @@
 
 namespace Pandorga\Laramie\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use Illuminate\Http\FormRequest;
-use Illuminate\Support\Collection;
-use Illuminate\Container\Container as App;
-use Pandorga\Laramie\Facades\Admin;
-use Pandorga\Laramie\Layout\Content;
-use Pandorga\Laramie\Layout\Table;
-use Pandorga\Laramie\Http\Controllers\Interfaces\Displayable;
-use Pandorga\Laramie\Repositories\BaseRepository;
+use Pandorga\Laramie\Http\Requests\ResourceIndexRequest;
 
-abstract class BaseResourceController extends Controller
+abstract class BaseResourceController extends BaseController
 {
-	use Displayable;
+    protected $resource;
 
-	/**
-	 * @var app
-	 */
-	protected $app;
+    public function index()
+    {
+        $items = $this->getModel()::all();
+        $resource = new $this->resource($items);
 
-	/**
-	 * @var repository
-	 */
-	protected $repository;
+        return view('laramie::resources/index', compact('items', 'resource'));
+    }
 
-	public function __construct(App $app)
-	{
-		$this->app = $app;
-		$this->makeRepository();
-	}
+    public function show($id)
+    {
+        $item = $this->getModel()::findOrFail($id);
+        $resource = new $this->resource($item);
 
-	public function makeRepository()
-	{
-		$repository = $this->app->make($this->repository());
- 
-		if (!$repository instanceof BaseRepository) {
-			throw new Exception("Class {$this->repository()} must be an instance of Pandorga\\Laramie\\Repositories\\BaseRepository");
-		}
- 
-		return $this->repository = $repository;
-	}
+        return view('laramie::resources/show', compact('item', 'resource'));
+    }
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	public function index()
-	{
-		$items = $this->repository->getAll();
+    public function create()
+    {
+        $item = $this->resource::newModel();
+        $resource = new $this->resource($item);
 
-		return Laramie::content(function (Content $content) use ($items) {
-			$content->title('Lista de ' . $this->getLabel());
-			$content->body($this->list($items)->render());
-		});
-	}
+        return view('laramie::resources/create', compact('item', 'resource'));
+    }
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  string $id Model's Instance Id
-	 * @return \Illuminate\Http\Response
-	 */
-	public function show($id)
-	{
-		$item = $this->repository->findById($id);
-		return $this->detail($item);
-	}
+    public function store(Request $request)
+    {
+        $model = $this->resource::newModel();
+        $resource = new $this->resource($model);
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
-	public function create()
-	{
-		return Laramie::content(function (Content $content) use ($items) {
-			$content->title('Añadir ' . $this->getLabel());
-			$content->body($this->form());
-		});
-	}
+        $this->validate($request, $resource->createRules());
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @return \Illuminate\Http\Response
-	 */
-	public function store()
-	{
-	}
+        // Remove unexistent data from rules
+        $data = array_intersect_key($request->all(), array_flip($model->getFillable()));
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  \String $id
-	 * @return \Illuminate\Http\Response
-	 */
-	public function edit($id)
-	{
-		return view('laramie::crud/edit');
-	}
+        $item = $model::create($data);
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @param  \String $id
-	 * @return \Illuminate\Http\Response
-	 */
-	public function update(FormRequest $request, $id)
-	{
-		return view('laramie::crud/edit');
-	}
+        if ($item) {
+            session()->flash('success', 'El registro ha sido creado exitosamente.');
+        } else {
+            session()->flash('error', 'Error al crear el registro. Consulte con el administrador.');
+        }
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  \String $id
-	 * @return \Illuminate\Http\Response
-	 */
-	public function destroy($id)
-	{	
-		if ($this->repository->delete($id)) {
-			session()->flash('success', 'Registro eliminado exitosamente.');	
-		} else {
-			session()->flash('danger', 'No se pudo eliminar el registro. Por favor comuníquese con el administrador.');
-		}
+        return redirect(resource('index'));
+    }
 
-		return redirect()->route(resource('index'));
-	}
+    public function edit(Request $request, $id)
+    {
+        $item = $this->getModel()::findOrFail($id);
+        $resource = new $this->resource($item);
 
-	/**
-	 * Specify Repository class name
-	 *
-	 * @return class
-	 */
-	abstract public function repository();
+        return view('laramie::resources/edit', compact('item', 'resource'));
+    }
 
-	abstract public function list($items);
+    public function update(Request $request, $id)
+    {
+        $model = $this->resource::newModel();
+        $resource = new $this->resource($model);
+        $item = $model::findOrFail($id);
 
-	abstract public function detail($item);
+        $this->validate($request, $resource->updateRules($id));
 
-	abstract public function form();
+        // Remove unexistent data from rules
+        $data = array_intersect_key($request->all(), array_flip($model->getFillable()));
+
+        if ($item->update($data)) {
+            session()->flash('success', 'El registro ha sido modificado exitosamente.');
+        } else {
+            session()->flash('error', 'Error al modificar el registro. Consulte con el administrador.');
+        }
+
+        return redirect(resource('show', $id));
+    }
+
+
+    public function restore($id)
+    {
+        $instance = $this->getModel()::withTrashed()->find($id);
+
+        if ($instance->restore()) {
+            session()->flash('info', 'El registro ha sido restaurado exitosamente.');
+        } else {
+            session()->flash('danger', 'No se pudo restaurar el registro. Por favor comuníquese con el administrador.');
+        }
+
+        return back();
+    }
+
+    public function getModelInstance($id)
+    {
+        $model = $this->getModel();
+
+        if ((new $model)->hasSoftDelete()) {
+            return $model::withTrashed()->find($id);
+        }
+
+        return $model::find($id);
+    }
+
+    public function destroy($id)
+    {
+        $instance = $this->getModelInstance($id);
+        $redirectTo = $instance->willForceDelete() ? redirect(resource('index')) : back();
+        $flashMessage = $this->getSuccessDeleteMessage($instance);
+
+        if ($this->destroyModel($instance)) {
+            session()->flash('success', $flashMessage);
+        } else {
+            session()->flash('danger', 'No se pudo eliminar el registro. Por favor comuníquese con el administrador.');
+        }
+
+        return $redirectTo;
+    }
+
+    /**
+     * Perform delete or forceDelete acording to model status.
+     * 
+     * @return bool|null
+     */
+    public function destroyModel(Model $instance)
+    {
+        if ($instance->hasSoftDelete() && $instance->trashed()) {
+
+            try {
+                $result = $instance->forceDelete();
+            } catch (\Illuminate\Database\QueryException $exception) {
+                return false;
+            }
+
+            return $result;
+        }
+
+        return $instance->delete();
+    }
+
+    public function getSuccessDeleteMessage(Model $instance) : string
+    {
+        return $instance->willForceDelete() ?
+            'El registro se ha eliminado exitosamente de la Base de Datos' :
+            'Registro inactivado exitosamente.';
+    }
+
+    /**
+     * Return resource model.
+     * 
+     * @return string
+     */
+    public function getModel() : string
+    {
+        $model = $this->resource::$model;
+
+        return $model;
+    }
 }

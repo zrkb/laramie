@@ -11,12 +11,10 @@
 	{{ old('actions[]') }}
 
 	@foreach($actions as $action => $label)
-		<div class="checkbox">
-			<label for="action_{{ $action }}">
-				{{ form()->checkbox("actions[{$action}]", $action, true, ['id' => "action_{$action}"]) }}
-				<span>
-					{{ $label }}
-				</span>
+		<div class="custom-control custom-checkbox mt-3">
+				{{ form()->checkbox("actions[{$action}]", $action, true, ['id' => "action_{$action}", 'class' => 'custom-control-input']) }}
+			<label class="custom-control-label" for="action_{{ $action }}">
+				{{ $label }}
 			</label>
 		</div>
 	@endforeach

@@ -5,40 +5,34 @@
 	<div class="root">
 		@component('laramie::misc/page-title')
 			@slot('superactions')
-				@include('laramie::misc/models/segments')
 
-				<a href="{{ resource('create') }}" class="btn btn-primary">
-					Añadir 
-					<i data-feather="plus" class="feather"></i>
+				<a href="{{ resource('create') }}" class="btn btn-primary lift">
+					Añadir
+					<i class="bx bx-plus ml-1"></i>
 				</a>
 			@endslot
 
-			@slot('icon')
-				<a class="page-icon">
-					<span class="bg-primary text-white">
-						<i data-feather="user" class="feather"></i>
-					</span>
-				</a>
-			@endslot
+			@include('laramie::misc/models/segments')
 
-			Usuarios
-			<small class="text-muted">({{ $admins->count() }})</small>
+			Administradores
 		@endcomponent
 
-		@include('laramie::misc/table-tools')
-
 		<div class="card">
+			<div class="card-header">
+				@include('laramie::misc/table-tools')
+			</div>
+
 			@if ($admins->isNotEmpty())
 				<div class="table-responsive">
-					<table class="table table-striped datatable">
+					<table class="table table-hover card-table datatable">
 						<thead>
 							<tr>
 								<th class="tid">#ID</th>
 								<th>Nombre</th>
 								<th>Email</th>
-								<th>Permisos</th>
+								<th>Roles</th>
 								<th>Estado</th>
-								<th class="text-center">Acciones</th>
+								<th></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -46,8 +40,8 @@
 								<tr>
 									<td class="tid">{{ $admin->id }}</td>
 									<td>
-										<div class="user-avatar mr-2">
-											<span class="no-image-user" title="{{ $admin->fullname }}">
+										<div class="avatar avatar-sm mr-2">
+											<span class="avatar-title rounded-circle">
 												{{ $admin->initials }}
 											</span>
 										</div>
@@ -63,9 +57,7 @@
 										{{ $admin->email }}
 									</td>
 									<td>
-										@foreach($admin->roles as $role)
-											<span class="badge badge-secondary">{{ $role->name }}</span>
-										@endforeach
+										{{ $admin->roles->implode('name', ', ') }}
 									</td>
 									<td>
 										@include('laramie::misc/models/status-badge', ['model' => $admin])
