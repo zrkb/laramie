@@ -12,7 +12,7 @@
 		</a>
 	</li>
 
-	@include('laramie::sidebar/user')
+	@includeIf('sidebar/user')
 	
 	{{-- <li class="nav-item">
 		<a class="nav-link" href="#sidebarDashboards" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDashboards">

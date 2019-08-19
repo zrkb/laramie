@@ -13,6 +13,8 @@ return [
 
     'registration_enabled' => true,
 
+    'backend_routes_file' => 'backend.php',
+
     /*
      * Auth Guards
      */

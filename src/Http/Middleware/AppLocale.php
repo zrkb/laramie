@@ -16,7 +16,6 @@ class AppLocale
      */
     public function handle($request, Closure $next)
     {
-
         // Change Locale
         setlocale(LC_ALL, config('app.locale'));
         Carbon::setLocale(config('app.locale'));

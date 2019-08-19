@@ -5,7 +5,22 @@
 
 'use strict';
 
-import './user.js';
+import './autosize.js';
+import './charts.js';
+import './dashkit.js';
+import './dropdowns.js';
+import './dropzone.js';
+import './flatpickr.js';
+import './highlight.js';
+import './kanban.js';
+import './list.js';
+import './map.js';
+import './navbar.js';
+import './polyfills.js';
+import './popover.js';
+import './quill.js';
+import './select2.js';
+import './tooltip.js';
 
 var demoMode = (function() {
 

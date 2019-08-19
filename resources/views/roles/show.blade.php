@@ -74,7 +74,7 @@
 
 													<td class="text-center">
 														@if ($roleHasPermission)
-															<i data-feather="check" class="text-primary"></i>
+															<i class='bx bx-check text-primary'></i>
 														@endif
 													</td>
 												@endforeach

@@ -110,7 +110,7 @@ class LaramieServiceProvider extends ServiceProvider
      *
      * @return void
      */
-protected function loadAdminAuthConfig()
+	protected function loadAdminAuthConfig()
     {
         config(array_dot(config('laramie.auth', []), 'auth.'));
     }
@@ -127,7 +127,19 @@ protected function loadAdminAuthConfig()
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'laramie');
 
 		// Route Initiator
+		$this->loadRoutes();
+	}
+
+	public function loadRoutes()
+	{
 		$this->loadRoutesFrom(__DIR__ . '/../routes/backend.php');
+
+		$userRouteFile = env('backend_routes_file', 'backend.php');
+		$userRoutePath = base_path('routes/' . $userRouteFile);
+
+		if (file_exists($userRoutePath)) {
+			$this->loadRoutesFrom($userRoutePath);
+		}
 	}
 
 	/**
