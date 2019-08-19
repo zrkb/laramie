@@ -164,6 +164,7 @@ protected function loadAdminAuthConfig()
 			Console\Commands\ForgeController::class,
 			Console\Commands\ForgeModel::class,
 			Console\Commands\ForgeResource::class,
+			Console\Commands\ForgeResourceModel::class,
 			Console\Commands\ForgeViews::class,
 		]);
 	}

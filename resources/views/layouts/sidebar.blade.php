@@ -10,7 +10,7 @@
     </button>
 
     <!-- Brand -->
-    <a class="navbar-brand" href="index.html">
+    <a class="navbar-brand" href="{{ route('app') }}">
       <img src="{{ assets_path() }}/assets/img/logo.svg" class="navbar-brand-img 
       mx-auto" alt="...">
     </a>
@@ -43,39 +43,7 @@
     <!-- Collapse -->
     <div class="collapse navbar-collapse mt-3 pt-3" id="sidebarCollapse">
 
-      <!-- Heading -->
-      <h6 class="navbar-heading">
-        General
-      </h6>
-
-      <!-- Navigation -->
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="#sidebarDashboards" role="button" aria-expanded="true">
-            <i class='bx bx-layer'></i> Home
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#sidebarDashboards" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDashboards">
-           <i class='bx bx-package'></i> Catálogo
-          </a>
-          <div class="collapse" id="sidebarDashboards">
-            <ul class="nav nav-sm flex-column">
-              <li class="nav-item">
-                <a href="{{ admin_base_path('restaurants') }}" class="nav-link ">
-                  Restaurantes
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="dashboard-alt.html" class="nav-link">
-                  Categorías
-                </a>
-              </li>
-            </ul>
-          </div>
-        </li>
-        </li>
-      </ul>
+      @include('laramie::sidebar/general')
 
       <!-- Push content down -->
       <div class="mt-auto"></div>

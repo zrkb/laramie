@@ -19,11 +19,12 @@
     @include('laramie::layouts/flash')
 
 	<div class="card">
-		<div class="card-header">
-			@include('laramie::misc/table-tools')
-		</div>
 
 		@if ($items->isNotEmpty())
+			<div class="card-header">
+				@include('laramie::misc/table-tools')
+			</div>
+			
 			<div class="table-responsive">
 				<table class="table table-hover card-table datatable">
 					<thead>

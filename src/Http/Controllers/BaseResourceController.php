@@ -15,7 +15,7 @@ abstract class BaseResourceController extends BaseController
         $items = $this->getModel()::all();
         $resource = new $this->resource($items);
 
-        return view('laramie::resources/index', compact('items', 'resource'));
+        return view($resource->viewForIndex, compact('items', 'resource'));
     }
 
     public function show($id)
@@ -23,7 +23,7 @@ abstract class BaseResourceController extends BaseController
         $item = $this->getModel()::findOrFail($id);
         $resource = new $this->resource($item);
 
-        return view('laramie::resources/show', compact('item', 'resource'));
+        return view($resource->viewForDetail, compact('item', 'resource'));
     }
 
     public function create()
@@ -31,7 +31,7 @@ abstract class BaseResourceController extends BaseController
         $item = $this->resource::newModel();
         $resource = new $this->resource($item);
 
-        return view('laramie::resources/create', compact('item', 'resource'));
+        return view($resource->viewForCreation, compact('item', 'resource'));
     }
 
     public function store(Request $request)
@@ -60,7 +60,7 @@ abstract class BaseResourceController extends BaseController
         $item = $this->getModel()::findOrFail($id);
         $resource = new $this->resource($item);
 
-        return view('laramie::resources/edit', compact('item', 'resource'));
+        return view($resource->viewForUpdate, compact('item', 'resource'));
     }
 
     public function update(Request $request, $id)

@@ -23,7 +23,7 @@
 				<div class="card">
 					<div class="card-body">
 
-						@include('laramie::resources/form', [
+						@include($resource->viewForForm, [
 							'fields' => $resource->updateFields(),
 						])
 

@@ -2,90 +2,10 @@
 
 namespace ClassNamespace;
 
-use App\Models\SingularBaseClass;
 use Illuminate\Http\Request;
-use Pandorga\Laramie\Http\Controllers\ResourceController;
+use Pandorga\Laramie\Http\Controllers\BaseResourceController;
 
-class PluralBaseClassController extends ResourceController
+class PluralBaseClassController extends BaseResourceController
 {
-	protected $model = \App\Models\SingularBaseClass::class;
-
-	public function index()
-	{
-		$PluralLowercaseBaseClass = SingularBaseClass::withTrashed()->get();
-
-		return view('PluralSnakeBaseClass/index', compact('PluralLowercaseBaseClass'));
-	}
-
-	public function show($id)
-	{
-		$SingularLowercaseBaseClass = SingularBaseClass::withTrashed()->find($id);
-		
-		return view('PluralSnakeBaseClass/show', compact('SingularLowercaseBaseClass'));
-	}
-
-	public function create()
-	{
-		return view('PluralSnakeBaseClass/create');
-	}
-
-	public function store(Request $request)
-	{
-		$creationRules = $this->creationRules();
-		$this->validate($request, $creationRules);
-
-		// Remove unexistent data from rules
-		$data = array_intersect_key($request->all(), $creationRules);
-
-		$SingularLowercaseBaseClass = SingularBaseClass::create($data);
-
-		if ($SingularLowercaseBaseClass) {
-			session()->flash('success', 'El registro ha sido creado exitosamente.');
-		} else {
-			session()->flash('error', 'Error al crear el registro. Consulte con el administrador.');
-		}
-
-		return redirect(resource('index'));
-	}
-
-	public function edit($id)
-	{
-		$SingularLowercaseBaseClass = SingularBaseClass::withTrashed()->find($id);
-
-		return view('PluralSnakeBaseClass/edit', compact('SingularLowercaseBaseClass'));
-	}
-
-	public function update(Request $request, $id)
-	{
-		$SingularLowercaseBaseClass = SingularBaseClass::withTrashed()->find($id);
-
-		$updateRules = $this->updateRules($SingularLowercaseBaseClass->id);
-		$this->validate($request, $updateRules);
-
-		// Remove unexistent data from rules
-		$data = array_intersect_key($request->all(), $updateRules);
-
-		if ($SingularLowercaseBaseClass->update($data)) {
-			session()->flash('success', 'El registro ha sido modificado exitosamente.');
-		} else {
-			session()->flash('error', 'Error al modificar el registro. Consulte con el administrador.');
-		}
-
-		return redirect(resource('show', $id));
-	}
-
-	private function creationRules() : array
-	{
-		return [
-			'name'		=> 'required',
-		];
-	}
-
-	private function updateRules($id) : array
-	{
-		return [
-			'name'		=> 'required',
-			'active'	=> 'sometimes|nullable|integer',
-		];
-	}
+	protected $resource = \App\Resources\SingularBaseClass::class;
 }

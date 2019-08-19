@@ -29,6 +29,7 @@ class Laramie
 	public function resource($resource, $controller)
 	{
 		$attributes = [
+			'prefix'     => config('laramie.route.prefix'),
 			'namespace'  => config('laramie.route.namespace'),
 			'middleware' => config('laramie.route.middleware'),
 		];

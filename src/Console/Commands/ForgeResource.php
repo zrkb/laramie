@@ -17,7 +17,7 @@ class ForgeResource extends Command
 	 *
 	 * @var string
 	 */
-	protected $signature = 'laramie:resource {name} {--i|icon=smile}';
+	protected $signature = 'laramie:resource {name}';
 
 	/**
 	 * The console command description.
@@ -48,7 +48,7 @@ class ForgeResource extends Command
 		$this->createMigration();
 		$this->createModel();
 		$this->createController();
-		$this->createViews();
+		$this->createResourceModel();
 		$this->createAndAssignPermissions();
 	}
 
@@ -84,11 +84,10 @@ class ForgeResource extends Command
 		]);
 	}
 
-	public function createViews()
+	public function createResourceModel()
 	{
-		$this->call('laramie:views', [
+		$this->call('laramie:resource-model', [
 			'name' => $this->argument('name'),
-			'--icon' => $this->option('icon'),
 			'--force',
 		]);
 	}

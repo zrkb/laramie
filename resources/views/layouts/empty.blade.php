@@ -2,7 +2,7 @@
 
 	<div class="my-5 pb-3">
 		<!-- Image -->
-		<img src="{{ assets_path() }}/assets/img/illustrations/coworking.svg" alt="..." class="img-fluid mb-4" style="max-width: 182px;">
+		<img src="{{ assets_path() }}/assets/img/illustrations/coworking.svg" alt="..." class="img-fluid mb-4" style="max-width: 250px;">
 
 		<!-- Title -->
 		<h1>
