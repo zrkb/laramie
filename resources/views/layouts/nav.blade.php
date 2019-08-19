@@ -6,12 +6,12 @@
         <div class="input-group input-group-flush input-group-merge" data-toggle="lists" data-options='{"valueNames": ["name"]}'>
 
           <!-- Input -->
-          <input type="search" class="form-control form-control-prepended dropdown-toggle search" data-toggle="dropdown" placeholder="Search" aria-label="Search">
+          {{-- <input type="search" class="form-control form-control-prepended dropdown-toggle search" data-toggle="dropdown" placeholder="Search" aria-label="Search">
           <div class="input-group-prepend">
             <div class="input-group-text">
               <i class="fe fe-search"></i>
             </div>
-          </div>
+          </div> --}}
 
           <!-- Menu -->
           <div class="dropdown-menu dropdown-menu-card">
@@ -219,11 +219,11 @@
         <div class="dropdown mr-4 d-none d-md-flex">
 
           <!-- Toggle -->
-          <a href="#" class="navbar-user-link" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{-- <a href="#" class="navbar-user-link" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <span class="icon active">
               <i class="fe fe-bell"></i>
             </span>
-          </a>
+          </a> --}}
 
           <!-- Menu -->
           <div class="dropdown-menu dropdown-menu-right dropdown-menu-card">
