@@ -86,8 +86,10 @@ class ForgeResource extends Command
 
 	public function createResourceModel()
 	{
+		$model = Str::singular(Str::studly(class_basename($this->argument('name'))));
+
 		$this->call('laramie:resource-model', [
-			'name' => $this->argument('name'),
+			'name' => $model,
 			'--force',
 		]);
 	}

@@ -17,10 +17,29 @@ abstract class Resource
      */
     public $resource;
 
+    /**
+     * @var string
+     */
     public $viewForIndex = 'laramie::resources/index';
+
+    /**
+     * @var string
+     */
     public $viewForDetail = 'laramie::resources/show';
+
+    /**
+     * @var string
+     */
     public $viewForCreation = 'laramie::resources/create';
+
+    /**
+     * @var string
+     */
     public $viewForUpdate = 'laramie::resources/edit';
+
+    /**
+     * @var string
+     */
     public $viewForForm = 'laramie::resources/form';
 
     /**
