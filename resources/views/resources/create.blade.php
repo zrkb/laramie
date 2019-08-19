@@ -7,16 +7,16 @@
 
 			@component('laramie::misc/page-title')
 				@slot('superactions')
-					<a href="{{ resource('index') }}" class="btn btn-white">
+					<a href="{{ resource('index') }}" class="btn btn-link">
 						@lang('laramie::resource.back-to-list')
-						<i class='bx bx-right-arrow-alt ml-1'></i>
+						<i class='bx bx-chevron-right ml-1'></i>
 					</a>
 				@endslot
 
 				Nuevo {{ $resource->singularLabel() }}
 			@endcomponent
 
-           @include('laramie::layouts/errors')
+        	@include('laramie::layouts/errors')
     		@include('laramie::layouts/flash')
 
 			{{ form()->open(['url' => resource('store'), 'method' => 'post']) }}
