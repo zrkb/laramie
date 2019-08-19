@@ -5,10 +5,12 @@
 		<div class="row align-items-center">
 			<div class="col">
 				
-				<!-- Pretitle -->
-				<h6 class="header-pretitle">
-				{{ $preTitle ?? '' }}
-				</h6>
+				@isset($preTitle)
+					<!-- Pretitle -->
+					<h6 class="header-pretitle">
+						{{ $preTitle }}
+					</h6>
+				@endisset
 
 				<!-- Title -->
 				<h1 class="header-title">
