@@ -12,6 +12,13 @@ class BelongsTo extends Field
     public $component = 'belongs-to-field';
 
     /**
+     * The field's options.
+     *
+     * @var array
+     */
+    protected $options;
+
+    /**
      * The class name of the related resource.
      *
      * @var string
@@ -40,6 +47,23 @@ class BelongsTo extends Field
         $this->resourceClass = $resource;
         $this->resourceName = $resource::uriKey();
         $this->belongsToRelationship = $this->attribute;
+
+        $this->populateWithRelation();
+    }
+
+    /**
+     * Populate component with relation data.
+     * 
+     * @return $this
+     */
+    public function populateWithRelation()
+    {
+        $labelAttribute = $this->resourceClass::$title;
+        $options = $this->resourceClass::$model::all()->pluck($labelAttribute, 'id');
+        
+        $this->withOptions($options);
+
+        return $this;
     }
 
     /**
@@ -67,13 +91,13 @@ class BelongsTo extends Field
      */
     public function withOptions($options)
     {
-    	$this->options = $options;
+        $this->options = $options;
 
-    	return $this;
+        return $this;
     }
 
     public function options()
     {
-    	return $this->options;
+        return $this->options;
     }
 }
