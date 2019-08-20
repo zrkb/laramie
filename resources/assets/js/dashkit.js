@@ -406,11 +406,7 @@
         labels: ['Desktop', 'Tablet', 'Mobile'],
         datasets: [{
           data: [60, 25, 15],
-          backgroundColor: [
-            '#2C7BE5',
-            '#A6C5F7',
-            '#D2DDEC'
-          ]
+          backgroundColor: window.ChartBackgroundColors
         }]
       }
     });

@@ -407,6 +407,8 @@ var demoMode = function () {
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+window.ChartBackgroundColors = ['#2C7BE5', '#5EA2EF', '#7FBCF7', '#AAD8FC', '#D4EDFD', '#66CC1E', '#94E050', '#B5EF75', '#D6F9A4', '#EDFCD1', '#F7960E', '#FAB749', '#FCCD6D', '#FEE29E', '#FEF2CE', '#FF3330', '#FF7363', '#FF9982', '#FFC2AC', '#FFE4D5'];
+
 (function () {
   //
   // Variables
@@ -1105,7 +1107,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
         labels: ['Desktop', 'Tablet', 'Mobile'],
         datasets: [{
           data: [60, 25, 15],
-          backgroundColor: ['#2C7BE5', '#A6C5F7', '#D2DDEC']
+          backgroundColor: window.ChartBackgroundColors
         }]
       }
     });

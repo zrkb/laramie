@@ -5,6 +5,29 @@
 
 'use strict';
 
+window.ChartBackgroundColors = [
+  '#2C7BE5',
+  '#5EA2EF',
+  '#7FBCF7',
+  '#AAD8FC',
+  '#D4EDFD',
+  '#66CC1E',
+  '#94E050',
+  '#B5EF75',
+  '#D6F9A4',
+  '#EDFCD1',
+  '#F7960E',
+  '#FAB749',
+  '#FCCD6D',
+  '#FEE29E',
+  '#FEF2CE',
+  '#FF3330',
+  '#FF7363',
+  '#FF9982',
+  '#FFC2AC',
+  '#FFE4D5'
+];
+
 (function() {
 
   //
