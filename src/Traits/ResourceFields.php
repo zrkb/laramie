@@ -2,6 +2,8 @@
 
 namespace Pandorga\Laramie\Traits;
 
+use Pandorga\Laramie\Contracts\Resolvable;
+
 trait ResourceFields
 {
     public function indexFields()

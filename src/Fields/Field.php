@@ -8,7 +8,6 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
-use Pandorga\Laramie\Http\Requests\LaramieRequest;
 
 abstract class Field extends FieldElement
 {
@@ -32,6 +31,20 @@ abstract class Field extends FieldElement
      * @var mixed
      */
     public $value;
+
+    /**
+     * The callback to be used to resolve the field's display value.
+     *
+     * @var \Closure
+     */
+    public $displayCallback;
+
+    /**
+     * The callback to be used to resolve the field's value.
+     *
+     * @var \Closure
+     */
+    public $resolveCallback;
 
     /**
      * The validation rules for creation and updates.
@@ -66,12 +79,59 @@ abstract class Field extends FieldElement
         $this->attribute = $attribute ?? str_replace(' ', '_', Str::lower($name));
     }
 
-    public function renderForIndex($item)
+    /**
+     * Define the callback that should be used to resolve the field's value.
+     *
+     * @param  callable  $displayCallback
+     * @return $this
+     */
+    public function displayUsing(callable $displayCallback)
     {
+        $this->displayCallback = $displayCallback;
+
+        return $this;
+    }
+
+    /**
+     * Define the callback that should be used to resolve the field's value.
+     *
+     * @param  callable  $resolveCallback
+     * @return $this
+     */
+    public function resolveUsing(callable $resolveCallback)
+    {
+        $this->resolveCallback = $resolveCallback;
+
+        return $this;
+    }
+
+    /**
+     * Resolve the field's value for display.
+     *
+     * @param  mixed  $resource
+     * @param  string|null  $attribute
+     * @return void
+     */
+    public function resolveForDisplay($item, $value)
+    {
+        $attribute = $attribute ?? $this->attribute;
+        $value = htmlentities($value);
+
+        if (! $this->displayCallback) {
+            return $value;
+        } elseif (is_callable($this->displayCallback)) {
+            return call_user_func($this->displayCallback, $item, $value);
+        }
+    }
+
+    public function renderForIndex($item, $resource)
+    {
+        $value = $item->getAttribute($this->attribute);
+
         return view("laramie::fields/{$this->component}/index")->with([
             'field' => $this,
             'item' => $item,
-            'value' => $item->getAttribute($this->attribute),
+            'value' => $this->resolveForDisplay($item, $value),
         ]);
     }
 

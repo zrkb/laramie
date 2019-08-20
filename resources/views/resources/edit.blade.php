@@ -15,10 +15,10 @@
 				Editar {{ $resource->singularLabel() }}
 			@endcomponent
 
-           @include('laramie::layouts/errors')
+           	@include('laramie::layouts/errors')
     		@include('laramie::layouts/flash')
 
-			{{ form()->open(['url' => resource('update', $item->id), 'method' => 'put']) }}
+			{{ form()->model($item, ['route' => [$resource::uriKey() . '.update', $item->id], 'method' => 'PUT']) }}
 			
 				<div class="card">
 					<div class="card-body">

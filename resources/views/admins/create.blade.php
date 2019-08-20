@@ -20,7 +20,7 @@
 				</a>
 			@endslot
 
-			Nuevo Usuario
+			Crear Usuario
 		@endcomponent
 
 		{{ form()->open(['route' => 'admins.store']) }}

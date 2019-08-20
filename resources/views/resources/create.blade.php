@@ -13,7 +13,7 @@
 					</a>
 				@endslot
 
-				Nuevo {{ $resource->singularLabel() }}
+				Crear {{ $resource->singularLabel() }}
 			@endcomponent
 
         	@include('laramie::layouts/errors')

@@ -16755,3 +16755,10 @@ h6 .small,
   font-size: 80%;
 }
 
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  display: block;
+}
+

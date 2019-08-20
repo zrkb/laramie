@@ -20,7 +20,7 @@
 				</a>
 			@endslot
 
-			Nuevo Rol
+			Crear Rol
 		@endcomponent
 
 		{{ form()->open(['route' => 'roles.store']) }}

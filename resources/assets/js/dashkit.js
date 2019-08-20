@@ -6,11 +6,6 @@
 'use strict';
 
 
-(function() {
-  window.campaignsChart();
-})();
-
-
 // Header
 //
 // Header card chart

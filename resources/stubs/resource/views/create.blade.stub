@@ -21,7 +21,7 @@
 				</a>
 			@endslot
 
-			Nuevo SingularBaseClass
+			Crear SingularBaseClass
 		@endcomponent
 
 		{{ form()->open(['route' => 'PluralSnakeBaseClass.store']) }}

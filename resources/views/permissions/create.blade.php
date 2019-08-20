@@ -20,7 +20,7 @@
 				</a>
 			@endslot
 
-			Nuevo Permiso
+			Crear Permiso
 		@endcomponent
 
 		{{ form()->open(['route' => 'permissions.store']) }}

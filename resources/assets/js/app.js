@@ -22,6 +22,8 @@ import './quill.js';
 import './select2.js';
 import './tooltip.js';
 
+import './user.js';
+
 var demoMode = (function() {
 
   //

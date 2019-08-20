@@ -46,12 +46,17 @@
 									@php
 										$tdClass = $field->attribute == 'id' ? 'class=tid' : ''
 									@endphp
-									<td {{ $tdClass }}>{{ $field->renderForIndex($item) }}</td>
+									<td {{ $tdClass }}>
+										{!! $field->renderForIndex($item, $resource) !!}
+									</td>
 								@endforeach
 
-								<td class="actions text-center">
-									@include('laramie::misc/models/status-badge', ['model' => $item])
-								</td>
+								@if ($item->hasSoftDelete())
+									<td class="actions text-center">
+										@include('laramie::misc/models/status-badge', ['model' => $item])
+									</td>
+								@endif
+								
 								<td class="actions text-center">
 									@include('laramie::misc/models/crud-actions', ['model' => $item])
 								</td>
