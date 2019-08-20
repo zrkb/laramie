@@ -30,7 +30,16 @@ class Laramie
 		});
 	}
 
-	public function resource($resource, $controller)
+
+    /**
+     * Route a laramie resource to a controller.
+     *
+     * @param  string  $name
+     * @param  string  $controller
+     * @param  array   $options
+     * @return \Illuminate\Routing\PendingResourceRegistration
+     */
+	public function resource($name, $controller, array $options = [])
 	{
 		$attributes = [
 			'prefix'     => config('laramie.route.prefix'),
@@ -38,10 +47,10 @@ class Laramie
 			'middleware' => config('laramie.route.middleware'),
 		];
 
-		Route::group($attributes, function () use ($resource, $controller) {
-			Route::resource($resource, $controller);
-			Route::post("{$resource}/{id}/restore", "{$controller}@restore")
-				 ->name("{$resource}.restore");
+		Route::group($attributes, function () use ($name, $controller, $options) {
+			Route::resource($name, $controller, $options);
+			Route::post("{$name}/{id}/restore", "{$controller}@restore")
+				 ->name("{$name}.restore");
 		});
 	}
 }
