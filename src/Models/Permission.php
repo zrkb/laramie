@@ -21,7 +21,7 @@ class Permission extends \Spatie\Permission\Models\Permission
 
 	public static function groupedByRoutes()
 	{
-		$permissions = static::orderBy('name')->get();
+		$permissions = static::all();
 
 		$grouped = $permissions->groupBy(function ($item, $key) {
 			list($action, $route) = explode('_', $item->name, 2);

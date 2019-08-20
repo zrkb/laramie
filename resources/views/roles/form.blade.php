@@ -30,8 +30,8 @@
 
 						<td class="text-center">
 							<div class="custom-control custom-checkbox">
-								{{ form()->checkbox('permissions[]', $action->name, $roleHasPermission, ['class' => 'custom-control-input', 'id' => "permission-${action}-checkbox"]) }}
-								<label class="custom-control-label m-0" for="permission-{{ $action }}-checkbox">
+								{{ form()->checkbox('permissions[]', $action->name, $roleHasPermission, ['class' => 'custom-control-input', 'id' => "permission-{$action->id}-checkbox"]) }}
+								<label class="custom-control-label m-0" for="permission-{{ $action->id }}-checkbox">
 									&nbsp;
 								</label>
 							</div>
