@@ -35,7 +35,11 @@
 								@endphp
 								<th {{ $tdClass }}>{{ $field->name }}</th>
 							@endforeach
-							<th class="text-center">Status</th>
+
+							@if ($resource::newModel()->hasSoftDelete())
+								<th class="text-center">Status</th>
+							@endif
+
 							<th></th>
 						</tr>
 					</thead>
@@ -47,7 +51,7 @@
 										$tdClass = $field->attribute == 'id' ? 'class=tid' : ''
 									@endphp
 									<td {{ $tdClass }}>
-										{!! $field->renderForIndex($item, $resource) !!}
+										{!! html_entity_decode($field->renderForIndex($item, $resource)) !!}
 									</td>
 								@endforeach
 

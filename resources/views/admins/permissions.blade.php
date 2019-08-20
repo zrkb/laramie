@@ -1,6 +1,6 @@
 @if (
-	(isset($admin) == false && admin()->can('add_users')) ||
-	(isset($admin) && $admin->id != admin()->id && admin()->can('edit_users'))
+	(isset($admin) == false && admin()->can('add_admins')) ||
+	(isset($admin) && $admin->id != admin()->id && admin()->can('edit_admins'))
 )
 	<div class="form-group">
 		{{ Form::label('roles', 'Roles', ['class' => 'control-label']) }}
@@ -17,12 +17,10 @@
 					}
 				@endphp
 
-				<div class="checkbox">
-					<label for="role-{{ $role->id }}">
-						{{ form()->checkbox('role[]', $role->id, $adminHasRole ?? false(), ['id' => "role-{$role->id}"]) }}
-						<span>
-							{{ $role->name }}
-						</span>
+				<div class="custom-control custom-checkbox mb-3">
+					{{ form()->checkbox('role[]', $role->id, $adminHasRole ?? false(), ['class' => 'custom-control-input', 'id' => "role-{$role->id}"]) }}
+					<label class="custom-control-label m-0" for="role-{{ $role->id }}">
+						{{ $role->name }}
 					</label>
 				</div>
 			@endforeach

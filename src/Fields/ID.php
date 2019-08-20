@@ -22,6 +22,6 @@ class ID extends Field
     {
         parent::__construct($name ?? 'ID', $attribute);
 
-        $this->exceptOnForms();
+        $this->onlyOnIndex();
     }
 }
