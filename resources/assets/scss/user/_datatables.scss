@@ -209,10 +209,12 @@ table.dataTable.table-sm {
 	& .sorting_desc {
 
 		&::before {
+			top: 1rem;
 			right: 0.85em;
 		}
 
 		&::after {
+			top: 1rem;
 		}
 	}
 }

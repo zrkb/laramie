@@ -4,6 +4,7 @@
 //
 
 @import 'user/datatables';
+@import 'user/daterangepicker';
 
 .bx {
     font-size: 1.2rem;
@@ -142,4 +143,15 @@ h1, h2, h3, h4, h5, h6,
     top: 7px;
     right: 7px;
 	display: block;
+}
+
+.select2-sm {
+	.select2-container--default .select2-selection--single .select2-selection__arrow {
+	    top: 2px;
+	    right: 3px;
+	}
+}
+
+.select2-auto .select2.select2-container {
+  width: auto !important;
 }
