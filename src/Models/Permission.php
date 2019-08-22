@@ -17,6 +17,8 @@ class Permission extends \Spatie\Permission\Models\Permission
 	protected $fillable = [
 		'name',
 		'guard_name',
+		'created_at',
+		'updated_at',
 	];
 
 	public static function groupedByRoutes()

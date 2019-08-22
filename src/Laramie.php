@@ -37,7 +37,7 @@ class Laramie
      * @param  string  $name
      * @param  string  $controller
      * @param  array   $options
-     * @return \Illuminate\Routing\PendingResourceRegistration
+     * @return void
      */
 	public function resource($name, $controller, array $options = [])
 	{

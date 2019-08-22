@@ -18,6 +18,8 @@
 				@include('laramie::misc/models/status-badge')
 			@endmodelProperty
 		@endif
+
+		{{ $slot ?? '' }}
 	</div>
 	{{-- END card-body --}}
 </div>
