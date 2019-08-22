@@ -6318,7 +6318,7 @@ a.close.disabled {
 .bs-tooltip-auto[x-placement^=top] .arrow::before {
   top: 0;
   border-width: 0.4rem 0.4rem 0;
-  border-top-color: #E3EBF6;
+  border-top-color: #3B4651;
 }
 
 .bs-tooltip-right,
@@ -6337,7 +6337,7 @@ a.close.disabled {
 .bs-tooltip-auto[x-placement^=right] .arrow::before {
   right: 0;
   border-width: 0.4rem 0.4rem 0.4rem 0;
-  border-right-color: #E3EBF6;
+  border-right-color: #3B4651;
 }
 
 .bs-tooltip-bottom,
@@ -6354,7 +6354,7 @@ a.close.disabled {
 .bs-tooltip-auto[x-placement^=bottom] .arrow::before {
   bottom: 0;
   border-width: 0 0.4rem 0.4rem;
-  border-bottom-color: #E3EBF6;
+  border-bottom-color: #3B4651;
 }
 
 .bs-tooltip-left,
@@ -6373,15 +6373,15 @@ a.close.disabled {
 .bs-tooltip-auto[x-placement^=left] .arrow::before {
   left: 0;
   border-width: 0.4rem 0 0.4rem 0.4rem;
-  border-left-color: #E3EBF6;
+  border-left-color: #3B4651;
 }
 
 .tooltip-inner {
   max-width: 200px;
   padding: 0.25rem 0.5rem;
-  color: #12263F;
+  color: white;
   text-align: center;
-  background-color: #E3EBF6;
+  background-color: #3B4651;
   border-radius: 0.375rem;
 }
 
@@ -16753,6 +16753,22 @@ h6 .small,
 .h6 small,
 .h6 .small {
   font-size: 80%;
+}
+
+h1 .bx,
+h2 .bx,
+h3 .bx,
+h4 .bx,
+h5 .bx,
+h6 .bx,
+.h1 .bx,
+.h2 .bx,
+.h3 .bx,
+.h4 .bx,
+.h5 .bx,
+.h6 .bx {
+  position: relative;
+  top: 0.19rem;
 }
 
 .select2-container--default .select2-selection--single .select2-selection__arrow {
