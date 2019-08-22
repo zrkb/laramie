@@ -5,7 +5,6 @@ namespace Pandorga\Laramie\Database\Seeds;
 use Illuminate\Database\Seeder;
 use Pandorga\Laramie\Models\Permission;
 use Pandorga\Laramie\Models\Role;
-use Pandorga\Laramie\Models\Admin;
 
 class LaramieSeeder extends Seeder
 {
@@ -87,7 +86,7 @@ class LaramieSeeder extends Seeder
 	 */
 	private function createAdmin($role, $options = [])
 	{
-		$admin = factory(Admin::class)->create($options);
+		$admin = factory(config('laramie.models.admin'))->create($options);
 
 		$admin->assignRole($role->name);
 

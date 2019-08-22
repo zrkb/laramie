@@ -59,11 +59,16 @@ class BelongsTo extends Field
     public function populateWithRelation()
     {
         $labelAttribute = $this->resourceClass::$title;
-        $options = $this->resourceClass::$model::all()->pluck($labelAttribute, 'id');
+        $options = $this->relationItems()->pluck($labelAttribute, 'id');
         
         $this->withOptions($options);
 
         return $this;
+    }
+
+    public function relationItems()
+    {
+        $this->resourceClass::$model::all();
     }
 
     /**

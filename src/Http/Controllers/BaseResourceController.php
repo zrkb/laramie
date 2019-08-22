@@ -83,7 +83,6 @@ abstract class BaseResourceController extends BaseController
         return redirect(resource('show', $id));
     }
 
-
     public function restore($id)
     {
         $instance = $this->getModel()::withTrashed()->find($id);

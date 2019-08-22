@@ -26,6 +26,20 @@ class HasMany extends Field
     public $resourceName;
 
     /**
+     * The field used for displaying relation name.
+     *
+     * @var string
+     */
+    public $title = 'id';
+
+    /**
+     * The method used for checking if relation exists.
+     *
+     * @var string
+     */
+    public $check = '';
+
+    /**
      * Create a new field.
      *
      * @param  string  $name
@@ -40,6 +54,45 @@ class HasMany extends Field
         $this->resourceClass = $resource;
         $this->resourceName = $resource::uriKey();
         $this->belongsToRelationship = $this->attribute;
+    }
+
+    public function relationItems()
+    {
+        return $this->resourceClass::$model::all();
+    }
+
+    /**
+     * Set check method.
+     * 
+     * @return $this
+     */
+    public function withCheck($check)
+    {
+        $this->check = $check;
+
+        return $this;
+    }
+
+    public function check() : string
+    {
+        return $this->check;
+    }
+
+    /**
+     * Set title
+     * 
+     * @return $this
+     */
+    public function withTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    public function title() : string
+    {
+        return $this->title;
     }
 
     /**

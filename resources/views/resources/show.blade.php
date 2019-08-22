@@ -6,18 +6,14 @@
 
 	@component('laramie::misc/page-title')
 		@slot('superactions')
-			<div class="float-right">
-				<a href="{{ resource('edit', $item->id) }}" class="btn btn-success">
-					<i class="bx bx-pencil mr-2"></i>
-					Editar
-				</a>
-				<a href="{{ resource('index') }}" class="btn btn-white">
-					@lang('laramie::resource.back-to-list')
-					<i class='bx bx-right-arrow-alt ml-1'></i>
-				</a>
+			<a href="{{ resource('edit', $item->id) }}" class="btn btn-success">
+				<i class="bx bx-pencil mr-2"></i>
+				Editar
+			</a>
+			
+			@include('laramie::components/back-to-resource')
 
-				@include('laramie::misc/models/prev-next-rows', ['model' => $item])
-			</div>
+			@include('laramie::misc/models/prev-next-rows', ['model' => $item])
 		@endslot
 
 		<span class="text-primary">#{{ $item->id }}</span>

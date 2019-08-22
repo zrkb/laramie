@@ -15,6 +15,10 @@ return [
 
     'backend_routes_file' => 'backend.php',
 
+    'models' => [
+        'admin' => \App\Models\Admin::class,
+    ],
+
     /*
      * Auth Guards
      */

@@ -5,40 +5,21 @@
 {{ old("{$slug}[]") }}
 
 @foreach($resource as $item)
-	<div class="checkbox">
-		<label for="{{ $slug }}_{{ $item->getKey() }}">
-			{{
-				form()->checkbox(
-					"{$slug}[{$item->getKey()}]",
-					$item->getKey(),
-					isset($model) && isset($checked) ? $model->{$checked}($item->getKey()) : null,
-					[
-						'id' => "{$slug}_{$item->getKey()}",
-						'class' => $class ?? '',
-					]
-				)
-			}}
-			<span>
-				{{ $item->{$field ?? 'name'} }}
-			</span>
+	<div class="custom-control custom-checkbox mb-3">
+		{{
+			form()->checkbox(
+				"{$slug}[{$item->getKey()}]",
+				$item->getKey(),
+				isset($model) && isset($checked) ? $model->{$checked}($item->getKey()) : null,
+				[
+					'id' => "{$slug}_{$item->getKey()}",
+					'class' => 'custom-control-input',
+				]
+			)
+		}}
+
+		<label class="custom-control-label m-0" for="{{ $slug }}_{{ $item->getKey() }}">
+			{{ $item->getAttribute($title ?? 'name') }}
 		</label>
 	</div>
-
-	@isset($expand)
-		@php
-			list($relation, $field) = explode('.', $expand);
-		@endphp
-
-		<ul class="list-unstyled pl-5">
-			<li>
-				@include('misc/form/one-to-many', [
-					'resource' => $item->{$relation},
-					'slug' => (string) $resource,
-					'field' => $field,
-					'expand' => null,
-					'title' => null,
-				])
-			</li>
-		</ul>
-	@endisset
 @endforeach

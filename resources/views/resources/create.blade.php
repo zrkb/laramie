@@ -7,10 +7,7 @@
 
 			@component('laramie::misc/page-title')
 				@slot('superactions')
-					<a href="{{ resource('index') }}" class="btn btn-link">
-						@lang('laramie::resource.back-to-list')
-						<i class='bx bx-chevron-right ml-1'></i>
-					</a>
+					@include('laramie::components/back-to-resource')
 				@endslot
 
 				Crear {{ $resource->singularLabel() }}
