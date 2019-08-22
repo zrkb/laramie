@@ -2,6 +2,8 @@
 
 namespace Pandorga\Laramie\Traits;
 
+use Illuminate\Auth\Access\AuthorizationException;
+use Pandorga\Laramie\Exceptions\AuthorityException;
 use Pandorga\Laramie\Models\AuthorizeAction;
 
 trait Authorizable
@@ -30,7 +32,11 @@ trait Authorizable
 	public function callAction($method, $parameters)
 	{
 		if( $ability = $this->getAbility($method) ) {
-			$this->authorizeForUser(admin(), $ability);
+			try {
+				$this->authorizeForUser(admin(), $ability);
+			} catch (AuthorizationException $e) {
+				throw new AuthorityException();
+			}
 		}
 
 		return parent::callAction($method, $parameters);

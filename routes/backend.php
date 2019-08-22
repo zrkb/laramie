@@ -35,6 +35,9 @@ Route::group([
 		// RBAC - Role Based Access Control
 		Route::resource('roles',					'RolesController');
 		Route::resource('permissions',				'PermissionsController');
+
+		// General Errors
+		Route::get('errors/{error}', 'ErrorController@show')->name('errors.show');
 	});
 
 });
