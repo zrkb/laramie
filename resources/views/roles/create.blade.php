@@ -5,11 +5,7 @@
 	<div class="root">
 		@component('laramie::misc/page-title')
 			@slot('superactions')
-				<div class="float-right">
-					<a href="{{ resource('index') }}" class="btn btn-default">
-						Volver a la lista
-					</a>
-				</div>
+				@include('laramie::components/back-to-resource')
 			@endslot
 
 			@slot('icon')

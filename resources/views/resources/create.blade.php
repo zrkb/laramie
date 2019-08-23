@@ -2,47 +2,50 @@
 
 @section('content')
 
-	<div class="row justify-content-center">
-		<div class="col-12 col-lg-10 col-xl-8">
+	<div class="root">
+		@component('laramie::misc/page-title')
+			@slot('superactions')
+				@include('laramie::components/back-to-resource')
+			@endslot
 
-			@component('laramie::misc/page-title')
-				@slot('superactions')
-					@include('laramie::components/back-to-resource')
-				@endslot
+			@slot('icon')
+				<a class="page-icon">
+					<span class="bg-primary text-white">
+						<i data-feather="star" class="feather"></i>
+					</span>
+				</a>
+			@endslot
 
-				Crear {{ $resource->singularLabel() }}
-			@endcomponent
+			Crear Rol
+		@endcomponent
 
-        	@include('laramie::layouts/errors')
-    		@include('laramie::layouts/flash')
+		{{ form()->open(['route' => 'roles.store']) }}
+		
+			<div class="card">
+				<div class="card-body">
+					<h5 class="card-title mb-4 pb-4 border-bottom">
+						<i data-feather="terminal" class="mr-2 text-primary"></i>
+						Completa los campos del formulario
+					</h5>
 
-			{{ form()->open(['url' => resource('store'), 'method' => 'post']) }}
-			
-				<div class="card">
-					<div class="card-body">
-						
-						@include($resource->viewForForm, [
-							'fields' => $resource->creationFields(),
-						])
+					@include('laramie::roles/form')
 
-						<div class="form-group mt-5 mb-3">
-							<a href="{{ resource('index') }}" class="btn btn-white mr-2">
-								@lang('laramie::resource.cancel-form-button')
-							</a>
+					<div class="form-group mt-5 mb-3">
+						<a href="{{ resource('index') }}" class="btn btn-white mr-2">
+							@lang('laramie::resource.cancel-form-button')
+						</a>
 
-							<button type="submit" class="btn btn-primary btn-activity">
-								@lang('laramie::resource.submit-form-button')
-							</button>
-						</div>
+						<button type="submit" class="btn btn-primary btn-activity">
+							@lang('laramie::resource.submit-form-button')
+						</button>
 					</div>
-					{{-- END card-body --}}
 				</div>
-				{{-- END card --}}
+				{{-- END card-body --}}
+			</div>
+			{{-- END card --}}
 
-			{{ form()->close() }}
-		</div>
-		{{-- END col --}}
+		{{ form()->close() }}
 	</div>
-	{{-- END row --}}
+	{{-- END root --}}
 
 @endsection

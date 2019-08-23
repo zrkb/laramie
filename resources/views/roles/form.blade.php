@@ -3,7 +3,10 @@
 	{{ form()->text('name', null, ['class' => 'form-control']) }}
 </div>
 
-{{ form()->hidden('guard_name', 'web', ['class' => 'form-control']) }}
+<div class="form-group">
+	{{ form()->label('name', 'Guard', ['class' => 'control-label']) }}
+	{{ form()->text('guard_name', 'admin', ['class' => 'form-control']) }}
+</div>
 
 <div class="form-group">
 	<table class="table">

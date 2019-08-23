@@ -68,7 +68,7 @@ class BelongsTo extends Field
 
     public function relationItems()
     {
-        $this->resourceClass::$model::all();
+        return $this->resourceClass::$model::all();
     }
 
     /**
