@@ -1900,10 +1900,11 @@ window.ChartBackgroundColors = ['#2C7BE5', '#5EA2EF', '#7FBCF7', '#AAD8FC', '#D4
     var elementOptions = el.dataset.options;
     elementOptions = elementOptions ? JSON.parse(elementOptions) : {};
     var defaultOptions = {
-      dropdownParent: $(el).closest('.modal').length ? $(el).closest('.modal') : $(document.body),
-      templateResult: formatTemplate
+      tags: $(el).data('dynamic-tags') || false
     };
     var options = Object.assign(elementOptions, defaultOptions);
+    console.log($(el).data('dynamic-tags'));
+    console.log(options);
     $(el).select2(options);
   }
 

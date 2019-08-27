@@ -16271,13 +16271,13 @@ button:focus {
 
 .select2-container--default .select2-results__option--highlighted[aria-selected=false]:hover,
 .select2-container--default .select2-results__option--highlighted[aria-selected=false]:focus {
-  background-color: transparent;
+  background-color: #EDF2F9;
   color: #12263F;
 }
 
 .select2-container--default .select2-results__option[aria-selected=true] {
-  background-color: transparent;
-  color: #12263F;
+  background-color: #2C7BE5;
+  color: #FFFFFF;
 }
 
 .select2-container--default .select2-results__option[aria-disabled=true] {
@@ -17076,6 +17076,69 @@ div.table-responsive > div.dataTables_wrapper > div.row > div[class^=col-]:last-
   }
 }
 
+/*
+ * bootstrap-tagsinput v0.8.0
+ * 
+ */
+
+.bootstrap-tagsinput {
+  height: auto;
+}
+
+.bootstrap-tagsinput input {
+  border: none;
+  box-shadow: none;
+  outline: none;
+  background-color: transparent;
+  padding: 0 6px;
+  margin: 0;
+  width: auto;
+  max-width: inherit;
+}
+
+.bootstrap-tagsinput.form-control input::-moz-placeholder {
+  color: #777;
+  opacity: 1;
+}
+
+.bootstrap-tagsinput.form-control input:-ms-input-placeholder {
+  color: #777;
+}
+
+.bootstrap-tagsinput.form-control input::-webkit-input-placeholder {
+  color: #777;
+}
+
+.bootstrap-tagsinput input:focus {
+  border: none;
+  box-shadow: none;
+}
+
+.bootstrap-tagsinput .badge {
+  margin: 0 0.3rem 0.3rem 0;
+  padding: 5px 8px;
+  font-size: 0.8125rem;
+}
+
+.bootstrap-tagsinput .badge [data-role=remove] {
+  margin-left: 8px;
+  cursor: pointer;
+  background: transparent;
+}
+
+.bootstrap-tagsinput .badge [data-role=remove]:after {
+  content: "\D7";
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: bold;
+  opacity: 0.5;
+}
+
+.bootstrap-tagsinput .badge [data-role=remove]:hover:after,
+.bootstrap-tagsinput .badge [data-role=remove]:hover:active {
+  opacity: 1;
+}
+
 .bx {
   font-size: 1.2rem;
   line-height: 1.40625rem;
@@ -17241,5 +17304,9 @@ h6 .bx,
 
 .select2-auto .select2.select2-container {
   width: auto !important;
+}
+
+.form-control:disabled {
+  opacity: 0.3;
 }
 

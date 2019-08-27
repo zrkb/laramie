@@ -1,13 +1,13 @@
 <?php
 
-if (! function_exists('parse_decimal')) {
+if (! function_exists('parse_amount')) {
 	/**
-	 * Format a decimal string from (#.###.###,##) -> (#######.##)
+	 * Parse amount string like (#.###.###,##) and converting it to (#######.##)
 	 * 
 	 * @param string $string
 	 * @param bool $truncate
 	 */
-	function parse_decimal(string $string, bool $truncate = false) : float {
+	function parse_amount(string $string, bool $truncate = false) : float {
 		$string = str_replace('.', '', $string);
 		$string = str_replace(',', '.', $string);
 

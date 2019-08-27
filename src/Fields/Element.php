@@ -2,11 +2,14 @@
 
 namespace Pandorga\Laramie\Fields;
 
-use JsonSerializable;
 use Illuminate\Http\Request;
+use JsonSerializable;
+use Pandorga\Laramie\Traits\Metable;
 
 abstract class Element implements JsonSerializable
 {
+    use Metable;
+    
     /**
      * The element's component.
      *

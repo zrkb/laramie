@@ -15,6 +15,7 @@
 <script src="{{ assets_path() }}/assets/libs/select2/dist/js/select2.min.js"></script>
 <script src="{{ assets_path() }}/assets/libs/chart.js/Chart.extension.min.js"></script>
 <script src="{{ assets_path() }}/assets/libs/bootbox/bootbox.js"></script>
+<script src="{{ assets_path() }}/assets/libs/tags/tags.js"></script>
 
 <!-- Map -->
 <script src='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>

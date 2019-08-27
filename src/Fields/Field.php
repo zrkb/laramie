@@ -152,4 +152,16 @@ abstract class Field extends FieldElement
             'value' => $item->getAttribute($this->attribute),
         ]);
     }
+
+    public function withExtraAttributes(array $attributes)
+    {
+        return $this->withMeta([
+            'extraAttributes' => array_merge($this->extraAttributes(), $attributes)
+        ]);
+    }
+
+    public function extraAttributes()
+    {
+        return $this->meta()['extraAttributes'] ?? [];
+    }
 }

@@ -2,6 +2,8 @@
 
 namespace Pandorga\Laramie\Fields;
 
+use Spatie\Html\Elements\A;
+
 class Text extends Field
 {
     /**
@@ -11,10 +13,21 @@ class Text extends Field
      */
     public $component = 'text-field';
 
+    /**
+     * The meta data for the element.
+     *
+     * @var array
+     */
+    public $meta = [
+        'extraAttributes' => [
+            'class' => 'form-control',
+        ],
+    ];
+
     public function linkable()
     {
     	return $this->displayUsing(function ($item, $value) {
-            return '<a href="' . resource('show', $item->id) . '">' . $value . "</a>";
+            return html()->a(resource('show', $item->id))->text($value);
         });
     }
 }

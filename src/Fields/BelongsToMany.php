@@ -2,14 +2,14 @@
 
 namespace Pandorga\Laramie\Fields;
 
-class BelongsTo extends Select
+class BelongsToMany extends BelongsTo
 {	
     /**
      * The field's component.
      *
      * @var string
      */
-    public $component = 'belongs-to-field';
+    public $component = 'belongs-to-many-field';
 
     /**
      * The field's options.
@@ -86,5 +86,23 @@ class BelongsTo extends Select
             Str::studly(Str::singular($name)),
             $results[3]['class']
         );
+    }
+
+    /**
+     * Set the options for the select menu.
+     *
+     * @param  array  $options
+     * @return $this
+     */
+    public function withOptions($options)
+    {
+        $this->options = $options;
+
+        return $this;
+    }
+
+    public function options()
+    {
+        return $this->options;
     }
 }
