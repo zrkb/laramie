@@ -17,26 +17,21 @@
 
 			{{ form()->model($item, ['route' => [$resource::uriKey() . '.update', $item->id], 'method' => 'PUT']) }}
 			
-				<div class="card">
-					<div class="card-body">
+				@include($resource->viewForForm, [
+					'fields' => $resource->updateFields(),
+				])
 
-						@include($resource->viewForForm, [
-							'fields' => $resource->updateFields(),
-						])
+				<hr>
 
-						<div class="form-group mt-5 mb-3">
-							<a href="{{ resource('index') }}" class="btn btn-white mr-2">
-								@lang('laramie::resource.cancel-form-button')
-							</a>
+				<div class="form-group">
+					<a href="{{ resource('index') }}" class="btn btn-white mr-2">
+						@lang('laramie::resource.cancel-form-button')
+					</a>
 
-							<button type="submit" class="btn btn-primary btn-activity">
-								@lang('laramie::resource.submit-form-button')
-							</button>
-						</div>
-					</div>
-					{{-- END card-body --}}
+					<button type="submit" class="btn btn-primary btn-activity">
+						@lang('laramie::resource.submit-form-button')
+					</button>
 				</div>
-				{{-- END card --}}
 
 			{{ form()->close() }}
 		</div>

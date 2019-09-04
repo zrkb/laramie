@@ -4,10 +4,12 @@ namespace Pandorga\Laramie\Http\Controllers;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use Pandorga\Laramie\Http\Requests\ResourceIndexRequest;
+use Pandorga\Laramie\Traits\HasResource;
 
-abstract class BaseResourceController extends BaseController
+class BaseResourceController extends BaseController
 {
+    use HasResource;
+
     protected $resource;
 
     public function index()
@@ -83,30 +85,6 @@ abstract class BaseResourceController extends BaseController
         return redirect(resource('show', $id));
     }
 
-    public function restore($id)
-    {
-        $instance = $this->getModel()::withTrashed()->find($id);
-
-        if ($instance->restore()) {
-            session()->flash('info', 'El registro ha sido restaurado exitosamente.');
-        } else {
-            session()->flash('danger', 'No se pudo restaurar el registro. Por favor comuníquese con el administrador.');
-        }
-
-        return back();
-    }
-
-    public function getModelInstance($id)
-    {
-        $model = $this->getModel();
-
-        if ((new $model)->hasSoftDelete()) {
-            return $model::withTrashed()->find($id);
-        }
-
-        return $model::find($id);
-    }
-
     public function destroy($id)
     {
         $instance = $this->getModelInstance($id);
@@ -120,45 +98,5 @@ abstract class BaseResourceController extends BaseController
         }
 
         return $redirectTo;
-    }
-
-    /**
-     * Perform delete or forceDelete acording to model status.
-     * 
-     * @return bool|null
-     */
-    public function destroyModel(Model $instance)
-    {
-        if ($instance->hasSoftDelete() && $instance->trashed()) {
-
-            try {
-                $result = $instance->forceDelete();
-            } catch (\Illuminate\Database\QueryException $exception) {
-                return false;
-            }
-
-            return $result;
-        }
-
-        return $instance->delete();
-    }
-
-    public function getSuccessDeleteMessage(Model $instance) : string
-    {
-        return $instance->willForceDelete() ?
-            'El registro se ha eliminado exitosamente de la Base de Datos' :
-            'Registro inactivado exitosamente.';
-    }
-
-    /**
-     * Return resource model.
-     * 
-     * @return string
-     */
-    public function getModel() : string
-    {
-        $model = $this->resource::$model;
-
-        return $model;
     }
 }

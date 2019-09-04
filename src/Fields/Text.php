@@ -30,4 +30,14 @@ class Text extends Field
             return html()->a(resource('show', $item->id))->text($value);
         });
     }
+
+    public function asAmount()
+    {
+        $this->withExtraAttributes([
+            'data-mask' => "#.##0",
+            'data-mask-reverse' => "true",
+        ]);
+
+        return $this;
+    }
 }

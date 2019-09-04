@@ -10,7 +10,7 @@
 					@include('laramie::components/back-to-resource')
 				@endslot
 
-				Nuevo {{ $resource->singularLabel() }}
+				Crear {{ $resource->singularLabel() }}
 			@endcomponent
 
            @include('laramie::layouts/errors')
@@ -18,26 +18,21 @@
 
 			{{ form()->open(['url' => resource('store'), 'method' => 'post']) }}
 			
-				<div class="card">
-					<div class="card-body">
-						
-						@include('laramie::resources/form', [
-							'fields' => $resource->creationFields(),
-						])
+				@include('laramie::resources/form', [
+					'fields' => $resource->creationFields(),
+				])
 
-						<div class="form-group mt-5 mb-3">
-							<a href="{{ resource('index') }}" class="btn btn-white mr-2">
-								@lang('laramie::resource.cancel-form-button')
-							</a>
+				<hr>
 
-							<button type="submit" class="btn btn-primary btn-activity">
-								@lang('laramie::resource.submit-form-button')
-							</button>
-						</div>
-					</div>
-					{{-- END card-body --}}
+				<div class="form-group">
+					<a href="{{ resource('index') }}" class="btn btn-white mr-2">
+						@lang('laramie::resource.cancel-form-button')
+					</a>
+
+					<button type="submit" class="btn btn-primary btn-activity">
+						@lang('laramie::resource.submit-form-button')
+					</button>
 				</div>
-				{{-- END card --}}
 
 			{{ form()->close() }}
 		</div>
