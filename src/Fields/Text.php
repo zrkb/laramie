@@ -27,7 +27,7 @@ class Text extends Field
     public function linkable()
     {
     	return $this->displayUsing(function ($item, $value) {
-            return html()->a(resource('show', $item->id))->text($value);
+            return html()->a(resource('edit', $item->id))->text($value);
         });
     }
 

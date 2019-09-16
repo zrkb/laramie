@@ -6,17 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 trait HasResource
 {
-    public function restore($id)
+    public function destroy($id)
     {
-        $instance = $this->getModel()::withTrashed()->find($id);
+        $instance = $this->getModelInstance($id);
+        $redirectTo = redirect(resource('index'));
+        $flashMessage = $this->getSuccessDeleteMessage($instance);
 
-        if ($instance->restore()) {
-            session()->flash('info', 'El registro ha sido restaurado exitosamente.');
+        if ($this->destroyModel($instance)) {
+            session()->flash('success', $flashMessage);
         } else {
-            session()->flash('danger', 'No se pudo restaurar el registro. Por favor comuníquese con el administrador.');
+            session()->flash('danger', 'No se pudo eliminar el registro. Por favor comuníquese con el administrador.');
         }
 
-        return back();
+        return $redirectTo;
     }
     
     /**
@@ -68,5 +70,18 @@ trait HasResource
         }
 
         return $model::find($id);
+    }
+    
+    public function restore($id)
+    {
+        $instance = $this->getModel()::withTrashed()->find($id);
+
+        if ($instance->restore()) {
+            session()->flash('info', 'El registro ha sido restaurado exitosamente.');
+        } else {
+            session()->flash('danger', 'No se pudo restaurar el registro. Por favor comuníquese con el administrador.');
+        }
+
+        return back();
     }
 }

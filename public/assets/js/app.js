@@ -315,14 +315,14 @@ var demoMode = function () {
 
 
   parseUrl(); // Toggle color scheme
-
-  toggleColorScheme(config.colorScheme); // Toggle nav position
-
-  toggleNavPosition(config.navPosition); // Toggle sidebar color
-
-  toggleNavColor(config.navColor); // Toggle sidebar size
-
-  toggleSidebarSize(config.sidebarSize); // Toggle form controls
+  // toggleColorScheme(config.colorScheme);
+  // Toggle nav position
+  // toggleNavPosition(config.navPosition);
+  // Toggle sidebar color
+  // toggleNavColor(config.navColor);
+  // Toggle sidebar size
+  // toggleSidebarSize(config.sidebarSize);
+  // Toggle form controls
 
   toggleFormControls(form, config.colorScheme, config.navPosition, config.navColor, config.sidebarSize); // Toggle sidebarSize container
 
@@ -1393,65 +1393,9 @@ window.ChartBackgroundColors = ['#2C7BE5', '#5EA2EF', '#7FBCF7', '#AAD8FC', '#D4
   !*** ./resources/assets/js/dropzone.js ***!
   \*****************************************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-//
-// dropzone.js
-// Theme module
-//
+/***/ (function(module, exports) {
 
 
-(function () {
-  //
-  // Variables
-  //
-  var toggle = document.querySelectorAll('[data-toggle="dropzone"]'); //
-  // Functions
-  //
-
-  function globalOptions() {
-    Dropzone.autoDiscover = false;
-    Dropzone.thumbnailWidth = null;
-    Dropzone.thumbnailHeight = null;
-  }
-
-  function init(el) {
-    var currentFile = undefined;
-    var elementOptions = el.dataset.options;
-    elementOptions = elementOptions ? JSON.parse(elementOptions) : {};
-    var defaultOptions = {
-      previewsContainer: el.querySelector('.dz-preview'),
-      previewTemplate: el.querySelector('.dz-preview').innerHTML,
-      init: function init() {
-        this.on('addedfile', function (file) {
-          var maxFiles = elementOptions.maxFiles;
-
-          if (maxFiles == 1 && currentFile) {
-            this.removeFile(currentFile);
-          }
-
-          currentFile = file;
-        });
-      }
-    };
-    var options = Object.assign(elementOptions, defaultOptions); // Clear preview
-
-    el.querySelector('.dz-preview').innerHTML = ''; // Init dropzone
-
-    new Dropzone(el, options);
-  } //
-  // Events
-  //
-
-
-  if (typeof Dropzone !== 'undefined' && toggle) {
-    globalOptions();
-    [].forEach.call(toggle, function (el) {
-      init(el);
-    });
-  }
-})();
 
 /***/ }),
 
@@ -1990,9 +1934,60 @@ window.ChartBackgroundColors = ['#2C7BE5', '#5EA2EF', '#7FBCF7', '#AAD8FC', '#D4
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 window.dd = function (data) {
   console.log(data);
 };
+
+var TableCheckboxManager =
+/*#__PURE__*/
+function () {
+  function TableCheckboxManager() {
+    _classCallCheck(this, TableCheckboxManager);
+
+    this.init();
+  }
+
+  _createClass(TableCheckboxManager, [{
+    key: "init",
+    value: function init() {
+      $('body').on('click', '.table-checkbox-manager', function (event) {
+        var el = $(event.target);
+        var tableCheckboxes = el.parents('table').find('.table-checkbox-item');
+        tableCheckboxes.prop('checked', el.is(':checked'));
+        tableCheckboxes.trigger('change');
+      });
+      $('body').on('change', '.table-checkbox-item', function (event) {
+        var el = $(event.target);
+        var checked = el.is(':checked');
+        var checkedItems = el.parents('table').find('.table-checkbox-item:checked');
+        var checkboxManager = el.parents('table').find('.table-checkbox-manager');
+
+        if (checkedItems.length == 0) {
+          checkboxManager.prop('checked', false).prop('indeterminate', false);
+        } else if (checkedItems.length == el.parents('table').find('.table-checkbox-item').length) {
+          checkboxManager.prop('checked', true).prop('indeterminate', false);
+        } else {
+          checkboxManager.prop('indeterminate', true);
+        }
+
+        if (checked) {
+          el.parents('tr').addClass('bg-light');
+        } else {
+          el.parents('tr').removeClass('bg-light');
+        }
+      });
+      $('.table-checkbox-item').trigger('change');
+    }
+  }]);
+
+  return TableCheckboxManager;
+}();
 
 window.slugify = function (text) {
   var separator = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '-';
@@ -2096,7 +2091,7 @@ jQuery(document).ready(function ($) {
    | Vendor Plugins
    |--------------------------------------------------------------------
    */
-  // Currency
+  new TableCheckboxManager(); // Currency
   // $('.input-currency').mask('#.##0', { reverse: true });
 
   /*
@@ -2141,6 +2136,7 @@ jQuery(document).ready(function ($) {
   // 	uploadBox.removeClass('d-none');
   // });
   // Delete Record
+
   $('body').on('click', '.delete-record', function (event) {
     event.preventDefault();
     var el = $(this);

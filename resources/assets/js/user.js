@@ -10,6 +10,50 @@ window.dd = function(data)
 	console.log(data);
 };
 
+
+class TableCheckboxManager {
+	constructor() {
+		this.init();
+	}
+
+	init() {
+		$('body').on('click', '.table-checkbox-manager', (event) => {
+			let el = $(event.target);
+			let tableCheckboxes = el.parents('table').find('.table-checkbox-item');
+
+			tableCheckboxes.prop('checked', el.is(':checked'));
+			tableCheckboxes.trigger('change');
+		});
+
+		$('body').on('change', '.table-checkbox-item', (event) => {
+
+			let el = $(event.target);
+			let checked = el.is(':checked');
+			let checkedItems = el.parents('table').find('.table-checkbox-item:checked');
+			let checkboxManager = el.parents('table').find('.table-checkbox-manager')
+
+			if (checkedItems.length == 0) {
+				checkboxManager.prop('checked', false)
+							   .prop('indeterminate', false);
+			} else if (checkedItems.length == el.parents('table').find('.table-checkbox-item').length) {
+				checkboxManager.prop('checked', true)
+							   .prop('indeterminate', false);
+			} else {
+				checkboxManager.prop('indeterminate', true)
+			}
+
+			if (checked) {
+				el.parents('tr').addClass('bg-light');
+			} else {
+				el.parents('tr').removeClass('bg-light');
+			}
+
+		})
+
+		$('.table-checkbox-item').trigger('change');
+	}
+}
+
 window.slugify = function(text, separator = '-') {
     text = text.toString().toLowerCase().trim();
 
@@ -67,6 +111,8 @@ jQuery(document).ready(function ($) {
 	 | Vendor Plugins
 	 |--------------------------------------------------------------------
 	 */
+	
+	new TableCheckboxManager;
 
 	// Currency
 	// $('.input-currency').mask('#.##0', { reverse: true });

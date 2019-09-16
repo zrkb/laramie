@@ -213,16 +213,16 @@ var demoMode = (function() {
   parseUrl();
 
   // Toggle color scheme
-  toggleColorScheme(config.colorScheme);
+  // toggleColorScheme(config.colorScheme);
 
   // Toggle nav position
-  toggleNavPosition(config.navPosition);
+  // toggleNavPosition(config.navPosition);
 
   // Toggle sidebar color
-  toggleNavColor(config.navColor);
+  // toggleNavColor(config.navColor);
 
   // Toggle sidebar size
-  toggleSidebarSize(config.sidebarSize);
+  // toggleSidebarSize(config.sidebarSize);
 
   // Toggle form controls
   toggleFormControls(form, config.colorScheme, config.navPosition, config.navColor, config.sidebarSize);
