@@ -43,13 +43,6 @@
 					}
 				};
 
-				this.options = {
-					language: this.language,
-					dom: 'Bfrtp',
-					buttons: this.buttons,
-					bPaginate: false
-				};
-
 				this.buttons = [
 					{
 						extend: 'copy',
@@ -94,6 +87,13 @@
 					}
 				];
 
+				this.options = {
+					language: this.language,
+					dom: 'Bfrtp',
+					buttons: this.buttons,
+					bPaginate: false
+				};
+
 				this.init();
 			}
 
@@ -134,20 +134,20 @@
 
 			parseDatacell(data, row, column, node)
 			{
-
 				if (! data) return;
 
-				var numeric = $("<p>" + data + "</p>");
+				let htmlData = $(data);
 
-				if (numeric.find('.numeric').length > 0) {
-					data = $(numeric.find('.numeric')[0]).html();
+				if (htmlData.hasClass('numeric')) {
+
+					data = htmlData.html();
 
 					data = data.replace(/[$.]/g, '');
-					data = data.replace(/[$,]/g, '.');
+					data = data.replace(/[$,]/g, '');
 					data = data.replace(/[$%]/g, '');
-				} else {
-					data = data.replace(/(&nbsp;|<(?:.|\n)*?>)/igm, '');
 				}
+
+				data = data.replace(/(&nbsp;|<(?:.|\n)*?>)/igm, '');
 
 				data = $.trim(data);
 
