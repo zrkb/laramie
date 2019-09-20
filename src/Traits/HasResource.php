@@ -9,7 +9,7 @@ trait HasResource
     public function destroy($id)
     {
         $instance = $this->getModelInstance($id);
-        $redirectTo = redirect(resource('index'));
+        $redirectTo = $instance->willForceDelete() ? redirect(resource('index')) : back();
         $flashMessage = $this->getSuccessDeleteMessage($instance);
 
         if ($this->destroyModel($instance)) {
