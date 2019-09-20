@@ -84,19 +84,4 @@ class BaseResourceController extends BaseController
 
         return redirect(resource('show', $id));
     }
-
-    public function destroy($id)
-    {
-        $instance = $this->getModelInstance($id);
-        $redirectTo = $instance->willForceDelete() ? redirect(resource('index')) : back();
-        $flashMessage = $this->getSuccessDeleteMessage($instance);
-
-        if ($this->destroyModel($instance)) {
-            session()->flash('success', $flashMessage);
-        } else {
-            session()->flash('danger', 'No se pudo eliminar el registro. Por favor comuníquese con el administrador.');
-        }
-
-        return $redirectTo;
-    }
 }
