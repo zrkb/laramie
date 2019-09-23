@@ -31,7 +31,7 @@
 						<tr>
 							@foreach ($resource->indexFields() as $field)
 								@php
-									$tdClass = $field->attribute == 'id' ? 'class=tid' : ''
+									$tdClass =  in_array($field->attribute, ['id', 'image']) ? 'class=tid' : ''
 								@endphp
 								<th {{ $tdClass }}>{{ $field->name }}</th>
 							@endforeach

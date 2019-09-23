@@ -132,15 +132,17 @@ abstract class Field extends FieldElement
             'field' => $this,
             'item' => $item,
             'value' => $this->resolveForDisplay($item, $value),
+            'resource' => $resource,
         ]);
     }
 
-    public function renderForForm($item)
+    public function renderForForm($item, $resource)
     {
         return view("laramie::fields/{$this->component}/form")->with([
             'field' => $this,
             'item' => $item,
             'value' => $item->getAttribute($this->attribute),
+            'resource' => $resource,
         ]);
     }
 
