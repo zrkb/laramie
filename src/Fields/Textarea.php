@@ -21,4 +21,18 @@ class Textarea extends Field
             'class' => 'form-control',
         ],
     ];
+
+    /**
+     * Create a new field.
+     *
+     * @param  string|null  $name
+     * @param  string|null  $attribute
+     * @return void
+     */
+    public function __construct($name = null, $attribute = null)
+    {
+        parent::__construct($name, $attribute);
+
+        $this->onlyOnForms();
+    }
 }
