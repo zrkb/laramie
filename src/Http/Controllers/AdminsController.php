@@ -2,13 +2,15 @@
 
 namespace Pandorga\Laramie\Http\Controllers;
 
-use Pandorga\Laramie\Models\Role;
-use Pandorga\Laramie\Traits\PermissionModerator;
 use Illuminate\Http\Request;
+use Pandorga\Laramie\Models\Role;
+use Pandorga\Laramie\Traits\HasResource;
+use Pandorga\Laramie\Traits\PermissionModerator;
 
 class AdminsController extends BaseController
 {
 	use PermissionModerator;
+	use HasResource;
 
 	public function index()
 	{
