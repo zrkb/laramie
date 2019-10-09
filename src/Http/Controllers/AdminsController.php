@@ -12,6 +12,8 @@ class AdminsController extends BaseController
 	use PermissionModerator;
 	use HasResource;
 
+	protected $resource = '\Pandorga\Laramie\Resources\Admin';
+
 	public function index()
 	{
 		$admins = config('laramie.models.admin')::withTrashed()->get();
